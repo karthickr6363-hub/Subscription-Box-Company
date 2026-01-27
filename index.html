@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pakka! - Premium Subscription Boxes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">PAKKA!</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Home
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-home me-2"></i> Home 1 - Brand Experience</a></li>
+                            <li><a class="dropdown-item" href="home-conversion.html"><i class="fas fa-rocket me-2"></i> Home 2 - Conversion Focused</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="how-it-works.html">How It Works</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
+                            <li><a class="dropdown-item" href="plans.html"><i class="fas fa-box me-2"></i> Plans</a></li>
+                            <li><a class="dropdown-item" href="shop.html"><i class="fas fa-shopping-bag me-2"></i> Shop</a></li>
+                            <li><a class="dropdown-item" href="reviews.html"><i class="fas fa-star me-2"></i> Reviews</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus me-2"></i> Sign Up</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i> Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i> User Dashboard</a></li>
+                            <li><a class="dropdown-item" href="admin.html"><i class="fas fa-user-shield me-2"></i> Admin Dashboard</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="display-1 fw-bold mb-4 animate-text">
+                            Unbox <span class="text-gradient">Happiness</span>
+                        </h1>
+                       
+                        <div class="d-flex gap-3 animate-text-delay-2">
+                            <button class="btn btn-primary btn-lg px-5 py-3">
+                                <i class="fas fa-box-open me-2"></i> Start Journey
+                            </button>
+                            <button class="btn btn-outline-light btn-lg px-5 py-3">
+                                <i class="fas fa-play-circle me-2"></i> Watch Demo
+                            </button>
+                        </div>
+                        <div class="mt-5 stats animate-text-delay-3">
+                            <div class="row">
+                                <div class="col-4">
+                                    <h3 class="fw-bold">50K+</h3>
+                                    <p>Happy Subscribers</p>
+                                </div>
+                                <div class="col-4">
+                                    <h3 class="fw-bold">4.9★</h3>
+                                    <p>Average Rating</p>
+                                </div>
+                                <div class="col-4">
+                                    <h3 class="fw-bold">12+</h3>
+                                    <p>Box Categories</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image-container">
+                        <div class="floating-box">
+                            <img src="https://i.pinimg.com/736x/a0/09/8b/a0098b9cd6c88b1f1a6173731ddb49fc.jpg" alt="Premium Box" class="img-fluid rounded-4 shadow-lg">
+                        </div>
+                        <div class="floating-elements">
+                            <div class="float-element float-1">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <div class="float-element float-2">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="float-element float-3">
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Preview -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">How It Works</h2>
+                <p class="lead">Get started in 3 simple steps</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="step-card text-center">
+                        <div class="step-icon">
+                            <i class="fas fa-cursor-pointer"></i>
+                        </div>
+                        <h4>Choose Your Box</h4>
+                        <p>Select from our curated collection of premium boxes</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-card text-center">
+                        <div class="step-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h4>Customize</h4>
+                        <p>Tailor your preferences and delivery schedule</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-card text-center">
+                        <div class="step-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h4>Enjoy Delivery</h4>
+                        <p>Receive your curated box at your doorstep</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Boxes -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Featured Boxes</h2>
+                <p class="lead">Discover our most popular subscription boxes</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="box-card">
+                        <div class="box-image">
+                            <img src="https://i.pinimg.com/736x/a6/b0/59/a6b0597e2d5518cdfdbdda693061852d.jpg" alt="Beauty Box" class="img-fluid">
+                            <span class="box-badge">Bestseller</span>
+                        </div>
+                        <div class="box-content">
+                            <h4>Beauty Essentials</h4>
+                            <p>Premium skincare and makeup products</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">$29/month</span>
+                                <button class="btn btn-sm btn-primary">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="box-card">
+                        <div class="box-image">
+                            <img src="https://i.pinimg.com/736x/fd/29/b1/fd29b1472f9965375db1f228fc7497a7.jpg" alt="Tech Box" class="img-fluid">
+                            <span class="box-badge">New</span>
+                        </div>
+                        <div class="box-content">
+                            <h4>Tech Gadgets</h4>
+                            <p>Latest tech accessories and innovations</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">$49/month</span>
+                                <button class="btn btn-sm btn-primary">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="box-card">
+                        <div class="box-image">
+                            <img src="https://i.pinimg.com/736x/08/07/3a/08073a7b955600931df843b526ad316d.jpg" alt="Fitness Box" class="img-fluid">
+                        </div>
+                        <div class="box-content">
+                            <h4>Fitness Fuel</h4>
+                            <p>Workout gear and nutrition essentials</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">$39/month</span>
+                                <button class="btn btn-sm btn-primary">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">What Our Customers Say</h2>
+                <p class="lead">Real stories from our happy subscribers</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="review-card">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"The best subscription service I've ever used! Every box feels like a special treat."</p>
+                        <div class="reviewer">
+                            <img src="https://i.pinimg.com/736x/a5/32/ab/a532ab828bd4db9bb066f684061f056f.jpg" alt="Sarah" class="rounded-circle">
+                            <div>
+                                <h6 class="mb-0">Sarah Johnson</h6>
+                                <small>Beauty Box Subscriber</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="review-card">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Amazing value for money. The tech gadgets are always cutting-edge and useful!"</p>
+                        <div class="reviewer">
+                            <img src="https://i.pinimg.com/736x/ab/eb/25/abeb25cbd139d8d50210d1730ccca190.jpg" alt="Mike" class="rounded-circle">
+                            <div>
+                                <h6 class="mb-0">Mike Chen</h6>
+                                <small>Tech Box Subscriber</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="review-card">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Perfect for my fitness journey. Love the variety and quality of products!"</p>
+                        <div class="reviewer">
+                            <img src="https://i.pinimg.com/736x/90/24/9a/90249a4822c3eab60b669c9cae889452.jpg" alt="Emma" class="rounded-circle">
+                            <div>
+                                <h6 class="mb-0">Emma Park</h6>
+                                <small>Fitness Box Subscriber</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="display-5 fw-bold mb-3">Ready to Unbox Happiness?</h2>
+                    <p class="lead mb-0">Join 50,000+ happy subscribers and start your journey today!</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <button class="btn btn-light btn-lg px-5">
+                        <i class="fas fa-rocket me-2"></i> Subscribe Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="brand-text mb-3">PAKKA!</h5>
+                    <p>Premium subscription boxes curated for your lifestyle. Unbox happiness every month.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="how-it-works.html">How It Works</a></li>
+                        <li><a href="plans.html">Plans</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="referral.html">Referral Program</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6>Newsletter</h6>
+                    <p>Subscribe to get special offers and updates</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2026 Pakka! All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

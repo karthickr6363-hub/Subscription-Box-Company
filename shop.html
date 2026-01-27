@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Pakka! Premium Subscription Boxes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .shop-hero {
+            background: var(--gradient);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shop-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+        
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .product-image {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 26, 46, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+        
+        .quick-view-btn {
+            background: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-view-btn:hover {
+            background: #d63850;
+            transform: translateY(-2px);
+        }
+        
+        .product-content {
+            padding: 1.5rem;
+        }
+        
+        .product-category {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        
+        .product-description {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .product-rating {
+            color: #ffc107;
+            margin-bottom: 1rem;
+        }
+        
+        .filter-sidebar {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 100px;
+        }
+        
+        .filter-section {
+            margin-bottom: 2rem;
+        }
+        
+        .filter-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .price-range {
+            margin: 1rem 0;
+        }
+        
+        .price-slider {
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        .cart-sidebar {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .cart-sidebar.open {
+            right: 0;
+        }
+        
+        .cart-header {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 1.5rem;
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+        
+        .cart-item {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 2px solid var(--accent-color);
+        }
+        
+        .past-boxes {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.05), rgba(22, 33, 62, 0.1));
+            padding: 80px 0;
+        }
+        
+        .box-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .box-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-color);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-box {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        
+        .timeline-box:nth-child(odd) .timeline-content {
+            margin-right: 50%;
+            padding-right: 2rem;
+            text-align: right;
+        }
+        
+        .timeline-box:nth-child(even) .timeline-content {
+            margin-left: 50%;
+            padding-left: 2rem;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            border: 4px solid var(--white);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .sort-dropdown {
+            background: var(--white);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .view-toggle {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .view-btn {
+            background: var(--white);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 0.75rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .view-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+        
+        @media (max-width: 768px) {
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .box-timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-box .timeline-content {
+                margin-left: 50px !important;
+                margin-right: 0 !important;
+                padding-left: 1rem !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+            
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">PAKKA!</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Home
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-home me-2"></i> Home 1 - Brand Experience</a></li>
+                            <li><a class="dropdown-item" href="home-conversion.html"><i class="fas fa-rocket me-2"></i> Home 2 - Conversion Focused</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="how-it-works.html">How It Works</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
+                            <li><a class="dropdown-item" href="plans.html"><i class="fas fa-box me-2"></i> Plans</a></li>
+                            <li><a class="dropdown-item active" href="shop.html"><i class="fas fa-shopping-bag me-2"></i> Shop</a></li>
+                            <li><a class="dropdown-item" href="reviews.html"><i class="fas fa-star me-2"></i> Reviews</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus me-2"></i> Sign Up</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i> Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i> User Dashboard</a></li>
+                            <li><a class="dropdown-item" href="admin.html"><i class="fas fa-user-shield me-2"></i> Admin Dashboard</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Shop Hero -->
+    <section class="shop-hero">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="display-2 fw-bold mb-4 text-white">
+                    Shop <span class="text-gradient">Past Boxes</span> & Products
+                </h1>
+                <p class="lead text-white mb-4">
+                    Get your hands on previously featured boxes and individual products. No subscription required!
+                </p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-light btn-lg px-5">
+                        <i class="fas fa-box me-2"></i> Browse Past Boxes
+                    </button>
+                    <button class="btn btn-outline-light btn-lg px-5">
+                        <i class="fas fa-tag me-2"></i> Individual Products
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section class="shop-section">
+        <div class="container">
+            <div class="row">
+                <!-- Filter Sidebar -->
+                <div class="col-lg-3">
+                    <div class="filter-sidebar">
+                        <h4 class="mb-4">Filters</h4>
+                        
+                        <!-- Categories -->
+                        <div class="filter-section">
+                            <h5 class="filter-title">Categories</h5>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="cat-beauty" checked>
+                                <label class="form-check-label" for="cat-beauty">Beauty (24)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="cat-tech">
+                                <label class="form-check-label" for="cat-tech">Tech (18)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="cat-fitness">
+                                <label class="form-check-label" for="cat-fitness">Fitness (15)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="cat-food">
+                                <label class="form-check-label" for="cat-food">Food (22)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="cat-lifestyle">
+                                <label class="form-check-label" for="cat-lifestyle">Lifestyle (19)</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Price Range -->
+                        <div class="filter-section">
+                            <h5 class="filter-title">Price Range</h5>
+                            <div class="price-range">
+                                <input type="range" class="form-range price-slider" min="0" max="200" value="100" id="priceRange">
+                                <div class="d-flex justify-content-between">
+                                    <span>$0</span>
+                                    <span id="priceValue">$100</span>
+                                    <span>$200</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Box Type -->
+                        <div class="filter-section">
+                            <h5 class="filter-title">Box Type</h5>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="type-past">
+                                <label class="form-check-label" for="type-past">Past Boxes</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="type-individual">
+                                <label class="form-check-label" for="type-individual">Individual Products</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="type-limited">
+                                <label class="form-check-label" for="type-limited">Limited Edition</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Rating -->
+                        <div class="filter-section">
+                            <h5 class="filter-title">Customer Rating</h5>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="rating-5">
+                                <label class="form-check-label" for="rating-5">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="rating-4">
+                                <label class="form-check-label" for="rating-4">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i> & up
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary w-100">Apply Filters</button>
+                    </div>
+                </div>
+                
+                <!-- Products Grid -->
+                <div class="col-lg-9">
+                    <!-- Sort and View Options -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <span class="text-muted">Showing 1-12 of 98 results</span>
+                        </div>
+                        <div class="d-flex gap-3 align-items-center">
+                            <select class="form-select sort-dropdown">
+                                <option>Sort by: Featured</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Newest First</option>
+                                <option>Best Rating</option>
+                            </select>
+                            <div class="view-toggle">
+                                <button class="view-btn active">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="view-btn">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Products Grid -->
+                    <div class="row g-4">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="https://via.placeholder.com/300x250/1a1a2e/16213e?text=Beauty+Box+Jan+2024" alt="Beauty Box January 2024">
+                                    <span class="product-badge">Bestseller</span>
+                                    <div class="product-overlay">
+                                        <button class="quick-view-btn">
+                                            <i class="fas fa-eye me-2"></i> Quick View
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <div class="product-category">Past Box</div>
+                                    <h5 class="product-title">Beauty Essentials - January 2024</h5>
+                                    <p class="product-description">Skincare routine with premium winter care products</p>
+                                    <div class="product-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="text-muted">(234)</span>
+                                    </div>
+                                    <div class="product-price">$45</div>
+                                    <button class="btn btn-primary w-100" onclick="addToCart('Beauty Essentials - January 2024', 45)">
+                                        <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="https://via.placeholder.com/300x250/1a1a2e/16213e?text=Tech+Gadgets+Dec+2023" alt="Tech Gadgets December 2023">
+                                    <span class="product-badge">Limited</span>
+                                    <div class="product-overlay">
+                                        <button class="quick-view-btn">
+                                            <i class="fas fa-eye me-2"></i> Quick View
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <div class="product-category">Past Box</div>
+                                    <h5 class="product-title">Tech Gadgets - December 2023</h5>
+                                    <p class="product-description">Latest smart home devices and accessories</p>
+                                    <div class="product-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="text-muted">(189)</span>
+                                    </div>
+                                    <div class="product-price">$65</div>
+                                    <button class="btn btn-primary w-100" onclick="addToCart('Tech Gadgets - December 2023', 65)">
+                                        <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="https://via.placeholder.com/300x250/1a1a2e/16213e?text=Fitness+Fuel+Nov+2023" alt="Fitness Fuel November 2023">
+                                    <div class="product-overlay">
+                                        <button class="quick-view-btn">
+                                            <i class="fas fa-eye me-2"></i> Quick View
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <div class="product-category">Past Box</div>
+                                    <h5 class="product-title">Fitness Fuel - November 2023</h5>
+                                    <p class="product-description">Workout essentials and nutrition supplements</p>
+                                    <div class="product-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="text-muted">(156)</span>
+                                    </div>
+                                    <div class="product-price">$39</div>
+                                    <button class="btn btn-primary w-100" onclick="addToCart('Fitness Fuel - November 2023', 39)">
+                                        <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="https://via.placeholder.com/300x250/1a1a2e/16213e?text=Premium+Serum" alt="Premium Serum">
+                                    <span class="product-badge">Individual</span>
+                                    <div class="product-overlay">
+                                        <button class="quick-view-btn">
+                                            <i class="fas fa-eye me-2"></i> Quick View
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <div class="product-category">Individual Product</div>
+                                    <h5 class="product-title">Premium Vitamin C Serum</h5>
+                                    <p class="product-description">Anti-aging facial serum with hyaluronic acid</p>
+                                    <div class="product-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="text-muted">(412)</span>
+                                    </div>
+                                    <div class="product-price">$28</div>
+                                    <button class="btn btn-primary w-100" onclick="addToCart('Premium Vitamin C Serum', 28)">
+                                        <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="https://via.placeholder.com/300x250/1a1a2e/16213e?text=Wireless+Earbuds" alt="Wireless Earbuds">
+                                    <span class="product-badge">Individual</span>
+                                    <div class="product-overlay">
+                                        <button class="quick-view-btn">
+                                            <i class="fas fa-eye me-2"></i> Quick View
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <div class="product-category">Individual Product</div>
+                                    <h5 class="product-title">Wireless Earbuds Pro</h5>
+                                    <p class="product-description">Premium noise-cancelling wireless earbuds</p>
+                                    <div class="product-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <span class="text-muted">(298)</span>
+                                    </div>
+                                    <div class="product-price">$45</div>
+                                    <button class="btn btn-primary w-100" onclick="addToCart('Wireless Earbuds Pro', 45)">
+                                        <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="https://via.placeholder.com/300x250/1a1a2e/16213e?text=Food+Box+Oct+2023" alt="Food Box October 2023">
+                                    <div class="product-overlay">
+                                        <button class="quick-view-btn">
+                                            <i class="fas fa-eye me-2"></i> Quick View
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <div class="product-category">Past Box</div>
+                                    <h5 class="product-title">Gourmet Food - October 2023</h5>
+                                    <p class="product-description">Artisanal snacks and international delicacies</p>
+                                    <div class="product-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="text-muted">(324)</span>
+                                    </div>
+                                    <div class="product-price">$35</div>
+                                    <button class="btn btn-primary w-100" onclick="addToCart('Gourmet Food - October 2023', 35)">
+                                        <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <nav class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">...</a></li>
+                            <li class="page-item"><a class="page-link" href="#">9</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Past Boxes Timeline -->
+    <section class="past-boxes">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Past Boxes Archive</h2>
+                <p class="lead">Explore our collection of previously featured boxes</p>
+            </div>
+            
+            <div class="box-timeline">
+                <div class="timeline-box">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h5>January 2024 - Winter Wonderland</h5>
+                        <p>Cozy winter essentials including skincare, warm beverages, and comfort items.</p>
+                        <button class="btn btn-outline-primary">View Details</button>
+                    </div>
+                </div>
+                
+                <div class="timeline-box">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h5>December 2023 - Holiday Special</h5>
+                        <p>Festive treats, decorations, and gift-ready items for the holiday season.</p>
+                        <button class="btn btn-outline-primary">View Details</button>
+                    </div>
+                </div>
+                
+                <div class="timeline-box">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h5>November 2023 - Gratitude Box</h5>
+                        <p>Items to express thanks and enjoy the fall season with premium products.</p>
+                        <button class="btn btn-outline-primary">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h4 class="mb-0">Shopping Cart</h4>
+            <button class="btn btn-link text-white p-0" onclick="toggleCart()">
+                <i class="fas fa-times fa-lg"></i>
+            </button>
+        </div>
+        
+        <div id="cartItems">
+            <!-- Cart items will be dynamically added here -->
+            <div class="text-center py-5">
+                <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                <p class="text-muted">Your cart is empty</p>
+            </div>
+        </div>
+        
+        <div class="cart-footer">
+            <div class="d-flex justify-content-between mb-3">
+                <h5>Total:</h5>
+                <h5 id="cartTotal">$0</h5>
+            </div>
+            <button class="btn btn-primary w-100 mb-2">Proceed to Checkout</button>
+            <button class="btn btn-outline-primary w-100">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="brand-text mb-3">PAKKA!</h5>
+                    <p>Premium subscription boxes curated for your lifestyle. Unbox happiness every month.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="how-it-works.html">How It Works</a></li>
+                        <li><a href="plans.html">Plans</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="referral.html">Referral Program</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6>Download Our App</h6>
+                    <p>Manage your subscription on the go</p>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-light">
+                            <i class="fab fa-apple me-2"></i> App Store
+                        </button>
+                        <button class="btn btn-outline-light">
+                            <i class="fab fa-google-play me-2"></i> Google Play
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2026 Pakka! All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        let cart = [];
+        let cartOpen = false;
+        
+        function toggleCart() {
+            const cartSidebar = document.getElementById('cartSidebar');
+            cartOpen = !cartOpen;
+            
+            if (cartOpen) {
+                cartSidebar.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            } else {
+                cartSidebar.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        function addToCart(productName, price) {
+            const existingItem = cart.find(item => item.name === productName);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({
+                    name: productName,
+                    price: price,
+                    quantity: 1,
+                    image: `https://via.placeholder.com/60x60/1a1a2e/16213e?text=${productName.substring(0, 10)}`
+                });
+            }
+            
+            updateCart();
+            showNotification(`${productName} added to cart!`, 'success');
+        }
+        
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="text-center py-5">
+                        <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                        <p class="text-muted">Your cart is empty</p>
+                    </div>
+                `;
+                cartCount.textContent = '0';
+                cartTotal.textContent = '$0';
+                return;
+            }
+            
+            let html = '';
+            let total = 0;
+            let count = 0;
+            
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                count += item.quantity;
+                
+                html += `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">${item.name}</h6>
+                            <div class="d-flex align-items-center gap-2">
+                                <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, 1)">+</button>
+                                <span class="ms-auto fw-bold">$${itemTotal}</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-sm btn-link text-danger" onclick="removeFromCart(${index})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            
+            cartItems.innerHTML = html;
+            cartCount.textContent = count;
+            cartTotal.textContent = `$${total}`;
+        }
+        
+        function updateQuantity(index, change) {
+            cart[index].quantity += change;
+            
+            if (cart[index].quantity <= 0) {
+                removeFromCart(index);
+            } else {
+                updateCart();
+            }
+        }
+        
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+        
+        // Price range slider
+        const priceRange = document.getElementById('priceRange');
+        const priceValue = document.getElementById('priceValue');
+        
+        priceRange.addEventListener('input', function() {
+            priceValue.textContent = `$${this.value}`;
+        });
+        
+        // Close cart when clicking outside
+        document.addEventListener('click', function(event) {
+            const cartSidebar = document.getElementById('cartSidebar');
+            const cartButton = event.target.closest('button[onclick="toggleCart()"]');
+            
+            if (cartOpen && !cartSidebar.contains(event.target) && !cartButton) {
+                toggleCart();
+            }
+        });
+    </script>
+</body>
+</html>

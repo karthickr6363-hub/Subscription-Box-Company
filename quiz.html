@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalization Quiz - Pakka! Premium Subscription Boxes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .quiz-hero {
+            background: var(--gradient);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 0;
+        }
+        
+        .quiz-progress {
+            background: rgba(255,255,255,0.1);
+            border-radius: 50px;
+            height: 8px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .quiz-progress-bar {
+            background: var(--accent-color);
+            height: 100%;
+            border-radius: 50px;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+        
+        .quiz-progress-bar::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(233, 69, 96, 0.5);
+        }
+        
+        .quiz-card {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: var(--shadow-xl);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quiz-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient);
+        }
+        
+        .question-number {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .question-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+        
+        .option-card {
+            background: var(--white);
+            border: 2px solid rgba(26, 26, 46, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .option-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .option-card.selected {
+            border-color: var(--accent-color);
+            background: linear-gradient(135deg, rgba(233, 69, 96, 0.05), rgba(233, 69, 96, 0.1));
+        }
+        
+        .option-card.selected::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+        
+        .option-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+        
+        .option-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .option-description {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        .quiz-navigation {
+            display: flex;
+            justify-content: between;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn-quiz {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-quiz:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .result-section {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+        
+        .result-icon {
+            width: 120px;
+            height: 120px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            color: var(--white);
+            font-size: 3rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .recommendation-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+        
+        .recommendation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .preference-tag {
+            display: inline-block;
+            background: rgba(233, 69, 96, 0.1);
+            color: var(--accent-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+        
+        .skip-option {
+            background: rgba(26, 26, 46, 0.05);
+            border: none;
+            color: var(--text-light);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        
+        .skip-option:hover {
+            background: rgba(26, 26, 46, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+        
+        .loading-spinner.active {
+            display: block;
+        }
+        
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(233, 69, 96, 0.2);
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">PAKKA!</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Home
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-home me-2"></i> Home 1 - Brand Experience</a></li>
+                            <li><a class="dropdown-item" href="home-conversion.html"><i class="fas fa-rocket me-2"></i> Home 2 - Conversion Focused</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="how-it-works.html">How It Works</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
+                            <li><a class="dropdown-item" href="plans.html"><i class="fas fa-box me-2"></i> Plans</a></li>
+                            <li><a class="dropdown-item" href="shop.html"><i class="fas fa-shopping-bag me-2"></i> Shop</a></li>
+                            <li><a class="dropdown-item" href="reviews.html"><i class="fas fa-star me-2"></i> Reviews</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="quiz.html">Quiz</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus me-2"></i> Sign Up</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i> Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i> User Dashboard</a></li>
+                            <li><a class="dropdown-item" href="admin.html"><i class="fas fa-user-shield me-2"></i> Admin Dashboard</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Quiz Hero -->
+    <section class="quiz-hero">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="display-2 fw-bold mb-4 text-white">
+                    Find Your <span class="text-gradient">Perfect Box</span>
+                </h1>
+                <p class="lead text-white mb-4">
+                    Take our 2-minute quiz to get personalized recommendations tailored just for you
+                </p>
+                <div class="d-flex justify-content-center gap-3">
+                    <div class="text-center">
+                        <i class="fas fa-clock fa-2x mb-2"></i>
+                        <p class="mb-0">2 Minutes</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-magic fa-2x mb-2"></i>
+                        <p class="mb-0">AI-Powered</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-gift fa-2x mb-2"></i>
+                        <p class="mb-0">Personalized</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Container -->
+    <div class="quiz-container">
+        <!-- Progress Bar -->
+        <div class="quiz-progress">
+            <div class="quiz-progress-bar" id="progressBar" style="width: 20%"></div>
+        </div>
+        
+        <!-- Question 1 -->
+        <div class="quiz-card" id="question1">
+            <span class="question-number">1</span>
+            <h3 class="question-title">What's your primary interest?</h3>
+            
+            <div class="option-card" onclick="selectOption(this, 'beauty')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Beauty & Skincare</div>
+                        <div class="option-description">Makeup, skincare routines, wellness products</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="option-card" onclick="selectOption(this, 'tech')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Tech & Gadgets</div>
+                        <div class="option-description">Latest technology, smart devices, accessories</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="option-card" onclick="selectOption(this, 'fitness')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Fitness & Health</div>
+                        <div class="option-description">Workout gear, nutrition, wellness</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="option-card" onclick="selectOption(this, 'lifestyle')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Lifestyle & Home</div>
+                        <div class="option-description">Home decor, everyday essentials, comfort</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quiz-navigation">
+                <div></div>
+                <button class="btn btn-primary btn-quiz" onclick="nextQuestion()">Next Question</button>
+            </div>
+        </div>
+        
+        <!-- Question 2 -->
+        <div class="quiz-card" id="question2" style="display: none;">
+            <span class="question-number">2</span>
+            <h3 class="question-title">What's your budget range per month?</h3>
+            
+            <div class="option-card" onclick="selectOption(this, 'starter')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Starter - $29/month</div>
+                        <div class="option-description">Great value, 5-7 items per box</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="option-card" onclick="selectOption(this, 'premium')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Premium - $49/month</div>
+                        <div class="option-description">Best value, 8-10 items per box</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="option-card" onclick="selectOption(this, 'vip')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">VIP - $79/month</div>
+                        <div class="option-description">Ultimate experience, 12+ items per box</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quiz-navigation">
+                <button class="btn btn-outline-secondary btn-quiz" onclick="previousQuestion()">Previous</button>
+                <button class="btn btn-primary btn-quiz" onclick="nextQuestion()">Next Question</button>
+            </div>
+        </div>
+        
+        <!-- Question 3 -->
+        <div class="quiz-card" id="question3" style="display: none;">
+            <span class="question-number">3</span>
+            <h3 class="question-title">How often do you want to receive boxes?</h3>
+            
+            <div class="option-card" onclick="selectOption(this, 'monthly')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Monthly</div>
+                        <div class="option-description">Fresh surprises every month</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="option-card" onclick="selectOption(this, 'bimonthly')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Every 2 Months</div>
+                        <div class="option-description">Perfect balance of excitement and value</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="option-card" onclick="selectOption(this, 'quarterly')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Quarterly</div>
+                        <div class="option-description">Seasonal curated experiences</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quiz-navigation">
+                <button class="btn btn-outline-secondary btn-quiz" onclick="previousQuestion()">Previous</button>
+                <button class="btn btn-primary btn-quiz" onclick="nextQuestion()">Next Question</button>
+            </div>
+        </div>
+        
+        <!-- Question 4 -->
+        <div class="quiz-card" id="question4" style="display: none;">
+            <span class="question-number">4</span>
+            <h3 class="question-title">Do you have any preferences or restrictions?</h3>
+            
+            <div class="option-card" onclick="selectOption(this, 'vegan')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Vegan/Cruelty-Free</div>
+                        <div class="option-description">Only ethical and plant-based products</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="option-card" onclick="selectOption(this, 'organic')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Organic/Natural</div>
+                        <div class="option-description">Prefer natural and organic ingredients</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="option-card" onclick="selectOption(this, 'allergies')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-allergies"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Allergy Considerations</div>
+                        <div class="option-description">Need to avoid specific ingredients</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="option-card" onclick="selectOption(this, 'none')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">No Restrictions</div>
+                        <div class="option-description">Open to all types of products</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quiz-navigation">
+                <button class="btn btn-outline-secondary btn-quiz" onclick="previousQuestion()">Previous</button>
+                <button class="btn btn-primary btn-quiz" onclick="nextQuestion()">Next Question</button>
+            </div>
+        </div>
+        
+        <!-- Question 5 -->
+        <div class="quiz-card" id="question5" style="display: none;">
+            <span class="question-number">5</span>
+            <h3 class="question-title">What's your style preference?</h3>
+            
+            <div class="option-card" onclick="selectOption(this, 'minimalist')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Minimalist</div>
+                        <div class="option-description">Clean, simple, and functional designs</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="option-card" onclick="selectOption(this, 'luxury')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Luxury</div>
+                        <div class="option-description">Premium brands and high-end products</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="option-card" onclick="selectOption(this, 'trendy')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Trendy & Fashionable</div>
+                        <div class="option-description">Latest trends and fashionable items</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="option-card" onclick="selectOption(this, 'eco')">
+                <div class="d-flex align-items-center">
+                    <div class="option-icon me-3">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div>
+                        <div class="option-title">Eco-Friendly</div>
+                        <div class="option-description">Sustainable and environmentally conscious</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quiz-navigation">
+                <button class="btn btn-outline-secondary btn-quiz" onclick="previousQuestion()">Previous</button>
+                <button class="btn btn-primary btn-quiz" onclick="showResults()">Get My Recommendations</button>
+            </div>
+        </div>
+        
+        <!-- Loading -->
+        <div class="loading-spinner" id="loadingSection">
+            <div class="spinner"></div>
+            <h4>Analyzing your preferences...</h4>
+            <p class="text-muted">Our AI is finding the perfect boxes for you</p>
+        </div>
+        
+        <!-- Results -->
+        <div class="result-section" id="resultsSection">
+            <div class="result-icon">
+                <i class="fas fa-magic"></i>
+            </div>
+            <h2 class="display-4 fw-bold mb-3">Your Perfect Match!</h2>
+            <p class="lead mb-5">Based on your preferences, we recommend:</p>
+            
+            <div class="recommendation-card">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h4>Premium Beauty & Skincare Box</h4>
+                        <p class="text-muted mb-3">Monthly delivery of curated beauty products</p>
+                        <div class="mb-3">
+                            <span class="preference-tag">Vegan</span>
+                            <span class="preference-tag">Cruelty-Free</span>
+                            <span class="preference-tag">Premium Brands</span>
+                            <span class="preference-tag">Monthly</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <div class="display-6 fw-bold text-primary">$49/month</div>
+                        <button class="btn btn-primary btn-lg w-100">Choose This Plan</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recommendation-card">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h4>Lifestyle Wellness Box</h4>
+                        <p class="text-muted mb-3">Every other month delivery of lifestyle and wellness items</p>
+                        <div class="mb-3">
+                            <span class="preference-tag">Eco-Friendly</span>
+                            <span class="preference-tag">Natural</span>
+                            <span class="preference-tag">Bi-Monthly</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <div class="display-6 fw-bold text-primary">$39/month</div>
+                        <button class="btn btn-outline-primary btn-lg w-100">Learn More</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-5">
+                <h4 class="mb-3">Your Profile Summary</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Primary Interest:</strong> Beauty & Skincare</p>
+                        <p><strong>Budget:</strong> Premium ($49/month)</p>
+                        <p><strong>Frequency:</strong> Monthly</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Preferences:</strong> Vegan, Cruelty-Free</p>
+                        <p><strong>Style:</strong> Luxury & Eco-Friendly</p>
+                        <p><strong>Match Score:</strong> 95%</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-flex gap-3 justify-content-center mt-5">
+                <button class="btn btn-primary btn-lg px-5">
+                    <i class="fas fa-rocket me-2"></i> Start Your Subscription
+                </button>
+                <button class="btn btn-outline-secondary btn-lg px-5">
+                    <i class="fas fa-redo me-2"></i> Retake Quiz
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="brand-text mb-3">PAKKA!</h5>
+                    <p>Premium subscription boxes curated for your lifestyle. Unbox happiness every month.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="how-it-works.html">How It Works</a></li>
+                        <li><a href="plans.html">Plans</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="referral.html">Referral Program</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6>Download Our App</h6>
+                    <p>Manage your subscription on the go</p>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-light">
+                            <i class="fab fa-apple me-2"></i> App Store
+                        </button>
+                        <button class="btn btn-outline-light">
+                            <i class="fab fa-google-play me-2"></i> Google Play
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2026 Pakka! All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 5;
+        let answers = {};
+        
+        function selectOption(element, value) {
+            // Remove selected class from all options in the same question
+            const questionCard = element.closest('.quiz-card');
+            questionCard.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            element.classList.add('selected');
+            
+            // Store the answer
+            answers[`question${currentQuestion}`] = value;
+        }
+        
+        function nextQuestion() {
+            // Check if current question is answered
+            if (!answers[`question${currentQuestion}`]) {
+                showNotification('Please select an option before continuing', 'error');
+                return;
+            }
+            
+            // Hide current question
+            document.getElementById(`question${currentQuestion}`).style.display = 'none';
+            
+            // Move to next question
+            currentQuestion++;
+            
+            if (currentQuestion <= totalQuestions) {
+                // Show next question
+                document.getElementById(`question${currentQuestion}`).style.display = 'block';
+                updateProgress();
+            } else {
+                // Show loading and then results
+                showLoading();
+            }
+        }
+        
+        function previousQuestion() {
+            // Hide current question
+            document.getElementById(`question${currentQuestion}`).style.display = 'none';
+            
+            // Move to previous question
+            currentQuestion--;
+            
+            // Show previous question
+            document.getElementById(`question${currentQuestion}`).style.display = 'block';
+            updateProgress();
+        }
+        
+        function updateProgress() {
+            const progress = (currentQuestion / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+        
+        function showLoading() {
+            // Hide all questions
+            for (let i = 1; i <= totalQuestions; i++) {
+                document.getElementById(`question${i}`).style.display = 'none';
+            }
+            
+            // Show loading
+            document.getElementById('loadingSection').classList.add('active');
+            
+            // Simulate AI processing
+            setTimeout(() => {
+                document.getElementById('loadingSection').classList.remove('active');
+                document.getElementById('resultsSection').style.display = 'block';
+                updateProgress();
+            }, 3000);
+        }
+        
+        function showResults() {
+            // Check if current question is answered
+            if (!answers[`question${currentQuestion}`]) {
+                showNotification('Please select an option before continuing', 'error');
+                return;
+            }
+            
+            showLoading();
+        }
+        
+        // Initialize progress
+        updateProgress();
+        
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' && currentQuestion < totalQuestions) {
+                nextQuestion();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Pakka! Premium Subscription Boxes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .admin-dashboard {
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        
+        .admin-sidebar {
+            background: var(--primary-color);
+            min-height: 100vh;
+            width: 280px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-sidebar.collapsed {
+            width: 80px;
+        }
+        
+        .admin-sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        
+        .admin-sidebar-brand {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-decoration: none;
+        }
+        
+        .admin-sidebar-menu {
+            padding: 1rem 0;
+        }
+        
+        .admin-sidebar-item {
+            padding: 1rem 1.5rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .admin-sidebar-item:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+        }
+        
+        .admin-sidebar-item.active {
+            background: var(--accent-color);
+            color: var(--white);
+        }
+        
+        .admin-sidebar-item i {
+            width: 24px;
+            margin-right: 1rem;
+            text-align: center;
+        }
+        
+        .admin-main-content {
+            margin-left: 280px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-main-content.expanded {
+            margin-left: 80px;
+        }
+        
+        .admin-top-bar {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-stat-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .admin-stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .admin-stat-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .admin-stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .admin-table {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+        }
+        
+        .admin-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .admin-badge-success {
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+        }
+        
+        .admin-badge-warning {
+            background: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+        }
+        
+        .admin-badge-danger {
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+        }
+        
+        .admin-badge-info {
+            background: rgba(23, 162, 184, 0.1);
+            color: #17a2b8;
+        }
+        
+        .admin-mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1001;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            padding: 0.75rem;
+            font-size: 1.25rem;
+        }
+        
+        @media (max-width: 768px) {
+            .admin-sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .admin-sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .admin-main-content {
+                margin-left: 0;
+            }
+            
+            .admin-mobile-menu-toggle {
+                display: block;
+            }
+        }
+        
+        .admin-chart-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+        }
+        
+        .admin-quick-actions {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+        }
+        
+        .admin-action-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.05), rgba(22, 33, 62, 0.1));
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .admin-action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .admin-action-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-dashboard">
+        <!-- Mobile Menu Toggle -->
+        <button class="admin-mobile-menu-toggle" onclick="toggleAdminSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- Admin Sidebar -->
+        <nav class="admin-sidebar" id="adminSidebar">
+            <div class="admin-sidebar-header">
+                <a href="index.html" class="admin-sidebar-brand">
+                    <span class="brand-text">PAKKA! ADMIN</span>
+                </a>
+            </div>
+            
+            <div class="admin-sidebar-menu">
+                <a href="#" class="admin-sidebar-item active" onclick="showAdminSection('overview')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('users')">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('subscriptions')">
+                    <i class="fas fa-box"></i>
+                    <span>Subscriptions</span>
+                </a>
+                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('orders')">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Orders</span>
+                </a>
+                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('products')">
+                    <i class="fas fa-cube"></i>
+                    <span>Products</span>
+                </a>
+                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('analytics')">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('content')">
+                    <i class="fas fa-edit"></i>
+                    <span>Content</span>
+                </a>
+                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('settings')">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="index.html" class="admin-sidebar-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Exit Admin</span>
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Main Content -->
+        <div class="admin-main-content" id="adminMainContent">
+            <!-- Top Bar -->
+            <div class="admin-top-bar">
+                <div class="d-flex align-items-center">
+                    <h4 class="mb-0">Admin Dashboard</h4>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="position-relative">
+                        <i class="fas fa-bell fa-lg"></i>
+                        <span class="notification-badge">5</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <img src="https://via.placeholder.com/40x40/1a1a2e/16213e?text=AD" alt="Admin" class="rounded-circle me-2">
+                        <div>
+                            <div class="fw-bold">Admin User</div>
+                            <small class="text-muted">Administrator</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Overview Section -->
+            <div id="admin-overview-section">
+                <!-- Stats Grid -->
+                <div class="row g-4 mb-4">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="admin-stat-card">
+                            <div class="admin-stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="admin-stat-number">52,847</div>
+                            <div class="text-muted">Total Users</div>
+                            <div class="text-success small mt-2">
+                                <i class="fas fa-arrow-up"></i> 12% this month
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="admin-stat-card">
+                            <div class="admin-stat-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="admin-stat-number">18,293</div>
+                            <div class="text-muted">Active Subscriptions</div>
+                            <div class="text-success small mt-2">
+                                <i class="fas fa-arrow-up"></i> 8% this month
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="admin-stat-card">
+                            <div class="admin-stat-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="admin-stat-number">$894K</div>
+                            <div class="text-muted">Monthly Revenue</div>
+                            <div class="text-success small mt-2">
+                                <i class="fas fa-arrow-up"></i> 15% this month
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="admin-stat-card">
+                            <div class="admin-stat-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="admin-stat-number">3,847</div>
+                            <div class="text-muted">Orders Today</div>
+                            <div class="text-warning small mt-2">
+                                <i class="fas fa-minus"></i> 2% from yesterday
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="admin-quick-actions">
+                    <h4 class="mb-4">Quick Actions</h4>
+                    <div class="row g-4">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="admin-action-card">
+                                <div class="admin-action-icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <h6>Add New User</h6>
+                                <p class="text-muted small">Create new user account</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="admin-action-card">
+                                <div class="admin-action-icon">
+                                    <i class="fas fa-plus-circle"></i>
+                                </div>
+                                <h6>Add Product</h6>
+                                <p class="text-muted small">Add new product to catalog</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="admin-action-card">
+                                <div class="admin-action-icon">
+                                    <i class="fas fa-bullhorn"></i>
+                                </div>
+                                <h6>Send Notification</h6>
+                                <p class="text-muted small">Broadcast message to users</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="admin-action-card">
+                                <div class="admin-action-icon">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <h6>Generate Report</h6>
+                                <p class="text-muted small">Create analytics report</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Orders Table -->
+                <div class="admin-table">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="mb-0">Recent Orders</h4>
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-download me-2"></i> Export
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Product</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#ORD-2847</td>
+                                    <td>Sarah Johnson</td>
+                                    <td>Premium Beauty Box</td>
+                                    <td>$49.00</td>
+                                    <td><span class="admin-badge admin-badge-success">Completed</span></td>
+                                    <td>Jan 27, 2024</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-2846</td>
+                                    <td>Mike Chen</td>
+                                    <td>Tech Gadgets Box</td>
+                                    <td>$59.00</td>
+                                    <td><span class="admin-badge admin-badge-warning">Processing</span></td>
+                                    <td>Jan 27, 2024</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-2845</td>
+                                    <td>Emma Park</td>
+                                    <td>Fitness Fuel Box</td>
+                                    <td>$39.00</td>
+                                    <td><span class="admin-badge admin-badge-info">Shipped</span></td>
+                                    <td>Jan 26, 2024</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-2844</td>
+                                    <td>James Davis</td>
+                                    <td>Gourmet Food Box</td>
+                                    <td>$45.00</td>
+                                    <td><span class="admin-badge admin-badge-danger">Pending</span></td>
+                                    <td>Jan 26, 2024</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Charts -->
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="admin-chart-container">
+                            <h4 class="mb-4">Revenue Overview</h4>
+                            <canvas id="revenueChart" height="100"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="admin-chart-container">
+                            <h4 class="mb-4">Subscription Types</h4>
+                            <canvas id="subscriptionChart" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function toggleAdminSidebar() {
+            const sidebar = document.getElementById('adminSidebar');
+            const mainContent = document.getElementById('adminMainContent');
+            
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('expanded');
+            
+            // Mobile handling
+            if (window.innerWidth <= 768) {
+                sidebar.classList.toggle('open');
+            }
+        }
+        
+        function showAdminSection(section) {
+            // Hide all sections
+            document.querySelectorAll('[id$="-section"]').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            // Show selected section
+            const sectionElement = document.getElementById('admin-' + section + '-section');
+            if (sectionElement) {
+                sectionElement.style.display = 'block';
+            }
+            
+            // Update active menu item
+            document.querySelectorAll('.admin-sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.closest('.admin-sidebar-item').classList.add('active');
+            
+            // Close mobile menu
+            if (window.innerWidth <= 768) {
+                document.getElementById('adminSidebar').classList.remove('open');
+            }
+        }
+        
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenueChart');
+            if (revenueCtx) {
+                new Chart(revenueCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Revenue',
+                            data: [65000, 72000, 68000, 81000, 89000, 94000],
+                            borderColor: '#e94560',
+                            backgroundColor: 'rgba(233, 69, 96, 0.1)',
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Subscription Chart
+            const subscriptionCtx = document.getElementById('subscriptionChart');
+            if (subscriptionCtx) {
+                new Chart(subscriptionCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Starter', 'Premium', 'VIP'],
+                        datasets: [{
+                            data: [35, 45, 20],
+                            backgroundColor: ['#1a1a2e', '#16213e', '#e94560']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('adminSidebar');
+            const toggle = document.querySelector('.admin-mobile-menu-toggle');
+            
+            if (window.innerWidth <= 768 && 
+                sidebar.classList.contains('open') && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>

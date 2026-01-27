@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Pakka! Premium Subscription Boxes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .contact-hero {
+            background: var(--gradient);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+        
+        .contact-card {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: var(--shadow-xl);
+            transition: all 0.3s ease;
+            
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--white);
+            font-size: 2rem;
+        }
+        
+        .contact-form {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .form-control, .form-select {
+            border: 2px solid rgba(26, 26, 46, 0.1);
+            border-radius: 15px;
+            padding: 1rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 0.2rem rgba(233, 69, 96, 0.25);
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .support-hours {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.05), rgba(22, 33, 62, 0.1));
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            word-wrap: break-word;
+        }
+        
+        .live-chat {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .chat-button {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .chat-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+        }
+        
+        .chat-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        @media (max-width: 400px) {
+            .chat-window {
+                width: 300px;
+                right: -10px;
+            }
+        }
+        
+        .chat-window.open {
+            display: flex;
+        }
+        
+        .chat-header {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+        
+        .chat-input {
+            padding: 1rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .faq-quick {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .faq-item {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            word-wrap: break-word;
+        }
+        
+        .faq-item:hover {
+            background: rgba(233, 69, 96, 0.05);
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .social-contact {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-contact a {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-contact a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .office-locations {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.05), rgba(22, 33, 62, 0.1));
+            padding: 80px 0;
+        }
+        
+        .location-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .location-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .response-time {
+            background: rgba(233, 69, 96, 0.1);
+            color: var(--accent-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        /* Additional responsive fixes */
+        @media (max-width: 1200px) {
+            .contact-form {
+                padding: 2rem;
+            }
+            
+            .contact-card {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 991px) {
+            .contact-form,
+            .contact-card {
+                margin-bottom: 2rem;
+            }
+            
+            .faq-quick {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contact-section {
+                padding: 60px 0;
+            }
+            
+            .contact-form,
+            .contact-card {
+                padding: 1.5rem;
+            }
+            
+            .faq-quick {
+                padding: 1rem;
+            }
+            
+            .location-card {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">PAKKA!</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Home
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-home me-2"></i> Home 1 - Brand Experience</a></li>
+                            <li><a class="dropdown-item" href="home-conversion.html"><i class="fas fa-rocket me-2"></i> Home 2 - Conversion Focused</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="how-it-works.html">How It Works</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
+                            <li><a class="dropdown-item" href="plans.html"><i class="fas fa-box me-2"></i> Plans</a></li>
+                            <li><a class="dropdown-item" href="shop.html"><i class="fas fa-shopping-bag me-2"></i> Shop</a></li>
+                            <li><a class="dropdown-item" href="reviews.html"><i class="fas fa-star me-2"></i> Reviews</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus me-2"></i> Sign Up</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i> Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i> User Dashboard</a></li>
+                            <li><a class="dropdown-item" href="admin.html"><i class="fas fa-user-shield me-2"></i> Admin Dashboard</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="display-2 fw-bold mb-4 text-white">
+                    Get in <span class="text-gradient">Touch</span>
+                </h1>
+                <p class="lead text-white mb-4">
+                    We're here to help! Reach out to our team for any questions, support, or feedback
+                </p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-light btn-lg px-5">
+                        <i class="fas fa-comments me-2"></i> Start Live Chat
+                    </button>
+                    <button class="btn btn-outline-light btn-lg px-5">
+                        <i class="fas fa-phone me-2"></i> Call Us
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <!-- Emergency Support Banner -->
+            <div class="alert alert-danger d-flex align-items-center mb-4" role="alert">
+                <i class="fas fa-exclamation-triangle me-3"></i>
+                <div>
+                    <strong>Emergency Support:</strong> For urgent subscription issues, call <strong>1-800-PAKKA</strong> (24/7)
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Contact Form -->
+                <div class="col-lg-8">
+                    <div class="contact-form">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h3 class="display-5 fw-bold">Send Message</h3>
+                            <div class="d-flex gap-2">
+                                <span class="badge bg-success">Live</span>
+                                <span class="badge bg-info">Avg Response: 2 hours</span>
+                            </div>
+                        </div>
+                        
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">First Name *</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Last Name *</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Email *</label>
+                                    <input type="email" class="form-control" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" placeholder="+1 (555) 123-4567">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Account Email (if different)</label>
+                                <input type="email" class="form-control" placeholder="For account-related inquiries">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Subject *</label>
+                                <select class="form-select" required>
+                                    <option value="">Select a topic...</option>
+                                    <optgroup label="Account & Subscription">
+                                        <option>Subscription Management</option>
+                                        <option>Billing & Payment</option>
+                                        <option>Delivery Issues</option>
+                                        <option>Cancellation/Refund</option>
+                                    </optgroup>
+                                    <optgroup label="Technical Support">
+                                        <option>Website/App Issues</option>
+                                        <option>Login Problems</option>
+                                        <option>Mobile App Support</option>
+                                    </optgroup>
+                                    <optgroup label="General">
+                                        <option>Product Questions</option>
+                                        <option>Partnership Inquiry</option>
+                                        <option>Media & Press</option>
+                                        <option>Feedback & Suggestions</option>
+                                        <option>Other</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Priority Level</label>
+                                <select class="form-select">
+                                    <option>Normal - Non-urgent</option>
+                                    <option>High - Affects service usage</option>
+                                    <option>Critical - Service completely down</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Order Number (if applicable)</label>
+                                <input type="text" class="form-control" placeholder="PK-123456">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Message *</label>
+                                <textarea class="form-control" rows="5" required placeholder="Please provide as much detail as possible to help us assist you better..."></textarea>
+                                <small class="text-muted">Minimum 10 characters required</small>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Attach Files (optional)</label>
+                                <input type="file" class="form-control" multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                                <small class="text-muted">Max file size: 5MB. Allowed: JPG, PNG, PDF, DOC</small>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="newsletter">
+                                        <label class="form-check-label" for="newsletter">
+                                            Send me updates and special offers
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="copy">
+                                        <label class="form-check-label" for="copy">
+                                            Send copy to my email
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex gap-3">
+                                <button type="submit" class="btn btn-primary btn-lg px-5">
+                                    <i class="fas fa-paper-plane me-2"></i> Send Message
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-lg px-5" onclick="resetForm()">
+                                    <i class="fas fa-redo me-2"></i> Reset
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Contact Info & Quick Actions -->
+                <div class="col-lg-4">
+                    <!-- Ticket Status -->
+                    <div class="contact-card mb-4">
+                        <div class="contact-icon">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <h4>Check Ticket Status</h4>
+                        <p class="mb-3">Track your support ticket status</p>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Ticket #">
+                            <button class="btn btn-outline-primary">Track</button>
+                        </div>
+                        <small class="text-muted">Example: TK-2024-01234</small>
+                    </div>
+                    
+                    <!-- Email Support -->
+                    <div class="contact-card mb-4">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4>Email Support</h4>
+                        <p class="mb-3">Get help via email - we respond within 24 hours</p>
+                        <div class="response-time">24-hour response</div>
+                        <div class="mb-2">
+                            <a href="mailto:support@pakka.com" class="btn btn-outline-primary w-100 mb-2">
+                                <i class="fas fa-envelope me-2"></i> support@pakka.com
+                            </a>
+                            <a href="mailto:billing@pakka.com" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-credit-card me-2"></i> billing@pakka.com
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Phone Support -->
+                    <div class="contact-card mb-4">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h4>Phone Support</h4>
+                        <p class="mb-3">Speak with our customer service team</p>
+                        <div class="support-hours mb-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <strong>Mon-Fri:</strong>
+                                <span>9AM - 6PM EST</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <strong>Sat-Sun:</strong>
+                                <span>10AM - 4PM EST</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <strong>Emergency:</strong>
+                                <span>24/7 Available</span>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <a href="tel:1-800-PAKKA" class="btn btn-outline-primary">
+                                <i class="fas fa-phone me-2"></i> 1-800-PAKKA
+                            </a>
+                            <a href="tel:1-800-72552" class="btn btn-outline-secondary">
+                                <i class="fas fa-phone me-2"></i> 1-800-72552
+                            </a>
+                        </div>
+                    </div>
+                    
+                    
+            
+
+        </div>
+    </section>
+
+    <!-- Office Locations -->
+    <section class="office-locations">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Our Offices</h2>
+                <p class="lead">Visit us or send mail to our headquarters</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="location-card">
+                        <h4>Headquarters</h4>
+                        <p class="mb-3">
+                            <strong>Pakka! Inc.</strong><br>
+                            123 Subscription Street<br>
+                            New York, NY 10001<br>
+                            United States
+                        </p>
+                        <div class="social-contact">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="location-card">
+                        <h4>West Coast Office</h4>
+                        <p class="mb-3">
+                            <strong>Pakka! West</strong><br>
+                            456 Tech Boulevard<br>
+                            San Francisco, CA 94105<br>
+                            United States
+                        </p>
+                        <div class="social-contact">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="location-card">
+                        <h4>European Office</h4>
+                        <p class="mb-3">
+                            <strong>Pakka! Europe</strong><br>
+                            789 Box Lane<br>
+                            London, EC1A 1BB<br>
+                            United Kingdom
+                        </p>
+                        <div class="social-contact">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="brand-text mb-3">PAKKA!</h5>
+                    <p>Premium subscription boxes curated for your lifestyle. Unbox happiness every month.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="how-it-works.html">How It Works</a></li>
+                        <li><a href="plans.html">Plans</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="referral.html">Referral Program</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6>Download Our App</h6>
+                    <p>Manage your subscription on the go</p>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-light">
+                            <i class="fab fa-apple me-2"></i> App Store
+                        </button>
+                        <button class="btn btn-outline-light">
+                            <i class="fab fa-google-play me-2"></i> Google Play
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2026 Pakka! All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate message length
+            const message = this.querySelector('textarea').value;
+            if (message.length < 10) {
+                showNotification('Message must be at least 10 characters long', 'error');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                showNotification('Message sent successfully! We\'ll respond within 24 hours. Ticket #TK-2024-' + Math.floor(Math.random() * 10000), 'success');
+                this.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+        
+        // Reset form function
+        function resetForm() {
+            document.getElementById('contactForm').reset();
+            showNotification('Form has been reset', 'info');
+        }
+        
+        // File upload validation
+        const fileInput = document.querySelector('input[type="file"]');
+        fileInput.addEventListener('change', function() {
+            const files = this.files;
+            let totalSize = 0;
+            
+            for (let file of files) {
+                totalSize += file.size;
+                // Check file type
+                const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                if (!allowedTypes.includes(file.type)) {
+                    showNotification('Invalid file type: ' + file.name, 'error');
+                    this.value = '';
+                    return;
+                }
+            }
+            
+            // Check total size (5MB limit)
+            if (totalSize > 5 * 1024 * 1024) {
+                showNotification('Total file size must be less than 5MB', 'error');
+                this.value = '';
+                return;
+            }
+            
+            if (files.length > 0) {
+                showNotification(files.length + ' file(s) selected', 'success');
+            }
+        });
+        
+        // Character counter for message
+        const messageTextarea = document.querySelector('textarea');
+        messageTextarea.addEventListener('input', function() {
+            const charCount = this.value.length;
+            const counter = document.querySelector('.text-muted');
+            if (charCount < 10) {
+                counter.textContent = 'Minimum 10 characters required (' + charCount + '/10)';
+                counter.style.color = 'var(--accent-color)';
+            } else {
+                counter.textContent = 'Message length: ' + charCount + ' characters';
+                counter.style.color = '';
+            }
+        });
+        
+        // FAQ toggle
+        function toggleFAQ(element) {
+            const content = element.querySelector('.text-muted');
+            const icon = element.querySelector('.fa-chevron-down');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+        
+        // Live chat functionality
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.classList.toggle('open');
+        }
+        
+        function openChat() {
+            document.getElementById('chatWindow').classList.add('open');
+        }
+        
+        function closeChat() {
+            document.getElementById('chatWindow').classList.remove('open');
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            
+            if (input.value.trim()) {
+                // Add user message
+                const userMessage = document.createElement('div');
+                userMessage.className = 'mb-3 text-end';
+                userMessage.innerHTML = `
+                    <div class="bg-light rounded p-2 d-inline-block">
+                        ${input.value}
+                    </div>
+                `;
+                messages.appendChild(userMessage);
+                
+                // Clear input
+                const userText = input.value;
+                input.value = '';
+                
+                // Simulate bot response
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.className = 'mb-3';
+                    botMessage.innerHTML = `
+                        <div class="bg-primary text-white rounded p-2 d-inline-block">
+                            Thank you for your message! A support agent will be with you shortly.
+                        </div>
+                    `;
+                    messages.appendChild(botMessage);
+                    messages.scrollTop = messages.scrollHeight;
+                }, 1000);
+                
+                messages.scrollTop = messages.scrollHeight;
+            }
+        }
+        
+        // Enter key to send message
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

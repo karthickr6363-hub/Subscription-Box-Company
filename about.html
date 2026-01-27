@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Pakka! Premium Subscription Boxes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .about-hero {
+            background: var(--gradient);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .story-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+        
+        .milestone {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .milestone:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .year-badge {
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .team-member {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 4px solid var(--accent-color);
+        }
+        
+        .value-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--white);
+            font-size: 2rem;
+        }
+        
+        .press-logo {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .press-logo:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .sustainability-section {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.05), rgba(22, 33, 62, 0.1));
+            padding: 80px 0;
+        }
+        
+        .eco-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .eco-label {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">PAKKA!</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Home
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-home me-2"></i> Home 1 - Brand Experience</a></li>
+                            <li><a class="dropdown-item" href="home-conversion.html"><i class="fas fa-rocket me-2"></i> Home 2 - Conversion Focused</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="how-it-works.html">How It Works</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
+                            <li><a class="dropdown-item" href="plans.html"><i class="fas fa-box me-2"></i> Plans</a></li>
+                            <li><a class="dropdown-item" href="shop.html"><i class="fas fa-shopping-bag me-2"></i> Shop</a></li>
+                            <li><a class="dropdown-item" href="reviews.html"><i class="fas fa-star me-2"></i> Reviews</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus me-2"></i> Sign Up</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i> Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i> User Dashboard</a></li>
+                            <li><a class="dropdown-item" href="admin.html"><i class="fas fa-user-shield me-2"></i> Admin Dashboard</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <div class="hero-content">
+                        <h1 class="display-2 fw-bold mb-4 text-white">
+                            Our Story: <span class="text-gradient">Unboxing Happiness</span>
+                        </h1>
+                        <p class="lead text-white mb-4">
+                            From a small idea to a community of 50,000+ happy subscribers, Pakka! is on a mission to bring joy and discovery to every doorstep.
+                        </p>
+                        <div class="d-flex gap-3 flex-wrap justify-content-center">
+                            <button class="btn btn-light btn-lg px-5">
+                                <i class="fas fa-play-circle me-2"></i> Watch Our Story
+                            </button>
+                            <button class="btn btn-outline-light btn-lg px-5">
+                                <i class="fas fa-handshake me-2"></i> Partner With Us
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-center">
+                        <img src="https://via.placeholder.com/400x400/1a1a2e/16213e?text=Team+Photo" alt="Pakka Team" class="img-fluid rounded-4 shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Story -->
+    <section class="story-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Our Journey</h2>
+                <p class="lead">How Pakka! became the most loved subscription box service</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="milestone">
+                        <span class="year-badge">2020</span>
+                        <h4>The Beginning</h4>
+                        <p>Started in a small apartment with a big dream - to curate amazing products and deliver happiness. Our first box had just 10 subscribers.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="milestone">
+                        <span class="year-badge">2021</span>
+                        <h4>Rapid Growth</h4>
+                        <p>Expanded to 5,000 subscribers and launched our beauty and tech categories. Moved to our first office and hired our core team.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="milestone">
+                        <span class="year-badge">2022</span>
+                        <h4>Innovation & Expansion</h4>
+                        <p>Launched AI-powered personalization, reached 25,000 subscribers, and introduced sustainable packaging across all boxes.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="milestone">
+                        <span class="year-badge">2023-2024</span>
+                        <h4>Becoming a Leader</h4>
+                        <p>Reached 50,000+ subscribers, expanded internationally, and became the #1 rated subscription box service with 4.9/5 stars.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Our Mission</h3>
+                        <p>To curate and deliver exceptional subscription boxes that bring joy, discovery, and value to our customers' lives while supporting sustainable and ethical practices.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Our Vision</h3>
+                        <p>To become the world's most trusted subscription box service, connecting people with amazing products and creating moments of happiness worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Team -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Meet Our Team</h2>
+                <p class="lead">The passionate people behind Pakka!</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-member">
+                        <img src="https://i.pinimg.com/736x/a5/32/ab/a532ab828bd4db9bb066f684061f056f.jpg" alt="Jane Doe - CEO">
+                        <h5>Jane Doe</h5>
+                        <p class="text-muted">CEO & Founder</p>
+                        <p>Passionate about curating amazing experiences and building communities.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-member">
+                        <img src="https://i.pinimg.com/736x/ab/eb/25/abeb25cbd139d8d50210d1730ccca190.jpg" alt="John Smith - CTO">
+                        <h5>John Smith</h5>
+                        <p class="text-muted">CTO & Co-Founder</p>
+                        <p>Tech enthusiast building the future of personalized subscriptions.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-member">
+                        <img src="https://i.pinimg.com/736x/90/24/9a/90249a4822c3eab60b669c9cae889452.jpg" alt="Sarah Chen - Head of Curation">
+                        <h5>Sarah Chen</h5>
+                        <p class="text-muted">Head of Curation</p>
+                        <p>Expert in product discovery and trend forecasting.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-member">
+                        <img src="https://i.pinimg.com/736x/fd/29/b1/fd29b1472f9965375db1f228fc7497a7.jpg" alt="Mike Johnson - Head of Marketing">
+                        <h5>Mike Johnson</h5>
+                        <p class="text-muted">Head of Marketing</p>
+                        <p>Creative storyteller connecting brands with customers.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability & Ethics -->
+    <section class="sustainability-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Our Commitment to Sustainability</h2>
+                <p class="lead">Making a positive impact, one box at a time</p>
+            </div>
+            
+            <div class="row g-4 mb-5">
+                <div class="col-md-3">
+                    <div class="eco-metric">
+                        <div class="eco-number">100%</div>
+                        <div class="eco-label">Recyclable Packaging</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="eco-metric">
+                        <div class="eco-number">50+</div>
+                        <div class="eco-label">Sustainable Brands</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="eco-metric">
+                        <div class="eco-number">1M+</div>
+                        <div class="eco-label">Trees Planted</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="eco-metric">
+                        <div class="eco-number">0</div>
+                        <div class="eco-label">Carbon Neutral Shipping</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h4>Eco-Friendly Packaging</h4>
+                        <p>All our boxes are made from recycled materials and are 100% recyclable. We use minimal plastic and biodegradable fillers.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h4>Ethical Sourcing</h4>
+                        <p>We partner with brands that share our values of sustainability, fair labor practices, and environmental responsibility.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h4>Community Impact</h4>
+                        <p>1% of every subscription goes to environmental causes and we plant a tree for every new subscriber.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Press & Media -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">As Featured In</h2>
+                <p class="lead">Recognized by leading media outlets</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="press-logo">
+                        <h5>TechCrunch</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="press-logo">
+                        <h5>Forbes</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="press-logo">
+                        <h5>Vogue</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="press-logo">
+                        <h5>Entrepreneur</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="display-5 fw-bold mb-3">Join the Pakka! Family</h2>
+                    <p class="lead mb-0">Be part of our mission to unbox happiness worldwide.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <button class="btn btn-light btn-lg px-5">
+                        <i class="fas fa-rocket me-2"></i> Start Your Journey
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="brand-text mb-3">PAKKA!</h5>
+                    <p>Premium subscription boxes curated for your lifestyle. Unbox happiness every month.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="how-it-works.html">How It Works</a></li>
+                        <li><a href="plans.html">Plans</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="referral.html">Referral Program</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6>Newsletter</h6>
+                    <p>Subscribe to get special offers and updates</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2026 Pakka! All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

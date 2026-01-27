@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pakka! - Subscribe Now - Best Deals</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .hero-conversion {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .limited-offer {
+            background: var(--accent-color);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 3px solid var(--accent-color);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .price-tag {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent-color);
+        }
+        
+        .price-period {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+        
+        .benefit-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .benefit-item i {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+        
+        .newsletter-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .countdown-item {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 10px;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent-color);
+        }
+        
+        .countdown-label {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .testimonial-compact {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .rating-compact {
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Limited Time Offer Banner -->
+    <div class="limited-offer">
+        <div class="container">
+            <i class="fas fa-fire me-2"></i>
+            LIMITED TIME: Get 50% OFF your first 3 months + FREE Shipping! 
+            <span class="ms-3">Ends in:</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">PAKKA!</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Home
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-home me-2"></i> Home 1 - Brand Experience</a></li>
+                            <li><a class="dropdown-item active" href="home-conversion.html"><i class="fas fa-rocket me-2"></i> Home 2 - Conversion Focused</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="how-it-works.html">How It Works</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
+                            <li><a class="dropdown-item" href="plans.html"><i class="fas fa-box me-2"></i> Plans</a></li>
+                            <li><a class="dropdown-item" href="shop.html"><i class="fas fa-shopping-bag me-2"></i> Shop</a></li>
+                            <li><a class="dropdown-item" href="reviews.html"><i class="fas fa-star me-2"></i> Reviews</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus me-2"></i> Sign Up</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i> Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i> User Dashboard</a></li>
+                            <li><a class="dropdown-item" href="admin.html"><i class="fas fa-user-shield me-2"></i> Admin Dashboard</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Conversion Section -->
+    <section class="hero-conversion">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="display-2 fw-bold mb-4">
+                            Start Your <span class="text-gradient">Pakka! Journey</span>
+                        </h1>
+                        <p class="lead mb-4">
+                            Join 50,000+ happy subscribers. Premium curated boxes delivered monthly. Cancel anytime.
+                        </p>
+                        
+                        <!-- Countdown Timer -->
+                        <div class="countdown-timer">
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="days">02</div>
+                                <div class="countdown-label">Days</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="hours">14</div>
+                                <div class="countdown-label">Hours</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="minutes">23</div>
+                                <div class="countdown-label">Minutes</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="seconds">45</div>
+                                <div class="countdown-label">Seconds</div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex gap-3 flex-wrap">
+                            <button class="btn btn-light btn-lg px-5 py-3">
+                                <i class="fas fa-bolt me-2"></i> Claim 50% OFF
+                            </button>
+                            <button class="btn btn-outline-light btn-lg px-5 py-3">
+                                <i class="fas fa-gift me-2"></i> Gift Subscription
+                            </button>
+                        </div>
+                        
+                        <!-- Trust Badges -->
+                        <div class="mt-4">
+                            <div class="d-flex gap-4 flex-wrap">
+                                <div><i class="fas fa-shield-alt me-2"></i> 30-Day Guarantee</div>
+                                <div><i class="fas fa-truck me-2"></i> Free Shipping</div>
+                                <div><i class="fas fa-times-circle me-2"></i> Cancel Anytime</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <img src="https://via.placeholder.com/500x400/1a1a2e/16213e?text=Happy+Customer+with+Box" alt="Happy Customer" class="img-fluid rounded-4 shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Preview Cards -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Choose Your Perfect Plan</h2>
+                <p class="lead">Start with 50% OFF your first 3 months</p>
+            </div>
+            
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-4">
+                    <div class="pricing-card">
+                        <h3 class="text-center mb-3">Starter</h3>
+                        <div class="text-center mb-4">
+                            <div class="price-tag">$14.50</div>
+                            <div class="price-period">$29/month</div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> 1 Box per month
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> 5-7 Premium Items
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> Free Shipping
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> Basic Customization
+                        </div>
+                        <button class="btn btn-outline-primary w-100 mt-4">Choose Starter</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="pricing-card featured">
+                        <div class="text-center mb-3">
+                            <span class="badge bg-danger">MOST POPULAR</span>
+                        </div>
+                        <h3 class="text-center mb-3">Premium</h3>
+                        <div class="text-center mb-4">
+                            <div class="price-tag">$24.50</div>
+                            <div class="price-period">$49/month</div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> 2 Boxes per month
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> 8-10 Premium Items
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> Free Express Shipping
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> Full Customization
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> Exclusive Items
+                        </div>
+                        <button class="btn btn-primary w-100 mt-4">Choose Premium</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="pricing-card">
+                        <h3 class="text-center mb-3">VIP</h3>
+                        <div class="text-center mb-4">
+                            <div class="price-tag">$39.50</div>
+                            <div class="price-period">$79/month</div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> 3 Boxes per month
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> 12+ Premium Items
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> Priority Shipping
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> Full Customization
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> VIP Support
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> Early Access
+                        </div>
+                        <button class="btn btn-outline-primary w-100 mt-4">Choose VIP</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription Benefits -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Why Choose Pakka!?</h2>
+                <p class="lead">More than just a subscription - it's an experience</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="benefit-icon me-3">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div>
+                            <h4>Premium Quality</h4>
+                            <p>Only the finest products from top brands, carefully curated by experts.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="benefit-icon me-3">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div>
+                            <h4>Personalized for You</h4>
+                            <p>AI-powered recommendations based on your preferences and feedback.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="benefit-icon me-3">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div>
+                            <h4>Amazing Value</h4>
+                            <p>Get products worth $100+ for just $29. Save up to 70% on retail prices.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="benefit-icon me-3">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h4>Join Community</h4>
+                            <p>Connect with 50,000+ members, share unboxing experiences and tips.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Preview -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Frequently Asked Questions</h2>
+                <p class="lead">Everything you need to know about Pakka!</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="faq-item">
+                        <h5><i class="fas fa-question-circle me-2"></i> How does the subscription work?</h5>
+                        <p>Simply choose your plan, customize your preferences, and we'll deliver curated boxes to your doorstep monthly. You can pause, skip, or cancel anytime.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h5><i class="fas fa-question-circle me-2"></i> Can I customize my box?</h5>
+                        <p>Absolutely! All plans include customization options. Premium and VIP plans offer full personalization based on your preferences.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h5><i class="fas fa-question-circle me-2"></i> What's included in each box?</h5>
+                        <p>Each box contains 5-12 premium items depending on your plan, including full-size products, exclusive items, and surprise gifts.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h5><i class="fas fa-question-circle me-2"></i> Is there a commitment?</h5>
+                        <p>No commitment at all! You can cancel your subscription anytime with no cancellation fees.</p>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <a href="faq.html" class="btn btn-outline-primary">View All FAQs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">What Our Customers Say</h2>
+                <p class="lead">Real reviews from real subscribers</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="testimonial-compact">
+                        <div class="rating-compact">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Best decision I made! The quality is amazing and the value is incredible."</p>
+                        <small>- Jessica R., Premium Member</small>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="testimonial-compact">
+                        <div class="rating-compact">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Love the customization options! Every box feels like it was made just for me."</p>
+                        <small>- Marcus T., VIP Member</small>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="testimonial-compact">
+                        <div class="rating-compact">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Perfect for gifting! I bought a subscription for my sister and she loves it!"</p>
+                        <small>- Amanda L., Gift Subscriber</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="newsletter-cta">
+        <div class="container">
+            <h2 class="display-4 fw-bold mb-3">Don't Miss Out!</h2>
+            <p class="lead mb-4">Get exclusive offers and be the first to know about new boxes</p>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="input-group input-group-lg">
+                        <input type="email" class="form-control" placeholder="Enter your email">
+                        <button class="btn btn-light">Subscribe Now</button>
+                    </div>
+                    <small class="d-block mt-2">Join 50,000+ subscribers. No spam, unsubscribe anytime.</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="brand-text mb-3">PAKKA!</h5>
+                    <p>Premium subscription boxes curated for your lifestyle. Unbox happiness every month.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="how-it-works.html">How It Works</a></li>
+                        <li><a href="plans.html">Plans</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="referral.html">Referral Program</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6>Download Our App</h6>
+                    <p>Manage your subscription on the go</p>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-light">
+                            <i class="fab fa-apple me-2"></i> App Store
+                        </button>
+                        <button class="btn btn-outline-light">
+                            <i class="fab fa-google-play me-2"></i> Google Play
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2026 Pakka! All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 2); // 2 days from now
+            endDate.setHours(endDate.getHours() + 14); // 14 hours from now
+            endDate.setMinutes(endDate.getMinutes() + 23); // 23 minutes from now
+            endDate.setSeconds(endDate.getSeconds() + 45); // 45 seconds from now
+            
+            const now = new Date();
+            const timeLeft = endDate - now;
+            
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
