@@ -18,38 +18,6 @@
     --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
 }
 
-body.dark-mode {
-    --primary-color: #ecf0f1;
-    /* Light Gray for text */
-    --secondary-color: #bdc3c7;
-    /* Silver */
-    --accent-color: #e94560;
-    /* Keep Accent */
-    --light-bg: #1a1a2e;
-    /* Dark Navy Background */
-    --text-dark: #f8f9fa;
-    /* Light Text */
-    --text-light: #aaa;
-    /* Lighter Gray */
-    --white: #16213e;
-    /* Dark Blue Background */
-    --gradient: linear-gradient(135deg, #16213e, #1a1a2e);
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
-    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.5);
-}
-
-body.dark-mode .navbar {
-    background: rgba(22, 33, 62, 0.95);
-}
-
-body.dark-mode .step-card,
-body.dark-mode .box-card,
-body.dark-mode .review-card {
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -345,6 +313,14 @@ section:not(.hero-section) {
     margin: 0;
 }
 
+/* Section Specific Spacing */
+#how-it-works-preview {
+    padding-top: 100px !important;
+    position: relative;
+    z-index: 2;
+    background-color: var(--white);
+}
+
 /* Step Cards */
 .step-card {
     padding: 2rem;
@@ -519,6 +495,7 @@ footer a:hover {
     width: 40px;
     height: 40px;
     background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -528,6 +505,7 @@ footer a:hover {
 
 .social-links a:hover {
     background: var(--accent-color);
+    color: var(--white);
     transform: translateY(-3px);
 }
 
@@ -666,4 +644,46 @@ body {
     .d-flex.gap-3 {
         gap: 1rem !important;
     }
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--accent-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.back-to-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: #d63850;
+    color: var(--white);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.back-to-top i {
+    transition: transform 0.3s ease;
+}
+
+.back-to-top:hover i {
+    transform: translateY(-3px);
 }

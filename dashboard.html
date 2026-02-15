@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
         .dashboard-container {
             background: #f8f9fa;
@@ -275,9 +275,30 @@
             font-size: 1.25rem;
         }
 
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1040;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 transform: translateX(-100%);
+                z-index: 1050;
+                /* Ensure sidebar is above overlay */
+                width: 280px !important;
             }
 
             .sidebar.open {
@@ -286,10 +307,59 @@
 
             .main-content {
                 margin-left: 0;
+                padding: 1rem;
+                padding-top: 5rem;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                padding: 1rem;
             }
 
             .mobile-menu-toggle {
                 display: block;
+            }
+
+            /* Hide toggle when sidebar is open to avoid overlap/confusion */
+            body.sidebar-open .mobile-menu-toggle {
+                display: none;
+            }
+
+            .display-5 {
+                font-size: 1.75rem;
+            }
+
+            .welcome-card {
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .welcome-card .row {
+                flex-direction: column-reverse;
+            }
+
+            .welcome-card .col-lg-4 {
+                margin-bottom: 1.5rem;
+            }
+
+            .d-flex.gap-3.flex-wrap {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .display-5 {
+                font-size: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .top-bar h4 {
+                font-size: 1.1rem;
             }
         }
 
@@ -338,6 +408,9 @@
 
 <body>
     <div class="dashboard-container">
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
         <!-- Mobile Menu Toggle -->
         <button class="mobile-menu-toggle" onclick="toggleSidebar()">
             <i class="fas fa-bars"></i>
@@ -346,38 +419,44 @@
         <!-- Sidebar -->
         <nav class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <a href="index.html" class="sidebar-brand">
-                    <img src="favicon.png" alt="Pakka Logo" height="30" class="me-2">
-                    <span class="brand-text">PAKKA!</span>
-                </a>
+                <div class="d-flex justify-content-between align-items-center">
+                    <a href="index.html" class="sidebar-brand">
+                        <img src="favicon.svg" alt="Pakka Logo" height="30" class="me-2">
+                        <span class="brand-text">PAKKA!</span>
+                    </a>
+                    <!-- Close button for mobile -->
+                    <button class="btn btn-link text-white d-md-none p-0" onclick="toggleSidebar()">
+                        <i class="fas fa-times fa-lg"></i>
+                    </button>
+                </div>
             </div>
 
             <div class="sidebar-menu">
-                <a href="#" class="sidebar-item active" onclick="showSection('overview')">
+                <a href="#" class="sidebar-item active" onclick="showSection('overview', this)">
                     <i class="fas fa-home"></i>
                     <span>Overview</span>
                 </a>
-                <a href="#" class="sidebar-item" onclick="showSection('subscription')">
+                <a href="#" class="sidebar-item" onclick="showSection('subscription', this)">
                     <i class="fas fa-box"></i>
                     <span>My Subscription</span>
                 </a>
-                <a href="#" class="sidebar-item" onclick="showSection('delivery')">
+                <a href="#" class="sidebar-item" onclick="showSection('delivery', this)">
                     <i class="fas fa-truck"></i>
                     <span>Delivery Tracking</span>
                 </a>
-                <a href="#" class="sidebar-item" onclick="showSection('orders')">
+                <a href="#" class="sidebar-item" onclick="showSection('orders', this)">
                     <i class="fas fa-shopping-bag"></i>
                     <span>Order History</span>
                 </a>
-                <a href="#" class="sidebar-item" onclick="showSection('preferences')">
+                <a href="#" class="sidebar-item" onclick="showSection('preferences', this)">
                     <i class="fas fa-cog"></i>
                     <span>Preferences</span>
                 </a>
-                <a href="#" class="sidebar-item" onclick="showSection('profile')">
+                <a href="#" class="sidebar-item" onclick="showSection('profile', this)">
                     <i class="fas fa-user"></i>
                     <span>Profile Settings</span>
                 </a>
-                <a href="#" class="sidebar-item" onclick="showSection('payment')">
+                <a href="#" class="sidebar-item" onclick="showSection('payment', this)">
                     <i class="fas fa-credit-card"></i>
                     <span>Payment Methods</span>
                 </a>
@@ -385,7 +464,7 @@
                     <i class="fas fa-moon"></i>
                     <span>Dark Mode</span>
                 </button>
-                <a href="#" class="sidebar-item" onclick="showSection('rewards')">
+                <a href="#" class="sidebar-item" onclick="showSection('rewards', this)">
                     <i class="fas fa-gift"></i>
                     <span>Rewards</span>
                 </a>
@@ -549,79 +628,179 @@
                 </div>
             </div>
 
-            <!-- Subscription Section (Hidden by default) -->
-            <div id="subscription-section" style="display: none;">
-                <div class="subscription-card">
-                    <h3 class="mb-4">My Subscription</h3>
-                    <div class="row align-items-center">
-                        <div class="col-lg-8">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="stat-icon me-3">
-                                    <i class="fas fa-crown"></i>
-                                </div>
-                                <div>
-                                    <h4 class="mb-1">Premium Plan</h4>
-                                    <p class="text-muted mb-0">2 boxes per month • $49/month</p>
-                                </div>
+            <!-- Delivery Section -->
+            <div id="delivery-section" style="display: none;">
+                <div class="delivery-tracker">
+                    <h3 class="mb-4">Delivery Tracking</h3>
+                    <div class="order-item mb-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-1">Order #PK-2024-0215</h5>
+                                <p class="text-muted mb-0">February Beauty Box</p>
                             </div>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <strong>Next Billing:</strong> March 1, 2024
-                                </div>
-                                <div class="col-md-6">
-                                    <strong>Member Since:</strong> November 2023
-                                </div>
-                                <div class="col-md-6">
-                                    <strong>Box Type:</strong> Beauty & Skincare
-                                </div>
-                                <div class="col-md-6">
-                                    <strong>Delivery:</strong> Every 15th & 30th
-                                </div>
+                            <span class="badge bg-primary">In Transit</span>
+                        </div>
+                    </div>
+                    <div class="tracking-steps">
+                        <div class="tracking-step completed">
+                            <div class="tracking-icon"><i class="fas fa-box"></i></div>
+                            <div>
+                                <h6>Order Processed</h6>
+                                <p class="text-muted small mb-0">Feb 12, 2024 - 10:30 AM</p>
                             </div>
                         </div>
-                        <div class="col-lg-4 text-end">
-                            <button class="btn btn-primary btn-lg mb-2">Upgrade Plan</button>
-                            <br>
-                            <button class="btn btn-outline-secondary">Pause Subscription</button>
+                        <div class="tracking-step completed">
+                            <div class="tracking-icon"><i class="fas fa-warehouse"></i></div>
+                            <div>
+                                <h6>Packed & Ready</h6>
+                                <p class="text-muted small mb-0">Feb 13, 2024 - 02:15 PM</p>
+                            </div>
+                        </div>
+                        <div class="tracking-step active">
+                            <div class="tracking-icon"><i class="fas fa-truck"></i></div>
+                            <div>
+                                <h6>In Transit</h6>
+                                <p class="text-muted small mb-0">Feb 14, 2024 - 08:45 AM</p>
+                            </div>
+                        </div>
+                        <div class="tracking-step">
+                            <div class="tracking-icon"><i class="fas fa-home"></i></div>
+                            <div>
+                                <h6>Out for Delivery</h6>
+                                <p class="text-muted small mb-0">Expected: Feb 15, 2024</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="row g-4">
-                    <div class="col-lg-6">
-                        <div class="subscription-card">
-                            <h5>Upcoming Boxes</h5>
-                            <div class="order-item">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h6 class="mb-1">February Box #1</h6>
-                                        <small class="text-muted">Expected: Feb 15, 2024</small>
-                                    </div>
-                                    <span class="badge bg-warning">In Transit</span>
+            <!-- Orders Section -->
+            <div id="orders-section" style="display: none;">
+                <div class="subscription-card">
+                    <h3 class="mb-4">Order History</h3>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Box Name</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#PK-2024-01</td>
+                                    <td>January Beauty Box</td>
+                                    <td>$45.00</td>
+                                    <td><span class="badge bg-success">Delivered</span></td>
+                                    <td>Jan 15, 2024</td>
+                                </tr>
+                                <tr>
+                                    <td>#PK-2023-12</td>
+                                    <td>December Celebration Box</td>
+                                    <td>$45.00</td>
+                                    <td><span class="badge bg-success">Delivered</span></td>
+                                    <td>Dec 15, 2023</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preferences Section -->
+            <div id="preferences-section" style="display: none;">
+                <h3 class="mb-4">Preferences</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="preference-card">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-1">Email Notifications</h6>
+                                    <p class="text-muted small mb-0">Get updates about your box</p>
                                 </div>
-                            </div>
-                            <div class="order-item">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h6 class="mb-1">February Box #2</h6>
-                                        <small class="text-muted">Expected: Feb 28, 2024</small>
-                                    </div>
-                                    <span class="badge bg-info">Processing</span>
-                                </div>
+                                <div class="toggle-switch active"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="subscription-card">
-                            <h5>Subscription Benefits</h5>
-                            <ul class="list-unstyled">
-                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Free Express Shipping
-                                </li>
-                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Full Customization</li>
-                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Premium Brands</li>
-                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Priority Support</li>
-                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>1 Free Gift Box/Year</li>
-                            </ul>
+                    <div class="col-md-6">
+                        <div class="preference-card">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-1">SMS Alerts</h6>
+                                    <p class="text-muted small mb-0">Delivery alerts on your phone</p>
+                                </div>
+                                <div class="toggle-switch"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div id="profile-section" style="display: none;">
+                <div class="subscription-card">
+                    <h3 class="mb-4">Profile Settings</h3>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" value="Sarah">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" value="Johnson">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" value="sarah@example.com">
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Payment Section -->
+            <div id="payment-section" style="display: none;">
+                <div class="subscription-card">
+                    <h3 class="mb-4">Payment Methods</h3>
+                    <div class="order-item mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <i class="fab fa-cc-visa fa-2x me-3 text-primary"></i>
+                                <div>
+                                    <h6 class="mb-0">Visa ending in 4242</h6>
+                                    <small class="text-muted">Expires 12/26</small>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger">Remove</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-primary"><i class="fas fa-plus me-2"></i>Add New Card</button>
+                </div>
+            </div>
+
+            <!-- Rewards Section -->
+            <div id="rewards-section" style="display: none;">
+                <div class="subscription-card">
+                    <h3 class="mb-4">Pakka Rewards</h3>
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <div class="stat-number">450</div>
+                            <div class="text-muted">Available Points</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-number">2</div>
+                            <div class="text-muted">Free Boxes Earned</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-number">Gold</div>
+                            <div class="text-muted">Current Tier</div>
                         </div>
                     </div>
                 </div>
@@ -632,22 +811,42 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+
     <script>
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const mainContent = document.getElementById('mainContent');
-
-            sidebar.classList.toggle('collapsed');
-            mainContent.classList.toggle('expanded');
+            const overlay = document.getElementById('sidebarOverlay');
+            const body = document.body;
 
             // Mobile handling
             if (window.innerWidth <= 768) {
-                sidebar.classList.toggle('open');
+                const isOpen = sidebar.classList.toggle('open');
+
+                // Toggle overlay
+                if (isOpen) {
+                    overlay.classList.add('active');
+                    body.classList.add('sidebar-open');
+                } else {
+                    overlay.classList.remove('active');
+                    body.classList.remove('sidebar-open');
+                }
+            } else {
+                sidebar.classList.toggle('collapsed');
+                mainContent.classList.toggle('expanded');
             }
         }
 
-        function showSection(section) {
+        // Close sidebar when clicking menu items on mobile
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    toggleSidebar();
+                }
+            });
+        });
+
+        function showSection(section, element) {
             // Hide all sections
             document.querySelectorAll('[id$="-section"]').forEach(el => {
                 el.style.display = 'none';
@@ -663,7 +862,15 @@
             document.querySelectorAll('.sidebar-item').forEach(item => {
                 item.classList.remove('active');
             });
-            event.target.closest('.sidebar-item').classList.add('active');
+            if (element) {
+                element.classList.add('active');
+            } else {
+                // Find and activate the item by matching the section parameter if element is not passed
+                const target = Array.from(document.querySelectorAll('.sidebar-item')).find(item =>
+                    item.getAttribute('onclick') && item.getAttribute('onclick').includes(`'${section}'`)
+                );
+                if (target) target.classList.add('active');
+            }
 
             // Close mobile menu
             if (window.innerWidth <= 768) {
@@ -690,6 +897,8 @@
             return new bootstrap.Tooltip(tooltipTriggerEl)
         });
     </script>
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+    <script src="script.js"></script>
 </body>
 
 </html>

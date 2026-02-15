@@ -346,6 +346,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
     images.forEach(img => imageObserver.observe(img));
 
+    // Back to top button logic
+    const backToTop = document.querySelector('.back-to-top');
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
     console.log('Pakka! Website initialized successfully 🎉');
 });
 

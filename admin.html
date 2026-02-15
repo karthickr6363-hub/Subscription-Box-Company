@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
         .admin-dashboard {
             background: #f8f9fa;
@@ -190,10 +190,37 @@
 
             .admin-main-content {
                 margin-left: 0;
+                padding: 1rem;
+                padding-top: 5rem;
+            }
+
+            .admin-top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                padding: 1rem;
             }
 
             .admin-mobile-menu-toggle {
                 display: block;
+            }
+
+            .admin-stat-number {
+                font-size: 1.5rem;
+            }
+
+            .admin-top-bar h4 {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .admin-top-bar h4 {
+                font-size: 1.1rem;
+            }
+
+            .admin-stat-card {
+                padding: 1rem;
             }
         }
 
@@ -253,41 +280,41 @@
         <nav class="admin-sidebar" id="adminSidebar">
             <div class="admin-sidebar-header">
                 <a href="index.html" class="admin-sidebar-brand">
-                    <img src="favicon.png" alt="Pakka Logo" height="30" class="me-2">
+                    <img src="favicon.svg" alt="Pakka Logo" height="30" class="me-2">
                     <span class="brand-text">PAKKA! ADMIN</span>
                 </a>
             </div>
 
             <div class="admin-sidebar-menu">
-                <a href="#" class="admin-sidebar-item active" onclick="showAdminSection('overview')">
+                <a href="#" class="admin-sidebar-item active" onclick="showAdminSection('overview', this)">
                     <i class="fas fa-tachometer-alt"></i>
                     <span>Overview</span>
                 </a>
-                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('users')">
+                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('users', this)">
                     <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
-                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('subscriptions')">
+                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('subscriptions', this)">
                     <i class="fas fa-box"></i>
                     <span>Subscriptions</span>
                 </a>
-                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('orders')">
+                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('orders', this)">
                     <i class="fas fa-shopping-bag"></i>
                     <span>Orders</span>
                 </a>
-                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('products')">
+                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('products', this)">
                     <i class="fas fa-cube"></i>
                     <span>Products</span>
                 </a>
-                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('analytics')">
+                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('analytics', this)">
                     <i class="fas fa-chart-line"></i>
                     <span>Analytics</span>
                 </a>
-                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('content')">
+                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('content', this)">
                     <i class="fas fa-edit"></i>
                     <span>Content</span>
                 </a>
-                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('settings')">
+                <a href="#" class="admin-sidebar-item" onclick="showAdminSection('settings', this)">
                     <i class="fas fa-cog"></i>
                     <span>Settings</span>
                 </a>
@@ -327,193 +354,270 @@
 
             <!-- Overview Section -->
             <div id="admin-overview-section">
-                <!-- Stats Grid -->
-                <div class="row g-4 mb-4">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="admin-stat-card">
-                            <div class="admin-stat-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div class="admin-stat-number">52,847</div>
-                            <div class="text-muted">Total Users</div>
-                            <div class="text-success small mt-2">
-                                <i class="fas fa-arrow-up"></i> 12% this month
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="admin-stat-card">
-                            <div class="admin-stat-icon">
-                                <i class="fas fa-box"></i>
-                            </div>
-                            <div class="admin-stat-number">18,293</div>
-                            <div class="text-muted">Active Subscriptions</div>
-                            <div class="text-success small mt-2">
-                                <i class="fas fa-arrow-up"></i> 8% this month
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="admin-stat-card">
-                            <div class="admin-stat-icon">
-                                <i class="fas fa-dollar-sign"></i>
-                            </div>
-                            <div class="admin-stat-number">$894K</div>
-                            <div class="text-muted">Monthly Revenue</div>
-                            <div class="text-success small mt-2">
-                                <i class="fas fa-arrow-up"></i> 15% this month
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="admin-stat-card">
-                            <div class="admin-stat-icon">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-                            <div class="admin-stat-number">3,847</div>
-                            <div class="text-muted">Orders Today</div>
-                            <div class="text-warning small mt-2">
-                                <i class="fas fa-minus"></i> 2% from yesterday
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Content here -->
+            </div>
 
-                <!-- Quick Actions -->
-                <div class="admin-quick-actions">
-                    <h4 class="mb-4">Quick Actions</h4>
-                    <div class="row g-4">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="admin-action-card">
-                                <div class="admin-action-icon">
-                                    <i class="fas fa-user-plus"></i>
-                                </div>
-                                <h6>Add New User</h6>
-                                <p class="text-muted small">Create new user account</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="admin-action-card">
-                                <div class="admin-action-icon">
-                                    <i class="fas fa-plus-circle"></i>
-                                </div>
-                                <h6>Add Product</h6>
-                                <p class="text-muted small">Add new product to catalog</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="admin-action-card">
-                                <div class="admin-action-icon">
-                                    <i class="fas fa-bullhorn"></i>
-                                </div>
-                                <h6>Send Notification</h6>
-                                <p class="text-muted small">Broadcast message to users</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="admin-action-card">
-                                <div class="admin-action-icon">
-                                    <i class="fas fa-chart-bar"></i>
-                                </div>
-                                <h6>Generate Report</h6>
-                                <p class="text-muted small">Create analytics report</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Orders Table -->
+            <!-- Users Section -->
+            <div id="admin-users-section" style="display: none;">
                 <div class="admin-table">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h4 class="mb-0">Recent Orders</h4>
-                        <button class="btn btn-primary btn-sm">
-                            <i class="fas fa-download me-2"></i> Export
-                        </button>
-                    </div>
+                    <h4 class="mb-4">User Management</h4>
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Order ID</th>
-                                    <th>Customer</th>
-                                    <th>Product</th>
-                                    <th>Amount</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
                                     <th>Status</th>
-                                    <th>Date</th>
-                                    <th>Actions</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>#ORD-2847</td>
                                     <td>Sarah Johnson</td>
-                                    <td>Premium Beauty Box</td>
-                                    <td>$49.00</td>
-                                    <td><span class="admin-badge admin-badge-success">Completed</span></td>
-                                    <td>Jan 27, 2024</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary">View</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#ORD-2846</td>
-                                    <td>Mike Chen</td>
-                                    <td>Tech Gadgets Box</td>
-                                    <td>$59.00</td>
-                                    <td><span class="admin-badge admin-badge-warning">Processing</span></td>
-                                    <td>Jan 27, 2024</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary">View</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#ORD-2845</td>
-                                    <td>Emma Park</td>
-                                    <td>Fitness Fuel Box</td>
-                                    <td>$39.00</td>
-                                    <td><span class="admin-badge admin-badge-info">Shipped</span></td>
-                                    <td>Jan 26, 2024</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary">View</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#ORD-2844</td>
-                                    <td>James Davis</td>
-                                    <td>Gourmet Food Box</td>
-                                    <td>$45.00</td>
-                                    <td><span class="admin-badge admin-badge-danger">Pending</span></td>
-                                    <td>Jan 26, 2024</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary">View</button>
-                                    </td>
+                                    <td>sarah@example.com</td>
+                                    <td><span class="admin-badge admin-badge-success">Active</span></td>
+                                    <td><button class="btn btn-sm btn-outline-primary">Edit</button></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+            </div>
 
-                <!-- Charts -->
-                <div class="row g-4">
-                    <div class="col-lg-8">
-                        <div class="admin-chart-container">
-                            <h4 class="mb-4">Revenue Overview</h4>
-                            <canvas id="revenueChart" height="100"></canvas>
+            <!-- Subscriptions Section -->
+            <div id="admin-subscriptions-section" style="display: none;">
+                <div class="admin-table">
+                    <h4 class="mb-4">Active Subscriptions</h4>
+                    <p class="text-muted">Subscription trends and management UI goes here.</p>
+                </div>
+            </div>
+
+            <!-- Orders Section -->
+            <div id="admin-orders-section" style="display: none;">
+                <div class="admin-table">
+                    <h4 class="mb-4">Global Orders</h4>
+                    <p class="text-muted">Comprehensive order history for all customers.</p>
+                </div>
+            </div>
+
+            <!-- Products Section -->
+            <div id="admin-products-section" style="display: none;">
+                <div class="admin-table">
+                    <h4 class="mb-4">Product Catalog</h4>
+                    <p class="text-muted">Manage box contents and product inventory.</p>
+                </div>
+            </div>
+
+            <!-- Analytics Section -->
+            <div id="admin-analytics-section" style="display: none;">
+                <div class="admin-chart-container">
+                    <h4 class="mb-4">Detailed Analytics</h4>
+                    <p class="text-muted">Extended business metrics and growth charts.</p>
+                </div>
+            </div>
+
+            <!-- Content Section -->
+            <div id="admin-content-section" style="display: none;">
+                <div class="admin-table">
+                    <h4 class="mb-4">CMS - Content Management</h4>
+                    <p class="text-muted">Update website banners, descriptions, and images.</p>
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div id="admin-settings-section" style="display: none;">
+                <div class="admin-table">
+                    <h4 class="mb-4">Admin Settings</h4>
+                    <p class="text-muted">Configure platform global parameters and security.</p>
+                </div>
+            </div>
+            <!-- Stats Grid -->
+            <div class="row g-4 mb-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="admin-stat-number">52,847</div>
+                        <div class="text-muted">Total Users</div>
+                        <div class="text-success small mt-2">
+                            <i class="fas fa-arrow-up"></i> 12% this month
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="admin-chart-container">
-                            <h4 class="mb-4">Subscription Types</h4>
-                            <canvas id="subscriptionChart" height="200"></canvas>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon">
+                            <i class="fas fa-box"></i>
                         </div>
+                        <div class="admin-stat-number">18,293</div>
+                        <div class="text-muted">Active Subscriptions</div>
+                        <div class="text-success small mt-2">
+                            <i class="fas fa-arrow-up"></i> 8% this month
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="admin-stat-number">$894K</div>
+                        <div class="text-muted">Monthly Revenue</div>
+                        <div class="text-success small mt-2">
+                            <i class="fas fa-arrow-up"></i> 15% this month
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="admin-stat-number">3,847</div>
+                        <div class="text-muted">Orders Today</div>
+                        <div class="text-warning small mt-2">
+                            <i class="fas fa-minus"></i> 2% from yesterday
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="admin-quick-actions">
+                <h4 class="mb-4">Quick Actions</h4>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="admin-action-card">
+                            <div class="admin-action-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <h6>Add New User</h6>
+                            <p class="text-muted small">Create new user account</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="admin-action-card">
+                            <div class="admin-action-icon">
+                                <i class="fas fa-plus-circle"></i>
+                            </div>
+                            <h6>Add Product</h6>
+                            <p class="text-muted small">Add new product to catalog</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="admin-action-card">
+                            <div class="admin-action-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <h6>Send Notification</h6>
+                            <p class="text-muted small">Broadcast message to users</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="admin-action-card">
+                            <div class="admin-action-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h6>Generate Report</h6>
+                            <p class="text-muted small">Create analytics report</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Orders Table -->
+            <div class="admin-table">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="mb-0">Recent Orders</h4>
+                    <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-download me-2"></i> Export
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Product</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#ORD-2847</td>
+                                <td>Sarah Johnson</td>
+                                <td>Premium Beauty Box</td>
+                                <td>$49.00</td>
+                                <td><span class="admin-badge admin-badge-success">Completed</span></td>
+                                <td>Jan 27, 2024</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-2846</td>
+                                <td>Mike Chen</td>
+                                <td>Tech Gadgets Box</td>
+                                <td>$59.00</td>
+                                <td><span class="admin-badge admin-badge-warning">Processing</span></td>
+                                <td>Jan 27, 2024</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-2845</td>
+                                <td>Emma Park</td>
+                                <td>Fitness Fuel Box</td>
+                                <td>$39.00</td>
+                                <td><span class="admin-badge admin-badge-info">Shipped</span></td>
+                                <td>Jan 26, 2024</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-2844</td>
+                                <td>James Davis</td>
+                                <td>Gourmet Food Box</td>
+                                <td>$45.00</td>
+                                <td><span class="admin-badge admin-badge-danger">Pending</span></td>
+                                <td>Jan 26, 2024</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="admin-chart-container">
+                        <h4 class="mb-4">Revenue Overview</h4>
+                        <canvas id="revenueChart" height="100"></canvas>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="admin-chart-container">
+                        <h4 class="mb-4">Subscription Types</h4>
+                        <canvas id="subscriptionChart" height="200"></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         function toggleAdminSidebar() {
@@ -529,7 +633,7 @@
             }
         }
 
-        function showAdminSection(section) {
+        function showAdminSection(section, element) {
             // Hide all sections
             document.querySelectorAll('[id$="-section"]').forEach(el => {
                 el.style.display = 'none';
@@ -545,7 +649,15 @@
             document.querySelectorAll('.admin-sidebar-item').forEach(item => {
                 item.classList.remove('active');
             });
-            event.target.closest('.admin-sidebar-item').classList.add('active');
+            if (element) {
+                element.classList.add('active');
+            } else {
+                // Find and activate the item by matching the section parameter
+                const target = Array.from(document.querySelectorAll('.admin-sidebar-item')).find(item =>
+                    item.getAttribute('onclick') && item.getAttribute('onclick').includes(`'${section}'`)
+                );
+                if (target) target.classList.add('active');
+            }
 
             // Close mobile menu
             if (window.innerWidth <= 768) {
@@ -620,6 +732,8 @@
             }
         });
     </script>
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+    <script src="script.js"></script>
 </body>
 
 </html>
