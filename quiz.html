@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         .quiz-hero {
             background: var(--gradient);
@@ -15,21 +18,21 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .quiz-container {
             max-width: 800px;
             margin: 0 auto;
             padding: 80px 0;
         }
-        
+
         .quiz-progress {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50px;
             height: 8px;
             margin-bottom: 2rem;
             overflow: hidden;
         }
-        
+
         .quiz-progress-bar {
             background: var(--accent-color);
             height: 100%;
@@ -37,7 +40,7 @@
             transition: width 0.5s ease;
             position: relative;
         }
-        
+
         .quiz-progress-bar::after {
             content: '';
             position: absolute;
@@ -50,7 +53,7 @@
             border-radius: 50%;
             box-shadow: 0 2px 10px rgba(233, 69, 96, 0.5);
         }
-        
+
         .quiz-card {
             background: var(--white);
             border-radius: 25px;
@@ -60,7 +63,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .quiz-card::before {
             content: '';
             position: absolute;
@@ -70,7 +73,7 @@
             height: 5px;
             background: var(--gradient);
         }
-        
+
         .question-number {
             display: inline-block;
             background: var(--accent-color);
@@ -83,14 +86,14 @@
             font-weight: 700;
             margin-bottom: 1rem;
         }
-        
+
         .question-title {
             font-size: 1.75rem;
             font-weight: 700;
             color: var(--primary-color);
             margin-bottom: 2rem;
         }
-        
+
         .option-card {
             background: var(--white);
             border: 2px solid rgba(26, 26, 46, 0.1);
@@ -102,18 +105,18 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .option-card:hover {
             border-color: var(--accent-color);
             transform: translateY(-3px);
             box-shadow: var(--shadow-md);
         }
-        
+
         .option-card.selected {
             border-color: var(--accent-color);
             background: linear-gradient(135deg, rgba(233, 69, 96, 0.05), rgba(233, 69, 96, 0.1));
         }
-        
+
         .option-card.selected::after {
             content: '\f00c';
             font-family: 'Font Awesome 6 Free';
@@ -124,7 +127,7 @@
             color: var(--accent-color);
             font-size: 1.2rem;
         }
-        
+
         .option-icon {
             width: 60px;
             height: 60px;
@@ -137,43 +140,43 @@
             color: var(--white);
             font-size: 1.5rem;
         }
-        
+
         .option-title {
             font-weight: 600;
             color: var(--primary-color);
             margin-bottom: 0.5rem;
         }
-        
+
         .option-description {
             color: var(--text-light);
             font-size: 0.875rem;
         }
-        
+
         .quiz-navigation {
             display: flex;
             justify-content: between;
             gap: 1rem;
             margin-top: 2rem;
         }
-        
+
         .btn-quiz {
             padding: 1rem 2rem;
             border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s ease;
         }
-        
+
         .btn-quiz:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        
+
         .result-section {
             display: none;
             text-align: center;
             padding: 3rem;
         }
-        
+
         .result-icon {
             width: 120px;
             height: 120px;
@@ -187,7 +190,7 @@
             font-size: 3rem;
             animation: pulse 2s infinite;
         }
-        
+
         .recommendation-card {
             background: var(--white);
             border-radius: 20px;
@@ -197,12 +200,12 @@
             border-left: 4px solid var(--accent-color);
             transition: all 0.3s ease;
         }
-        
+
         .recommendation-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-xl);
         }
-        
+
         .preference-tag {
             display: inline-block;
             background: rgba(233, 69, 96, 0.1);
@@ -213,7 +216,7 @@
             font-weight: 600;
             margin: 0.25rem;
         }
-        
+
         .skip-option {
             background: rgba(26, 26, 46, 0.05);
             border: none;
@@ -223,22 +226,22 @@
             font-size: 0.875rem;
             transition: all 0.3s ease;
         }
-        
+
         .skip-option:hover {
             background: rgba(26, 26, 46, 0.1);
             color: var(--primary-color);
         }
-        
+
         .loading-spinner {
             display: none;
             text-align: center;
             padding: 3rem;
         }
-        
+
         .loading-spinner.active {
             display: block;
         }
-        
+
         .spinner {
             width: 60px;
             height: 60px;
@@ -248,18 +251,31 @@
             animation: spin 1s linear infinite;
             margin: 0 auto 1rem;
         }
-        
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        
+
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -273,36 +289,49 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Home
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="homeDropdown">
-                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-home me-2"></i> Home 1 - Brand Experience</a></li>
-                            <li><a class="dropdown-item" href="home-conversion.html"><i class="fas fa-rocket me-2"></i> Home 2 - Conversion Focused</a></li>
+                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-home me-2"></i> Home 1 -
+                                    Brand Experience</a></li>
+                            <li><a class="dropdown-item" href="home-conversion.html"><i class="fas fa-rocket me-2"></i>
+                                    Home 2 - Conversion Focused</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="how-it-works.html">How It Works</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Pages
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
-                            <li><a class="dropdown-item" href="plans.html"><i class="fas fa-box me-2"></i> Plans</a></li>
-                            <li><a class="dropdown-item" href="shop.html"><i class="fas fa-shopping-bag me-2"></i> Shop</a></li>
-                            <li><a class="dropdown-item" href="reviews.html"><i class="fas fa-star me-2"></i> Reviews</a></li>
+                            <li><a class="dropdown-item" href="plans.html"><i class="fas fa-box me-2"></i> Plans</a>
+                            </li>
+                            <li><a class="dropdown-item" href="shop.html"><i class="fas fa-shopping-bag me-2"></i>
+                                    Shop</a></li>
+                            <li><a class="dropdown-item" href="reviews.html"><i class="fas fa-star me-2"></i>
+                                    Reviews</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link active" href="quiz.html">Quiz</a></li>
-                    <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus me-2"></i> Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus me-2"></i>
+                            Sign Up</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user"></i> Account
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i> User Dashboard</a></li>
-                            <li><a class="dropdown-item" href="admin.html"><i class="fas fa-user-shield me-2"></i> Admin Dashboard</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="dashboard.html"><i
+                                        class="fas fa-tachometer-alt me-2"></i> User Dashboard</a></li>
+                            <li><a class="dropdown-item" href="admin.html"><i class="fas fa-user-shield me-2"></i> Admin
+                                    Dashboard</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
@@ -345,12 +374,12 @@
         <div class="quiz-progress">
             <div class="quiz-progress-bar" id="progressBar" style="width: 20%"></div>
         </div>
-        
+
         <!-- Question 1 -->
         <div class="quiz-card" id="question1">
             <span class="question-number">1</span>
             <h3 class="question-title">What's your primary interest?</h3>
-            
+
             <div class="option-card" onclick="selectOption(this, 'beauty')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -362,7 +391,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="option-card" onclick="selectOption(this, 'tech')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -374,7 +403,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="option-card" onclick="selectOption(this, 'fitness')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -386,7 +415,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="option-card" onclick="selectOption(this, 'lifestyle')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -398,18 +427,18 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="quiz-navigation">
                 <div></div>
                 <button class="btn btn-primary btn-quiz" onclick="nextQuestion()">Next Question</button>
             </div>
         </div>
-        
+
         <!-- Question 2 -->
         <div class="quiz-card" id="question2" style="display: none;">
             <span class="question-number">2</span>
             <h3 class="question-title">What's your budget range per month?</h3>
-            
+
             <div class="option-card" onclick="selectOption(this, 'starter')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -421,7 +450,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="option-card" onclick="selectOption(this, 'premium')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -433,7 +462,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="option-card" onclick="selectOption(this, 'vip')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -445,18 +474,18 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="quiz-navigation">
                 <button class="btn btn-outline-secondary btn-quiz" onclick="previousQuestion()">Previous</button>
                 <button class="btn btn-primary btn-quiz" onclick="nextQuestion()">Next Question</button>
             </div>
         </div>
-        
+
         <!-- Question 3 -->
         <div class="quiz-card" id="question3" style="display: none;">
             <span class="question-number">3</span>
             <h3 class="question-title">How often do you want to receive boxes?</h3>
-            
+
             <div class="option-card" onclick="selectOption(this, 'monthly')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -468,7 +497,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="option-card" onclick="selectOption(this, 'bimonthly')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -480,7 +509,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="option-card" onclick="selectOption(this, 'quarterly')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -492,18 +521,18 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="quiz-navigation">
                 <button class="btn btn-outline-secondary btn-quiz" onclick="previousQuestion()">Previous</button>
                 <button class="btn btn-primary btn-quiz" onclick="nextQuestion()">Next Question</button>
             </div>
         </div>
-        
+
         <!-- Question 4 -->
         <div class="quiz-card" id="question4" style="display: none;">
             <span class="question-number">4</span>
             <h3 class="question-title">Do you have any preferences or restrictions?</h3>
-            
+
             <div class="option-card" onclick="selectOption(this, 'vegan')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -515,7 +544,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="option-card" onclick="selectOption(this, 'organic')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -527,7 +556,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="option-card" onclick="selectOption(this, 'allergies')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -539,7 +568,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="option-card" onclick="selectOption(this, 'none')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -551,18 +580,18 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="quiz-navigation">
                 <button class="btn btn-outline-secondary btn-quiz" onclick="previousQuestion()">Previous</button>
                 <button class="btn btn-primary btn-quiz" onclick="nextQuestion()">Next Question</button>
             </div>
         </div>
-        
+
         <!-- Question 5 -->
         <div class="quiz-card" id="question5" style="display: none;">
             <span class="question-number">5</span>
             <h3 class="question-title">What's your style preference?</h3>
-            
+
             <div class="option-card" onclick="selectOption(this, 'minimalist')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -574,7 +603,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="option-card" onclick="selectOption(this, 'luxury')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -586,7 +615,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="option-card" onclick="selectOption(this, 'trendy')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -598,7 +627,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="option-card" onclick="selectOption(this, 'eco')">
                 <div class="d-flex align-items-center">
                     <div class="option-icon me-3">
@@ -610,20 +639,20 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="quiz-navigation">
                 <button class="btn btn-outline-secondary btn-quiz" onclick="previousQuestion()">Previous</button>
                 <button class="btn btn-primary btn-quiz" onclick="showResults()">Get My Recommendations</button>
             </div>
         </div>
-        
+
         <!-- Loading -->
         <div class="loading-spinner" id="loadingSection">
             <div class="spinner"></div>
             <h4>Analyzing your preferences...</h4>
             <p class="text-muted">Our AI is finding the perfect boxes for you</p>
         </div>
-        
+
         <!-- Results -->
         <div class="result-section" id="resultsSection">
             <div class="result-icon">
@@ -631,7 +660,7 @@
             </div>
             <h2 class="display-4 fw-bold mb-3">Your Perfect Match!</h2>
             <p class="lead mb-5">Based on your preferences, we recommend:</p>
-            
+
             <div class="recommendation-card">
                 <div class="row align-items-center">
                     <div class="col-md-8">
@@ -650,7 +679,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="recommendation-card">
                 <div class="row align-items-center">
                     <div class="col-md-8">
@@ -668,7 +697,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="mt-5">
                 <h4 class="mb-3">Your Profile Summary</h4>
                 <div class="row">
@@ -684,7 +713,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="d-flex gap-3 justify-content-center mt-5">
                 <button class="btn btn-primary btn-lg px-5">
                     <i class="fas fa-rocket me-2"></i> Start Your Subscription
@@ -754,34 +783,34 @@
         let currentQuestion = 1;
         const totalQuestions = 5;
         let answers = {};
-        
+
         function selectOption(element, value) {
             // Remove selected class from all options in the same question
             const questionCard = element.closest('.quiz-card');
             questionCard.querySelectorAll('.option-card').forEach(card => {
                 card.classList.remove('selected');
             });
-            
+
             // Add selected class to clicked option
             element.classList.add('selected');
-            
+
             // Store the answer
             answers[`question${currentQuestion}`] = value;
         }
-        
+
         function nextQuestion() {
             // Check if current question is answered
             if (!answers[`question${currentQuestion}`]) {
                 showNotification('Please select an option before continuing', 'error');
                 return;
             }
-            
+
             // Hide current question
             document.getElementById(`question${currentQuestion}`).style.display = 'none';
-            
+
             // Move to next question
             currentQuestion++;
-            
+
             if (currentQuestion <= totalQuestions) {
                 // Show next question
                 document.getElementById(`question${currentQuestion}`).style.display = 'block';
@@ -791,33 +820,33 @@
                 showLoading();
             }
         }
-        
+
         function previousQuestion() {
             // Hide current question
             document.getElementById(`question${currentQuestion}`).style.display = 'none';
-            
+
             // Move to previous question
             currentQuestion--;
-            
+
             // Show previous question
             document.getElementById(`question${currentQuestion}`).style.display = 'block';
             updateProgress();
         }
-        
+
         function updateProgress() {
             const progress = (currentQuestion / totalQuestions) * 100;
             document.getElementById('progressBar').style.width = progress + '%';
         }
-        
+
         function showLoading() {
             // Hide all questions
             for (let i = 1; i <= totalQuestions; i++) {
                 document.getElementById(`question${i}`).style.display = 'none';
             }
-            
+
             // Show loading
             document.getElementById('loadingSection').classList.add('active');
-            
+
             // Simulate AI processing
             setTimeout(() => {
                 document.getElementById('loadingSection').classList.remove('active');
@@ -825,26 +854,27 @@
                 updateProgress();
             }, 3000);
         }
-        
+
         function showResults() {
             // Check if current question is answered
             if (!answers[`question${currentQuestion}`]) {
                 showNotification('Please select an option before continuing', 'error');
                 return;
             }
-            
+
             showLoading();
         }
-        
+
         // Initialize progress
         updateProgress();
-        
+
         // Add keyboard navigation
-        document.addEventListener('keydown', function(event) {
+        document.addEventListener('keydown', function (event) {
             if (event.key === 'Enter' && currentQuestion < totalQuestions) {
                 nextQuestion();
             }
         });
     </script>
 </body>
+
 </html>

@@ -1,13 +1,57 @@
 // Modern 2026 JavaScript for Pakka! Subscription Box Website
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Dark Mode Toggle
+    const darkModeToggle = document.querySelector('#darkModeToggle');
+    const body = document.body;
+
+    // Check for saved user preference
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        body.classList.add('dark-mode');
+        if (darkModeToggle) darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+    }
+
+    // Active link highlighting
+    const currentLocation = location.href;
+    const menuItem = document.querySelectorAll('.nav-link');
+    const menuLength = menuItem.length;
+    for (let i = 0; i < menuLength; i++) {
+        if (menuItem[i].href === currentLocation) {
+            menuItem[i].classList.add("active");
+        }
+    }
+
+    // Also handle dropdown items if they match
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    dropdownItems.forEach(item => {
+        if (item.href === currentLocation) {
+            item.classList.add('active');
+            // Make parent nav-link active too
+            const parentLink = item.closest('.nav-item.dropdown').querySelector('.nav-link');
+            if (parentLink) parentLink.classList.add('active');
         }
     });
 
@@ -31,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver(function(entries) {
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
@@ -52,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function animateCounter(element, target, duration = 2000) {
         let start = 0;
         const increment = target / (duration / 16);
-        
+
         function updateCounter() {
             start += increment;
             if (start < target) {
@@ -62,12 +106,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.textContent = target + (element.textContent.includes('K') ? 'K+' : '');
             }
         }
-        
+
         updateCounter();
     }
 
     // Trigger counter animation when stats section is visible
-    const statsObserver = new IntersectionObserver(function(entries) {
+    const statsObserver = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
                 entry.target.classList.add('animated');
@@ -94,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Newsletter form submission
     const newsletterForm = document.querySelector('.input-group');
     if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
+        newsletterForm.addEventListener('submit', function (e) {
             e.preventDefault();
             const email = this.querySelector('input[type="email"]').value;
             if (email) {
@@ -107,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add to cart functionality
     document.querySelectorAll('.btn-primary').forEach(button => {
         if (button.textContent.includes('Subscribe')) {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 const boxName = this.closest('.box-card').querySelector('h4').textContent;
                 showNotification(`Added ${boxName} to cart!`, 'success');
                 updateCartCount();
@@ -141,14 +185,14 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: translateX(100%);
             transition: all 0.3s ease;
         `;
-        
+
         document.body.appendChild(notification);
-        
+
         setTimeout(() => {
             notification.style.opacity = '1';
             notification.style.transform = 'translateX(0)';
         }, 100);
-        
+
         setTimeout(() => {
             notification.style.opacity = '0';
             notification.style.transform = 'translateX(100%)';
@@ -159,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Parallax effect for hero section (fixed to prevent layout issues)
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const scrolled = window.pageYOffset;
         const heroSection = document.querySelector('.hero-section');
         if (heroSection && scrolled > 0) {
@@ -174,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Video modal functionality
     document.querySelectorAll('.btn-outline-light').forEach(button => {
         if (button.textContent.includes('Watch Demo')) {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 createVideoModal();
             });
         }
@@ -191,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `;
-        
+
         modal.style.cssText = `
             position: fixed;
             top: 0;
@@ -206,21 +250,21 @@ document.addEventListener('DOMContentLoaded', function() {
             opacity: 0;
             transition: opacity 0.3s ease;
         `;
-        
+
         document.body.appendChild(modal);
-        
+
         setTimeout(() => {
             modal.style.opacity = '1';
         }, 100);
-        
-        modal.querySelector('.close-modal').addEventListener('click', function() {
+
+        modal.querySelector('.close-modal').addEventListener('click', function () {
             modal.style.opacity = '0';
             setTimeout(() => {
                 document.body.removeChild(modal);
             }, 300);
         });
-        
-        modal.addEventListener('click', function(e) {
+
+        modal.addEventListener('click', function (e) {
             if (e.target === modal) {
                 modal.style.opacity = '0';
                 setTimeout(() => {
@@ -232,12 +276,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Loading states for buttons
     document.querySelectorAll('.btn').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             if (!this.classList.contains('loading')) {
                 const originalText = this.innerHTML;
                 this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
                 this.classList.add('loading');
-                
+
                 setTimeout(() => {
                     this.innerHTML = originalText;
                     this.classList.remove('loading');
@@ -249,9 +293,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile menu enhancements
     const navbarToggler = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.querySelector('.navbar-collapse');
-    
+
     if (navbarToggler && navbarCollapse) {
-        navbarToggler.addEventListener('click', function() {
+        navbarToggler.addEventListener('click', function () {
             setTimeout(() => {
                 if (navbarCollapse.classList.contains('show')) {
                     document.body.style.overflow = 'hidden';
@@ -265,10 +309,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form validation
     const forms = document.querySelectorAll('form');
     forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', function (e) {
             e.preventDefault();
             let isValid = true;
-            
+
             this.querySelectorAll('input[required]').forEach(input => {
                 if (!input.value.trim()) {
                     isValid = false;
@@ -277,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     input.classList.remove('is-invalid');
                 }
             });
-            
+
             if (isValid) {
                 showNotification('Form submitted successfully!', 'success');
                 this.reset();
@@ -320,7 +364,7 @@ function debounce(func, wait) {
 
 function throttle(func, limit) {
     let inThrottle;
-    return function() {
+    return function () {
         const args = arguments;
         const context = this;
         if (!inThrottle) {

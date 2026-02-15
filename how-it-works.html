@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         .how-hero {
             background: var(--gradient);
@@ -15,12 +18,12 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .step-flow {
             position: relative;
             padding: 80px 0;
         }
-        
+
         .step-flow::before {
             content: '';
             position: absolute;
@@ -32,7 +35,7 @@
             transform: translateY(-50%);
             z-index: 1;
         }
-        
+
         .step-card {
             background: var(--white);
             border-radius: 20px;
@@ -44,13 +47,13 @@
             transition: all 0.3s ease;
             border: 3px solid transparent;
         }
-        
+
         .step-card:hover {
             transform: translateY(-15px);
             box-shadow: var(--shadow-xl);
             border-color: var(--accent-color);
         }
-        
+
         .step-number {
             width: 60px;
             height: 60px;
@@ -65,7 +68,7 @@
             margin: 0 auto 1.5rem;
             position: relative;
         }
-        
+
         .step-icon {
             width: 100px;
             height: 100px;
@@ -79,16 +82,16 @@
             font-size: 2.5rem;
             transition: all 0.3s ease;
         }
-        
+
         .step-card:hover .step-icon {
             transform: scale(1.1) rotate(5deg);
         }
-        
+
         .feature-highlight {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.05), rgba(22, 33, 62, 0.1));
             padding: 80px 0;
         }
-        
+
         .feature-item {
             background: var(--white);
             border-radius: 15px;
@@ -97,12 +100,12 @@
             transition: all 0.3s ease;
             height: 100%;
         }
-        
+
         .feature-item:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-xl);
         }
-        
+
         .feature-icon {
             width: 60px;
             height: 60px;
@@ -115,12 +118,12 @@
             color: var(--white);
             font-size: 1.5rem;
         }
-        
+
         .demo-section {
             padding: 80px 0;
             background: var(--white);
         }
-        
+
         .demo-video {
             background: var(--primary-color);
             border-radius: 20px;
@@ -128,7 +131,7 @@
             text-align: center;
             color: var(--white);
         }
-        
+
         .play-button {
             width: 80px;
             height: 80px;
@@ -141,18 +144,18 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .play-button:hover {
             transform: scale(1.1);
             box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
         }
-        
+
         .timeline-item {
             position: relative;
             padding-left: 60px;
             margin-bottom: 2rem;
         }
-        
+
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -162,7 +165,7 @@
             width: 2px;
             background: var(--accent-color);
         }
-        
+
         .timeline-dot {
             position: absolute;
             left: 8px;
@@ -172,9 +175,9 @@
             background: var(--accent-color);
             border-radius: 50%;
             border: 3px solid var(--white);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
+
         .timeline-content {
             background: var(--white);
             padding: 1.5rem;
@@ -182,23 +185,24 @@
             box-shadow: var(--shadow-sm);
             transition: all 0.3s ease;
         }
-        
+
         .timeline-content:hover {
             box-shadow: var(--shadow-md);
             transform: translateX(5px);
         }
-        
+
         @media (max-width: 768px) {
             .step-flow::before {
                 display: none;
             }
-            
+
             .step-card {
                 margin-bottom: 2rem;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -212,35 +216,48 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Home
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="homeDropdown">
-                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-home me-2"></i> Home 1 - Brand Experience</a></li>
-                            <li><a class="dropdown-item" href="home-conversion.html"><i class="fas fa-rocket me-2"></i> Home 2 - Conversion Focused</a></li>
+                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-home me-2"></i> Home 1 -
+                                    Brand Experience</a></li>
+                            <li><a class="dropdown-item" href="home-conversion.html"><i class="fas fa-rocket me-2"></i>
+                                    Home 2 - Conversion Focused</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link active" href="how-it-works.html">How It Works</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Pages
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
-                            <li><a class="dropdown-item" href="plans.html"><i class="fas fa-box me-2"></i> Plans</a></li>
-                            <li><a class="dropdown-item" href="shop.html"><i class="fas fa-shopping-bag me-2"></i> Shop</a></li>
-                            <li><a class="dropdown-item" href="reviews.html"><i class="fas fa-star me-2"></i> Reviews</a></li>
+                            <li><a class="dropdown-item" href="plans.html"><i class="fas fa-box me-2"></i> Plans</a>
+                            </li>
+                            <li><a class="dropdown-item" href="shop.html"><i class="fas fa-shopping-bag me-2"></i>
+                                    Shop</a></li>
+                            <li><a class="dropdown-item" href="reviews.html"><i class="fas fa-star me-2"></i>
+                                    Reviews</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus me-2"></i> Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus me-2"></i>
+                            Sign Up</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user"></i> Account
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i> User Dashboard</a></li>
-                            <li><a class="dropdown-item" href="admin.html"><i class="fas fa-user-shield me-2"></i> Admin Dashboard</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="dashboard.html"><i
+                                        class="fas fa-tachometer-alt me-2"></i> User Dashboard</a></li>
+                            <li><a class="dropdown-item" href="admin.html"><i class="fas fa-user-shield me-2"></i> Admin
+                                    Dashboard</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
@@ -259,7 +276,8 @@
                             How <span class="text-gradient">Pakka!</span> Works
                         </h1>
                         <p class="lead text-white mb-4">
-                            Getting started with your personalized subscription box is simple and fun. Follow our 4-step process to start unboxing happiness today!
+                            Getting started with your personalized subscription box is simple and fun. Follow our 4-step
+                            process to start unboxing happiness today!
                         </p>
                         <div class="d-flex gap-3 flex-wrap justify-content-center">
                             <button class="btn btn-light btn-lg px-5">
@@ -273,7 +291,8 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="text-center">
-                        <img src="https://via.placeholder.com/400x400/1a1a2e/16213e?text=How+It+Works" alt="How It Works" class="img-fluid rounded-4 shadow-lg">
+                        <img src="https://via.placeholder.com/400x400/1a1a2e/16213e?text=How+It+Works"
+                            alt="How It Works" class="img-fluid rounded-4 shadow-lg">
                     </div>
                 </div>
             </div>
@@ -287,7 +306,7 @@
                 <h2 class="display-4 fw-bold">Your Journey in 4 Simple Steps</h2>
                 <p class="lead">From sign-up to unboxing, we've made it effortless</p>
             </div>
-            
+
             <div class="row g-4">
                 <div class="col-lg-3">
                     <div class="step-card">
@@ -296,7 +315,8 @@
                             <i class="fas fa-cursor-pointer"></i>
                         </div>
                         <h4>Choose Your Plan</h4>
-                        <p>Select from our Starter, Premium, or VIP plans. Each offers different box frequencies and customization levels to match your lifestyle and budget.</p>
+                        <p>Select from our Starter, Premium, or VIP plans. Each offers different box frequencies and
+                            customization levels to match your lifestyle and budget.</p>
                         <ul class="list-unstyled text-start">
                             <li><i class="fas fa-check text-success me-2"></i>Monthly billing</li>
                             <li><i class="fas fa-check text-success me-2"></i>No commitment</li>
@@ -304,7 +324,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3">
                     <div class="step-card">
                         <div class="step-number">2</div>
@@ -312,7 +332,8 @@
                             <i class="fas fa-palette"></i>
                         </div>
                         <h4>Customize Preferences</h4>
-                        <p>Take our quick quiz to personalize your box. Tell us about your interests, preferences, and any allergies or restrictions.</p>
+                        <p>Take our quick quiz to personalize your box. Tell us about your interests, preferences, and
+                            any allergies or restrictions.</p>
                         <ul class="list-unstyled text-start">
                             <li><i class="fas fa-check text-success me-2"></i>AI-powered matching</li>
                             <li><i class="fas fa-check text-success me-2"></i>Category preferences</li>
@@ -320,7 +341,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3">
                     <div class="step-card">
                         <div class="step-number">3</div>
@@ -328,7 +349,8 @@
                             <i class="fas fa-truck"></i>
                         </div>
                         <h4>Monthly Delivery</h4>
-                        <p>Receive your curated box at your doorstep every month. Track your delivery and get excited for the unboxing experience!</p>
+                        <p>Receive your curated box at your doorstep every month. Track your delivery and get excited
+                            for the unboxing experience!</p>
                         <ul class="list-unstyled text-start">
                             <li><i class="fas fa-check text-success me-2"></i>Free shipping</li>
                             <li><i class="fas fa-check text-success me-2"></i>Real-time tracking</li>
@@ -336,7 +358,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3">
                     <div class="step-card">
                         <div class="step-number">4</div>
@@ -344,7 +366,8 @@
                             <i class="fas fa-cog"></i>
                         </div>
                         <h4>Manage Subscription</h4>
-                        <p>Access your dashboard to manage preferences, skip months, pause delivery, or rate products to improve future boxes.</p>
+                        <p>Access your dashboard to manage preferences, skip months, pause delivery, or rate products to
+                            improve future boxes.</p>
                         <ul class="list-unstyled text-start">
                             <li><i class="fas fa-check text-success me-2"></i>Easy management</li>
                             <li><i class="fas fa-check text-success me-2"></i>Product feedback</li>
@@ -363,7 +386,7 @@
                 <h2 class="display-4 fw-bold">Why Choose Pakka!?</h2>
                 <p class="lead">Features that make us different</p>
             </div>
-            
+
             <div class="row g-4">
                 <div class="col-lg-4">
                     <div class="feature-item">
@@ -371,7 +394,8 @@
                             <i class="fas fa-robot"></i>
                         </div>
                         <h4>AI-Powered Curation</h4>
-                        <p>Our smart algorithm learns your preferences over time, ensuring every box is perfectly tailored to your taste and lifestyle.</p>
+                        <p>Our smart algorithm learns your preferences over time, ensuring every box is perfectly
+                            tailored to your taste and lifestyle.</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -380,7 +404,8 @@
                             <i class="fas fa-shield-alt"></i>
                         </div>
                         <h4>Satisfaction Guarantee</h4>
-                        <p>Not happy with your box? We'll make it right. Our 100% satisfaction guarantee ensures you love every delivery.</p>
+                        <p>Not happy with your box? We'll make it right. Our 100% satisfaction guarantee ensures you
+                            love every delivery.</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -389,7 +414,8 @@
                             <i class="fas fa-users"></i>
                         </div>
                         <h4>Community Access</h4>
-                        <p>Join our exclusive community to share unboxing experiences, swap products, and connect with like-minded subscribers.</p>
+                        <p>Join our exclusive community to share unboxing experiences, swap products, and connect with
+                            like-minded subscribers.</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -398,7 +424,8 @@
                             <i class="fas fa-gift"></i>
                         </div>
                         <h4>Exclusive Products</h4>
-                        <p>Get access to limited edition items and early releases from top brands before they hit the stores.</p>
+                        <p>Get access to limited edition items and early releases from top brands before they hit the
+                            stores.</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -407,7 +434,8 @@
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <h4>Value Proposition</h4>
-                        <p>Every box contains products worth 2-3x the subscription price. Save up to 70% on retail prices.</p>
+                        <p>Every box contains products worth 2-3x the subscription price. Save up to 70% on retail
+                            prices.</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -416,7 +444,8 @@
                             <i class="fas fa-mobile-alt"></i>
                         </div>
                         <h4>Mobile App</h4>
-                        <p>Manage your subscription, track deliveries, and discover new products with our intuitive mobile app.</p>
+                        <p>Manage your subscription, track deliveries, and discover new products with our intuitive
+                            mobile app.</p>
                     </div>
                 </div>
             </div>
@@ -439,31 +468,34 @@
                 </div>
                 <div class="col-lg-6">
                     <h2 class="display-5 fw-bold mb-4">What Happens After You Sign Up?</h2>
-                    
+
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <h5>Immediate Welcome</h5>
-                            <p>Get instant access to your dashboard and receive our welcome guide with tips for maximizing your subscription.</p>
+                            <p>Get instant access to your dashboard and receive our welcome guide with tips for
+                                maximizing your subscription.</p>
                         </div>
                     </div>
-                    
+
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <h5>Personalization Quiz</h5>
-                            <p>Complete your preference profile within 24 hours to ensure your first box is perfectly curated.</p>
+                            <p>Complete your preference profile within 24 hours to ensure your first box is perfectly
+                                curated.</p>
                         </div>
                     </div>
-                    
+
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <h5>First Box Preparation</h5>
-                            <p>Our team starts curating your first box based on your preferences. This takes 3-5 business days.</p>
+                            <p>Our team starts curating your first box based on your preferences. This takes 3-5
+                                business days.</p>
                         </div>
                     </div>
-                    
+
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
@@ -483,58 +515,67 @@
                 <h2 class="display-4 fw-bold">Frequently Asked Questions</h2>
                 <p class="lead">Everything you need to know about getting started</p>
             </div>
-            
+
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="accordion" id="faqAccordion">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq1">
                                     How long does it take to receive my first box?
                                 </button>
                             </h2>
                             <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    After signing up and completing your preference quiz, your first box will be curated and shipped within 5-7 business days. You'll receive tracking information via email once your box ships.
+                                    After signing up and completing your preference quiz, your first box will be curated
+                                    and shipped within 5-7 business days. You'll receive tracking information via email
+                                    once your box ships.
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq2">
                                     Can I change my preferences after signing up?
                                 </button>
                             </h2>
                             <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Absolutely! You can update your preferences anytime through your dashboard. Changes will apply to your next scheduled box.
+                                    Absolutely! You can update your preferences anytime through your dashboard. Changes
+                                    will apply to your next scheduled box.
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq3">
                                     What if I don't like something in my box?
                                 </button>
                             </h2>
                             <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    We offer a satisfaction guarantee. If you're not happy with any item, contact our support team within 7 days of delivery for a replacement or refund.
+                                    We offer a satisfaction guarantee. If you're not happy with any item, contact our
+                                    support team within 7 days of delivery for a replacement or refund.
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq4">
                                     Can I skip a month or pause my subscription?
                                 </button>
                             </h2>
                             <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Yes! You can skip any month or pause your subscription for up to 3 months through your dashboard. No penalties or fees.
+                                    Yes! You can skip any month or pause your subscription for up to 3 months through
+                                    your dashboard. No penalties or fees.
                                 </div>
                             </div>
                         </div>
@@ -616,4 +657,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

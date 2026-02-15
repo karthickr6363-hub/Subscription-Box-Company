@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         .auth-container {
             background: var(--gradient);
@@ -17,7 +20,7 @@
             justify-content: center;
             padding: 2rem;
         }
-        
+
         .auth-card {
             background: var(--white);
             border-radius: 25px;
@@ -27,75 +30,77 @@
             width: 100%;
             transition: all 0.3s ease;
         }
-        
+
         .auth-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
-        
+
         .brand-logo {
             text-align: center;
             margin-bottom: 2rem;
         }
-        
+
         .brand-logo h1 {
             font-size: 3rem;
             font-weight: 900;
             color: var(--primary-color);
             margin-bottom: 0.5rem;
         }
-        
+
         .brand-logo p {
             color: var(--text-light);
             font-size: 1.1rem;
             margin: 0;
         }
-        
+
         .auth-tabs {
             display: flex;
             justify-content: center;
             margin-bottom: 2rem;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50px;
             padding: 0.25rem;
         }
-        
+
         .auth-tab {
             flex: 1;
             padding: 0.75rem 1.5rem;
             background: transparent;
             border: none;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255, 255, 255, 0.8);
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .auth-tab.active {
             background: var(--white);
             color: var(--primary-color);
         }
-        
-        .form-control, .form-select {
+
+        .form-control,
+        .form-select {
             border: 2px solid rgba(26, 26, 46, 0.1);
             border-radius: 15px;
             padding: 1rem;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-        
-        .form-control:focus, .form-select:focus {
+
+        .form-control:focus,
+        .form-select:focus {
             border-color: var(--accent-color);
             box-shadow: 0 0 0 0.2rem rgba(233, 69, 96, 0.25);
         }
-        
+
         .form-label {
             font-weight: 600;
             color: var(--primary-color);
             margin-bottom: 0.5rem;
         }
-        
+
         .btn-primary {
             background: var(--gradient);
             border: none;
@@ -104,12 +109,12 @@
             border-radius: 50px;
             transition: all 0.3s ease;
         }
-        
+
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
         }
-        
+
         .btn-outline-primary {
             background: transparent;
             border: 2px solid var(--primary-color);
@@ -119,24 +124,24 @@
             border-radius: 50px;
             transition: all 0.3s ease;
         }
-        
+
         .btn-outline-primary:hover {
             background: var(--primary-color);
             color: var(--white);
             border-color: var(--primary-color);
         }
-        
+
         .social-login {
             display: flex;
             gap: 1rem;
             margin-top: 2rem;
         }
-        
+
         .social-btn {
             flex: 1;
             padding: 0.75rem;
-            border: 2px solid rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
             color: var(--white);
             border-radius: 10px;
             text-decoration: none;
@@ -145,18 +150,18 @@
             justify-content: center;
             transition: all 0.3s ease;
         }
-        
+
         .social-btn:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
-        
+
         .divider {
             text-align: center;
             margin: 2rem 0;
             position: relative;
         }
-        
+
         .divider::before {
             content: '';
             position: absolute;
@@ -164,9 +169,9 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
         }
-        
+
         .divider span {
             background: var(--gradient);
             color: var(--white);
@@ -174,7 +179,7 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .form-check-input {
             width: 20px;
             height: 20px;
@@ -182,57 +187,58 @@
             border-radius: 4px;
             margin-right: 0.5rem;
         }
-        
+
         .form-check-label {
             color: var(--text-light);
             font-size: 0.9rem;
         }
-        
+
         .back-link {
             text-align: center;
             margin-top: 2rem;
         }
-        
+
         .back-link a {
             color: var(--white);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
         }
-        
+
         .back-link a:hover {
             color: var(--accent-color);
         }
-        
+
         .alert {
             border-radius: 15px;
             border: none;
             padding: 1rem 1.5rem;
             margin-bottom: 1rem;
         }
-        
+
         .input-group-text {
             background: var(--primary-color);
             color: var(--white);
             border: none;
         }
-        
+
         @media (max-width: 576px) {
             .auth-card {
                 padding: 2rem;
                 margin: 1rem;
             }
-            
+
             .brand-logo h1 {
                 font-size: 2.5rem;
             }
-            
+
             .social-login {
                 flex-direction: column;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="auth-container">
         <div class="auth-card">
@@ -241,33 +247,35 @@
                 <h1>PAKKA!</h1>
                 <p>Premium Subscription Boxes</p>
             </div>
-            
+
             <!-- Auth Tabs -->
             <div class="auth-tabs">
                 <button class="auth-tab active" onclick="showLogin()">Login</button>
                 <button class="auth-tab" onclick="showRegister()">Register</button>
             </div>
-            
+
             <!-- Login Form -->
             <div id="loginForm">
                 <form id="loginFormElement">
                     <div class="mb-3">
                         <label for="loginEmail" class="form-label">Email Address</label>
-                        <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email" required>
+                        <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email"
+                            required>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="loginPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" required>
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password"
+                            required>
                     </div>
-                    
+
                     <div class="mb-3">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="rememberMe">
                             <label class="form-check-label" for="rememberMe">Remember me</label>
                         </div>
                     </div>
-                    
+
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-sign-in-alt me-2"></i> Login
@@ -276,11 +284,11 @@
                             Forgot Password?
                         </button>
                     </div>
-                    
+
                     <div class="divider">
                         <span>OR</span>
                     </div>
-                    
+
                     <div class="social-login">
                         <a href="#" class="social-btn" onclick="socialLogin('google')">
                             <i class="fab fa-google"></i> Google
@@ -294,40 +302,45 @@
                     </div>
                 </form>
             </div>
-            
+
             <!-- Register Form -->
             <div id="registerForm" style="display: none;">
                 <form id="registerFormElement">
                     <div class="mb-3">
                         <label for="registerName" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="registerName" placeholder="Enter your full name" required>
+                        <input type="text" class="form-control" id="registerName" placeholder="Enter your full name"
+                            required>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="registerEmail" class="form-label">Email Address</label>
-                        <input type="email" class="form-control" id="registerEmail" placeholder="Enter your email" required>
+                        <input type="email" class="form-control" id="registerEmail" placeholder="Enter your email"
+                            required>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="registerPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="registerPassword" placeholder="Create a password" required>
+                        <input type="password" class="form-control" id="registerPassword"
+                            placeholder="Create a password" required>
                         <small class="text-muted">Minimum 8 characters</small>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="confirmPassword" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="confirm your password" required>
+                        <input type="password" class="form-control" id="confirmPassword"
+                            placeholder="confirm your password" required>
                     </div>
-                    
+
                     <div class="mb-3">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="agreeTerms">
                             <label class="form-check-label" for="agreeTerms">
-                                I agree to the <a href="#" class="text-decoration-none">Terms & Conditions</a> and <a href="#" class="text-decoration-none">Privacy Policy</a>
+                                I agree to the <a href="#" class="text-decoration-none">Terms & Conditions</a> and <a
+                                    href="#" class="text-decoration-none">Privacy Policy</a>
                             </label>
                         </div>
                     </div>
-                    
+
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-user-plus me-2"></i> Create Account
@@ -338,7 +351,7 @@
                     </div>
                 </form>
             </div>
-            
+
             <!-- Back Link -->
             <div class="back-link">
                 <a href="index.html">
@@ -347,7 +360,7 @@
             </div>
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
     <script>
@@ -357,21 +370,21 @@
             document.querySelector('.auth-tab:nth-child(1)').classList.add('active');
             document.querySelector('.auth-tab:nth-child(2)').classList.remove('active');
         }
-        
+
         function showRegister() {
             document.getElementById('registerForm').style.display = 'block';
             document.getElementById('loginForm').style.display = 'none';
             document.querySelector('.auth-tab:nth-child(1)').classList.remove('active');
             document.querySelector('.auth-tab:nth-child(2)').classList.add('active');
         }
-        
+
         // Login form submission
-        document.getElementById('loginFormElement').addEventListener('submit', function(e) {
+        document.getElementById('loginFormElement').addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
-            
+
             if (email && password) {
                 showNotification('Login successful! Welcome back to Pakka!', 'success');
                 // Redirect to dashboard after successful login
@@ -382,44 +395,44 @@
                 showNotification('Please fill in all fields', 'error');
             }
         });
-        
+
         // Register form submission
-        document.getElementById('registerFormElement').addEventListener('submit', function(e) {
+        document.getElementById('registerFormElement').addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const name = document.getElementById('registerName').value;
             const email = document.getElementById('registerEmail').value;
             const password = document.getElementById('registerPassword').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
             const agreeTerms = document.getElementById('agreeTerms').checked;
-            
+
             if (!name || !email || !password || !confirmPassword) {
                 showNotification('Please fill in all fields', 'error');
                 return;
             }
-            
+
             if (password !== confirmPassword) {
                 showNotification('Passwords do not match', 'error');
                 return;
             }
-            
+
             if (password.length < 8) {
                 showNotification('Password must be at least 8 characters', 'error');
                 return;
             }
-            
+
             if (!agreeTerms) {
                 showNotification('Please agree to terms and conditions', 'error');
                 return;
             }
-            
+
             showNotification('Registration successful! Welcome to Pakka!', 'success');
             // Redirect to dashboard after successful registration
             setTimeout(() => {
                 window.location.href = 'dashboard.html';
             }, 2000);
         });
-        
+
         // Forgot password
         function forgotPassword() {
             const email = document.getElementById('loginEmail').value;
@@ -429,7 +442,7 @@
                 showNotification('Please enter your email address', 'error');
             }
         }
-        
+
         // Social login
         function socialLogin(provider) {
             showNotification(`Logging in with ${provider}...`, 'info');
@@ -443,4 +456,5 @@
         }
     </script>
 </body>
+
 </html>

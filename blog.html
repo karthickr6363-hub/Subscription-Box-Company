@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         .blog-hero {
             background: var(--gradient);
@@ -15,12 +18,12 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .blog-section {
             padding: 80px 0;
             background: var(--white);
         }
-        
+
         .featured-post {
             background: var(--white);
             border-radius: 25px;
@@ -29,29 +32,29 @@
             margin-bottom: 3rem;
             transition: all 0.3s ease;
         }
-        
+
         .featured-post:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
-        
+
         .featured-image {
             position: relative;
             height: 400px;
             overflow: hidden;
         }
-        
+
         .featured-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
-        
+
         .featured-post:hover .featured-image img {
             transform: scale(1.05);
         }
-        
+
         .featured-badge {
             position: absolute;
             top: 1rem;
@@ -63,11 +66,11 @@
             font-weight: 600;
             font-size: 0.875rem;
         }
-        
+
         .featured-content {
             padding: 3rem;
         }
-        
+
         .blog-card {
             background: var(--white);
             border-radius: 20px;
@@ -76,29 +79,29 @@
             transition: all 0.3s ease;
             height: 100%;
         }
-        
+
         .blog-card:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-xl);
         }
-        
+
         .blog-image {
             position: relative;
             height: 200px;
             overflow: hidden;
         }
-        
+
         .blog-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
-        
+
         .blog-card:hover .blog-image img {
             transform: scale(1.1);
         }
-        
+
         .blog-category {
             position: absolute;
             top: 1rem;
@@ -110,11 +113,11 @@
             font-size: 0.75rem;
             font-weight: 600;
         }
-        
+
         .blog-content {
             padding: 1.5rem;
         }
-        
+
         .blog-title {
             font-size: 1.25rem;
             font-weight: 700;
@@ -122,14 +125,14 @@
             margin-bottom: 0.75rem;
             line-height: 1.3;
         }
-        
+
         .blog-excerpt {
             color: var(--text-light);
             font-size: 0.875rem;
             line-height: 1.5;
             margin-bottom: 1rem;
         }
-        
+
         .blog-meta {
             display: flex;
             justify-content: space-between;
@@ -137,24 +140,24 @@
             font-size: 0.875rem;
             color: var(--text-light);
         }
-        
+
         .blog-author {
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-        
+
         .author-avatar {
             width: 24px;
             height: 24px;
             border-radius: 50%;
         }
-        
+
         .community-section {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.05), rgba(22, 33, 62, 0.1));
             padding: 80px 0;
         }
-        
+
         .community-card {
             background: var(--white);
             border-radius: 20px;
@@ -164,12 +167,12 @@
             height: 100%;
             text-align: center;
         }
-        
+
         .community-card:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-xl);
         }
-        
+
         .community-icon {
             width: 80px;
             height: 80px;
@@ -182,7 +185,7 @@
             color: var(--white);
             font-size: 2rem;
         }
-        
+
         .category-filter {
             display: flex;
             gap: 1rem;
@@ -190,7 +193,7 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-        
+
         .category-btn {
             background: var(--white);
             border: 2px solid var(--primary-color);
@@ -201,13 +204,13 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .category-btn:hover,
         .category-btn.active {
             background: var(--primary-color);
             color: var(--white);
         }
-        
+
         .newsletter-box {
             background: var(--gradient);
             color: var(--white);
@@ -216,7 +219,7 @@
             text-align: center;
             margin: 3rem 0;
         }
-        
+
         .social-feed {
             background: var(--white);
             border-radius: 20px;
@@ -224,44 +227,44 @@
             box-shadow: var(--shadow-md);
             margin-bottom: 2rem;
         }
-        
+
         .social-post {
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             padding: 1.5rem 0;
         }
-        
+
         .social-post:last-child {
             border-bottom: none;
         }
-        
+
         .social-header {
             display: flex;
             align-items: center;
             margin-bottom: 1rem;
         }
-        
+
         .social-avatar {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             margin-right: 1rem;
         }
-        
+
         .social-username {
             font-weight: 600;
             color: var(--primary-color);
         }
-        
+
         .social-platform {
             color: var(--text-light);
             font-size: 0.875rem;
         }
-        
+
         .social-content {
             margin-bottom: 1rem;
             line-height: 1.5;
         }
-        
+
         .social-image {
             width: 100%;
             max-height: 300px;
@@ -269,22 +272,22 @@
             border-radius: 10px;
             margin-bottom: 1rem;
         }
-        
+
         .social-actions {
             display: flex;
             gap: 1rem;
             color: var(--text-light);
         }
-        
+
         .social-action {
             cursor: pointer;
             transition: color 0.3s ease;
         }
-        
+
         .social-action:hover {
             color: var(--accent-color);
         }
-        
+
         .unboxing-story {
             background: var(--white);
             border-radius: 20px;
@@ -293,20 +296,20 @@
             margin-bottom: 2rem;
             border-left: 4px solid var(--accent-color);
         }
-        
+
         .story-header {
             display: flex;
             align-items: center;
             margin-bottom: 1rem;
         }
-        
+
         .story-images {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 1rem;
             margin: 1rem 0;
         }
-        
+
         .story-image {
             width: 100%;
             height: 150px;
@@ -315,17 +318,19 @@
             cursor: pointer;
             transition: transform 0.3s ease;
         }
-        
+
         .story-image:hover {
             transform: scale(1.05);
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
+                <img src="favicon.png" alt="Pakka Logo" height="30" class="me-2">
                 <span class="brand-text">PAKKA!</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -334,37 +339,55 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Home
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="homeDropdown">
-                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-home me-2"></i> Home 1 - Brand Experience</a></li>
-                            <li><a class="dropdown-item" href="home-conversion.html"><i class="fas fa-rocket me-2"></i> Home 2 - Conversion Focused</a></li>
+                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-home me-2"></i> Home 1 -
+                                    Brand Experience</a></li>
+                            <li><a class="dropdown-item" href="home-conversion.html"><i class="fas fa-rocket me-2"></i>
+                                    Home 2 - Conversion Focused</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="how-it-works.html">How It Works</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Pages
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
-                            <li><a class="dropdown-item" href="plans.html"><i class="fas fa-box me-2"></i> Plans</a></li>
-                            <li><a class="dropdown-item" href="shop.html"><i class="fas fa-shopping-bag me-2"></i> Shop</a></li>
-                            <li><a class="dropdown-item" href="reviews.html"><i class="fas fa-star me-2"></i> Reviews</a></li>
+                            <li><a class="dropdown-item" href="plans.html"><i class="fas fa-box me-2"></i> Plans</a>
+                            </li>
+                            <li><a class="dropdown-item" href="shop.html"><i class="fas fa-shopping-bag me-2"></i>
+                                    Shop</a></li>
+                            <li><a class="dropdown-item" href="reviews.html"><i class="fas fa-star me-2"></i>
+                                    Reviews</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus me-2"></i> Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus me-2"></i>
+                            Sign Up</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user"></i> Account
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i> User Dashboard</a></li>
-                            <li><a class="dropdown-item" href="admin.html"><i class="fas fa-user-shield me-2"></i> Admin Dashboard</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="dashboard.html"><i
+                                        class="fas fa-tachometer-alt me-2"></i> User Dashboard</a></li>
+                            <li><a class="dropdown-item" href="admin.html"><i class="fas fa-user-shield me-2"></i> Admin
+                                    Dashboard</a></li>
                         </ul>
+                    </li>
+                    <li class="nav-item me-2">
+                        <button id="darkModeToggle" class="btn btn-link nav-link">
+                            <i class="fas fa-moon"></i>
+                        </button>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
@@ -380,7 +403,8 @@
                     Blog & <span class="text-gradient">Community</span>
                 </h1>
                 <p class="lead text-white mb-4">
-                    Discover unboxing stories, product spotlights, lifestyle tips, and connect with our amazing community
+                    Discover unboxing stories, product spotlights, lifestyle tips, and connect with our amazing
+                    community
                 </p>
                 <div class="d-flex justify-content-center gap-3 flex-wrap">
                     <button class="btn btn-light btn-lg px-5">
@@ -399,7 +423,8 @@
         <div class="container">
             <div class="featured-post">
                 <div class="featured-image">
-                    <img src="https://via.placeholder.com/1200x400/1a1a2e/16213e?text=Featured+Article" alt="Featured Article">
+                    <img src="https://via.placeholder.com/1200x400/1a1a2e/16213e?text=Featured+Article"
+                        alt="Featured Article">
                     <span class="featured-badge">Featured Story</span>
                 </div>
                 <div class="featured-content">
@@ -409,11 +434,14 @@
                     </div>
                     <h2 class="display-5 fw-bold mb-3">How Subscription Boxes Transformed My Self-Care Routine</h2>
                     <p class="lead mb-4">
-                        Discover how Sarah, a busy working mom, incorporated monthly subscription boxes into her self-care routine and transformed her wellness journey. From skincare rituals to mindfulness practices, learn practical tips for creating your own perfect me-time moments.
+                        Discover how Sarah, a busy working mom, incorporated monthly subscription boxes into her
+                        self-care routine and transformed her wellness journey. From skincare rituals to mindfulness
+                        practices, learn practical tips for creating your own perfect me-time moments.
                     </p>
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="blog-author">
-                            <img src="https://via.placeholder.com/40x40/1a1a2e/16213e?text=SJ" alt="Sarah" class="author-avatar">
+                            <img src="https://via.placeholder.com/40x40/1a1a2e/16213e?text=SJ" alt="Sarah"
+                                class="author-avatar">
                             <div>
                                 <div class="fw-bold">Sarah Johnson</div>
                                 <small class="text-muted">Jan 15, 2024</small>
@@ -425,7 +453,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Category Filter -->
             <div class="category-filter">
                 <button class="category-btn active">All Posts</button>
@@ -435,21 +463,24 @@
                 <button class="category-btn">Brand News</button>
                 <button class="category-btn">Community</button>
             </div>
-            
+
             <!-- Blog Grid -->
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-card">
                         <div class="blog-image">
-                            <img src="https://via.placeholder.com/400x200/1a1a2e/16213e?text=Skincare+Tips" alt="Skincare Tips">
+                            <img src="https://via.placeholder.com/400x200/1a1a2e/16213e?text=Skincare+Tips"
+                                alt="Skincare Tips">
                             <span class="blog-category">Lifestyle Tips</span>
                         </div>
                         <div class="blog-content">
                             <h5 class="blog-title">5 Skincare Trends to Watch in 2024</h5>
-                            <p class="blog-excerpt">From glass skin to sustainable beauty, discover the hottest skincare trends that will dominate 2024.</p>
+                            <p class="blog-excerpt">From glass skin to sustainable beauty, discover the hottest skincare
+                                trends that will dominate 2024.</p>
                             <div class="blog-meta">
                                 <div class="blog-author">
-                                    <img src="https://via.placeholder.com/24x24/1a1a2e/16213e?text=EM" alt="Emma" class="author-avatar">
+                                    <img src="https://via.placeholder.com/24x24/1a1a2e/16213e?text=EM" alt="Emma"
+                                        class="author-avatar">
                                     <span>Emma Miller</span>
                                 </div>
                                 <span>Jan 12, 2024</span>
@@ -457,19 +488,22 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-card">
                         <div class="blog-image">
-                            <img src="https://via.placeholder.com/400x200/1a1a2e/16213e?text=Tech+Gadgets" alt="Tech Gadgets">
+                            <img src="https://via.placeholder.com/400x200/1a1a2e/16213e?text=Tech+Gadgets"
+                                alt="Tech Gadgets">
                             <span class="blog-category">Product Spotlight</span>
                         </div>
                         <div class="blog-content">
                             <h5 class="blog-title">Must-Have Tech Gadgets for Remote Work</h5>
-                            <p class="blog-excerpt">Upgrade your home office with these essential tech gadgets that boost productivity and comfort.</p>
+                            <p class="blog-excerpt">Upgrade your home office with these essential tech gadgets that
+                                boost productivity and comfort.</p>
                             <div class="blog-meta">
                                 <div class="blog-author">
-                                    <img src="https://via.placeholder.com/24x24/1a1a2e/16213e?text=TC" alt="Tom" class="author-avatar">
+                                    <img src="https://via.placeholder.com/24x24/1a1a2e/16213e?text=TC" alt="Tom"
+                                        class="author-avatar">
                                     <span>Tom Chen</span>
                                 </div>
                                 <span>Jan 10, 2024</span>
@@ -477,19 +511,22 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-card">
                         <div class="blog-image">
-                            <img src="https://via.placeholder.com/400x200/1a1a2e/16213e?text=Unboxing+Story" alt="Unboxing Story">
+                            <img src="https://via.placeholder.com/400x200/1a1a2e/16213e?text=Unboxing+Story"
+                                alt="Unboxing Story">
                             <span class="blog-category">Unboxing Stories</span>
                         </div>
                         <div class="blog-content">
                             <h5 class="blog-title">My First Year with Pakka! Boxes</h5>
-                            <p class="blog-excerpt">A subscriber shares their journey through 12 months of curated boxes and favorite discoveries.</p>
+                            <p class="blog-excerpt">A subscriber shares their journey through 12 months of curated boxes
+                                and favorite discoveries.</p>
                             <div class="blog-meta">
                                 <div class="blog-author">
-                                    <img src="https://via.placeholder.com/24x24/1a1a2e/16213e?text=AL" alt="Alex" class="author-avatar">
+                                    <img src="https://via.placeholder.com/24x24/1a1a2e/16213e?text=AL" alt="Alex"
+                                        class="author-avatar">
                                     <span>Alex Lee</span>
                                 </div>
                                 <span>Jan 8, 2024</span>
@@ -497,19 +534,22 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-card">
                         <div class="blog-image">
-                            <img src="https://via.placeholder.com/400x200/1a1a2e/16213e?text=Fitness+Routine" alt="Fitness Routine">
+                            <img src="https://via.placeholder.com/400x200/1a1a2e/16213e?text=Fitness+Routine"
+                                alt="Fitness Routine">
                             <span class="blog-category">Lifestyle Tips</span>
                         </div>
                         <div class="blog-content">
                             <h5 class="blog-title">Building a Sustainable Fitness Routine</h5>
-                            <p class="blog-excerpt">Learn how to create a workout routine that sticks with tips from fitness experts and real subscribers.</p>
+                            <p class="blog-excerpt">Learn how to create a workout routine that sticks with tips from
+                                fitness experts and real subscribers.</p>
                             <div class="blog-meta">
                                 <div class="blog-author">
-                                    <img src="https://via.placeholder.com/24x24/1a1a2e/16213e?text=MP" alt="Mike" class="author-avatar">
+                                    <img src="https://via.placeholder.com/24x24/1a1a2e/16213e?text=MP" alt="Mike"
+                                        class="author-avatar">
                                     <span>Mike Park</span>
                                 </div>
                                 <span>Jan 5, 2024</span>
@@ -517,19 +557,22 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-card">
                         <div class="blog-image">
-                            <img src="https://via.placeholder.com/400x200/1a1a2e/16213e?text=Food+Pairing" alt="Food Pairing">
+                            <img src="https://via.placeholder.com/400x200/1a1a2e/16213e?text=Food+Pairing"
+                                alt="Food Pairing">
                             <span class="blog-category">Product Spotlight</span>
                         </div>
                         <div class="blog-content">
                             <h5 class="blog-title">Artisanal Coffee and Chocolate Pairings</h5>
-                            <p class="blog-excerpt">Discover perfect combinations from our gourmet food boxes that will elevate your tasting experience.</p>
+                            <p class="blog-excerpt">Discover perfect combinations from our gourmet food boxes that will
+                                elevate your tasting experience.</p>
                             <div class="blog-meta">
                                 <div class="blog-author">
-                                    <img src="https://via.placeholder.com/24x24/1a1a2e/16213e?text=JD" alt="Julia" class="author-avatar">
+                                    <img src="https://via.placeholder.com/24x24/1a1a2e/16213e?text=JD" alt="Julia"
+                                        class="author-avatar">
                                     <span>Julia Davis</span>
                                 </div>
                                 <span>Jan 3, 2024</span>
@@ -537,19 +580,22 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-card">
                         <div class="blog-image">
-                            <img src="https://via.placeholder.com/400x200/1a1a2e/16213e?text=Brand+News" alt="Brand News">
+                            <img src="https://via.placeholder.com/400x200/1a1a2e/16213e?text=Brand+News"
+                                alt="Brand News">
                             <span class="blog-category">Brand News</span>
                         </div>
                         <div class="blog-content">
                             <h5 class="blog-title">Introducing Our New Eco-Friendly Packaging</h5>
-                            <p class="blog-excerpt">We're excited to announce our commitment to sustainability with new 100% recyclable packaging.</p>
+                            <p class="blog-excerpt">We're excited to announce our commitment to sustainability with new
+                                100% recyclable packaging.</p>
                             <div class="blog-meta">
                                 <div class="blog-author">
-                                    <img src="https://via.placeholder.com/24x24/1a1a2e/16213e?text=PK" alt="Pakka" class="author-avatar">
+                                    <img src="https://via.placeholder.com/24x24/1a1a2e/16213e?text=PK" alt="Pakka"
+                                        class="author-avatar">
                                     <span>Pakka Team</span>
                                 </div>
                                 <span>Jan 1, 2024</span>
@@ -558,11 +604,12 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Newsletter Box -->
             <div class="newsletter-box">
                 <h3 class="display-5 fw-bold mb-3">Stay in the Loop</h3>
-                <p class="lead mb-4">Get weekly inspiration, unboxing tips, and exclusive content delivered to your inbox</p>
+                <p class="lead mb-4">Get weekly inspiration, unboxing tips, and exclusive content delivered to your
+                    inbox</p>
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <div class="input-group input-group-lg">
@@ -582,7 +629,7 @@
                 <h2 class="display-4 fw-bold">Join Our Community</h2>
                 <p class="lead">Connect, share, and grow with fellow Pakka! enthusiasts</p>
             </div>
-            
+
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6">
                     <div class="community-card">
@@ -596,7 +643,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-md-6">
                     <div class="community-card">
                         <div class="community-icon">
@@ -609,7 +656,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-md-6">
                     <div class="community-card">
                         <div class="community-icon">
@@ -622,7 +669,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-md-6">
                     <div class="community-card">
                         <div class="community-icon">
@@ -646,22 +693,28 @@
                 <h2 class="display-4 fw-bold">Community Unboxing Stories</h2>
                 <p class="lead">Real stories from our amazing subscribers</p>
             </div>
-            
+
             <div class="row">
                 <div class="col-lg-6">
                     <div class="unboxing-story">
                         <div class="story-header">
-                            <img src="https://via.placeholder.com/40x40/1a1a2e/16213e?text=RK" alt="Rachel" class="author-avatar">
+                            <img src="https://via.placeholder.com/40x40/1a1a2e/16213e?text=RK" alt="Rachel"
+                                class="author-avatar">
                             <div>
                                 <h6 class="mb-0">Rachel Kim</h6>
                                 <small class="text-muted">Beauty Box Enthusiast</small>
                             </div>
                         </div>
-                        <p>"The January beauty box was absolutely amazing! The vitamin C serum has already improved my skin texture, and the face masks are perfect for my Sunday self-care routine. I've been a subscriber for 8 months and every box exceeds my expectations!"</p>
+                        <p>"The January beauty box was absolutely amazing! The vitamin C serum has already improved my
+                            skin texture, and the face masks are perfect for my Sunday self-care routine. I've been a
+                            subscriber for 8 months and every box exceeds my expectations!"</p>
                         <div class="story-images">
-                            <img src="https://via.placeholder.com/150x150/1a1a2e/16213e?text=Unboxing+1" alt="Unboxing" class="story-image">
-                            <img src="https://via.placeholder.com/150x150/1a1a2e/16213e?text=Products+1" alt="Products" class="story-image">
-                            <img src="https://via.placeholder.com/150x150/1a1a2e/16213e?text=Results+1" alt="Results" class="story-image">
+                            <img src="https://via.placeholder.com/150x150/1a1a2e/16213e?text=Unboxing+1" alt="Unboxing"
+                                class="story-image">
+                            <img src="https://via.placeholder.com/150x150/1a1a2e/16213e?text=Products+1" alt="Products"
+                                class="story-image">
+                            <img src="https://via.placeholder.com/150x150/1a1a2e/16213e?text=Results+1" alt="Results"
+                                class="story-image">
                         </div>
                         <div class="d-flex gap-3">
                             <button class="btn btn-sm btn-outline-primary">Like Story</button>
@@ -669,20 +722,25 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-6">
                     <div class="unboxing-story">
                         <div class="story-header">
-                            <img src="https://via.placeholder.com/40x40/1a1a2e/16213e?text=DW" alt="David" class="author-avatar">
+                            <img src="https://via.placeholder.com/40x40/1a1a2e/16213e?text=DW" alt="David"
+                                class="author-avatar">
                             <div>
                                 <h6 class="mb-0">David Wilson</h6>
                                 <small class="text-muted">Tech Box Subscriber</small>
                             </div>
                         </div>
-                        <p>"As a tech enthusiast, I'm blown away by the quality and value in each box. The wireless earbuds from December's box are now my daily drivers, and the smart home devices have completely upgraded my setup. The curation is spot-on!"</p>
+                        <p>"As a tech enthusiast, I'm blown away by the quality and value in each box. The wireless
+                            earbuds from December's box are now my daily drivers, and the smart home devices have
+                            completely upgraded my setup. The curation is spot-on!"</p>
                         <div class="story-images">
-                            <img src="https://via.placeholder.com/150x150/1a1a2e/16213e?text=Setup+1" alt="Setup" class="story-image">
-                            <img src="https://via.placeholder.com/150x150/1a1a2e/16213e?text=Gadgets+1" alt="Gadgets" class="story-image">
+                            <img src="https://via.placeholder.com/150x150/1a1a2e/16213e?text=Setup+1" alt="Setup"
+                                class="story-image">
+                            <img src="https://via.placeholder.com/150x150/1a1a2e/16213e?text=Gadgets+1" alt="Gadgets"
+                                class="story-image">
                         </div>
                         <div class="d-flex gap-3">
                             <button class="btn btn-sm btn-outline-primary">Like Story</button>
@@ -691,40 +749,45 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Social Feed -->
             <div class="social-feed">
                 <h4 class="mb-4">Latest from Social Media</h4>
-                
+
                 <div class="social-post">
                     <div class="social-header">
-                        <img src="https://via.placeholder.com/40x40/1a1a2e/16213e?text=LM" alt="Lisa" class="social-avatar">
+                        <img src="https://via.placeholder.com/40x40/1a1a2e/16213e?text=LM" alt="Lisa"
+                            class="social-avatar">
                         <div>
                             <div class="social-username">@lisa_unboxes</div>
                             <div class="social-platform">Instagram • 2 hours ago</div>
                         </div>
                     </div>
                     <div class="social-content">
-                        Just received my January Pakka! box and I'm absolutely obsessed! 🎁 The skincare products are perfect for my winter routine. Thank you @PakkaBox for always curating the best products! ✨
+                        Just received my January Pakka! box and I'm absolutely obsessed! 🎁 The skincare products are
+                        perfect for my winter routine. Thank you @PakkaBox for always curating the best products! ✨
                     </div>
-                    <img src="https://via.placeholder.com/600x300/1a1a2e/16213e?text=Instagram+Post" alt="Instagram Post" class="social-image">
+                    <img src="https://via.placeholder.com/600x300/1a1a2e/16213e?text=Instagram+Post"
+                        alt="Instagram Post" class="social-image">
                     <div class="social-actions">
                         <span class="social-action"><i class="fas fa-heart"></i> 234</span>
                         <span class="social-action"><i class="fas fa-comment"></i> 18</span>
                         <span class="social-action"><i class="fas fa-share"></i> 12</span>
                     </div>
                 </div>
-                
+
                 <div class="social-post">
                     <div class="social-header">
-                        <img src="https://via.placeholder.com/40x40/1a1a2e/16213e?text=JT" alt="James" class="social-avatar">
+                        <img src="https://via.placeholder.com/40x40/1a1a2e/16213e?text=JT" alt="James"
+                            class="social-avatar">
                         <div>
                             <div class="social-username">@james_tech</div>
                             <div class="social-platform">TikTok • 5 hours ago</div>
                         </div>
                     </div>
                     <div class="social-content">
-                        Tech box unboxing alert! 🚨 The gadgets in this month's box are insane! That smart mug is now my favorite morning companion. You guys need to check this out! #PakkaTech #Unboxing
+                        Tech box unboxing alert! 🚨 The gadgets in this month's box are insane! That smart mug is now my
+                        favorite morning companion. You guys need to check this out! #PakkaTech #Unboxing
                     </div>
                     <div class="social-actions">
                         <span class="social-action"><i class="fas fa-heart"></i> 567</span>
@@ -794,17 +857,17 @@
         // Category filter functionality
         const categoryBtns = document.querySelectorAll('.category-btn');
         categoryBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 categoryBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 // Here you would filter the blog posts based on the selected category
             });
         });
-        
+
         // Social post interactions
         const socialActions = document.querySelectorAll('.social-action');
         socialActions.forEach(action => {
-            action.addEventListener('click', function() {
+            action.addEventListener('click', function () {
                 this.style.color = 'var(--accent-color)';
                 // Increment the count
                 const countText = this.textContent;
@@ -812,15 +875,16 @@
                 this.innerHTML = this.innerHTML.replace(/\d+/, count + 1);
             });
         });
-        
+
         // Story image click
         const storyImages = document.querySelectorAll('.story-image');
         storyImages.forEach(image => {
-            image.addEventListener('click', function() {
+            image.addEventListener('click', function () {
                 // Here you would open a lightbox with the full image
                 showNotification('Image lightbox would open here', 'info');
             });
         });
     </script>
 </body>
+
 </html>

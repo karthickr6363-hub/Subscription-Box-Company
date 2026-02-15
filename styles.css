@@ -1,18 +1,53 @@
 /* Modern 2026 Design with 3-Color Scheme */
 
 :root {
-    --primary-color: #1a1a2e;        /* Deep Navy */
-    --secondary-color: #16213e;      /* Dark Blue */
-    --accent-color: #e94560;         /* Coral Red */
+    --primary-color: #1a1a2e;
+    /* Deep Navy */
+    --secondary-color: #16213e;
+    /* Dark Blue */
+    --accent-color: #e94560;
+    /* Coral Red */
     --light-bg: #f8f9fa;
     --text-dark: #212529;
     --text-light: #6c757d;
     --white: #ffffff;
     --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
-    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
-    --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode {
+    --primary-color: #ecf0f1;
+    /* Light Gray for text */
+    --secondary-color: #bdc3c7;
+    /* Silver */
+    --accent-color: #e94560;
+    /* Keep Accent */
+    --light-bg: #1a1a2e;
+    /* Dark Navy Background */
+    --text-dark: #f8f9fa;
+    /* Light Text */
+    --text-light: #aaa;
+    /* Lighter Gray */
+    --white: #16213e;
+    /* Dark Blue Background */
+    --gradient: linear-gradient(135deg, #16213e, #1a1a2e);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .navbar {
+    background: rgba(22, 33, 62, 0.95);
+}
+
+body.dark-mode .step-card,
+body.dark-mode .box-card,
+body.dark-mode .review-card {
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 * {
@@ -29,7 +64,12 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: 700;
     line-height: 1.2;
 }
@@ -82,6 +122,10 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--accent-color) !important;
 }
 
+.nav-link.active {
+    color: var(--accent-color) !important;
+}
+
 .nav-link::after {
     content: '';
     position: absolute;
@@ -94,8 +138,15 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(-50%);
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
     width: 80%;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: var(--accent-color);
+    color: var(--white);
 }
 
 /* Hero Section */
@@ -176,6 +227,7 @@ section:not(.hero-section) {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -183,18 +235,24 @@ section:not(.hero-section) {
 }
 
 @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0px);
     }
+
     50% {
         transform: translateY(-20px);
     }
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.05);
     }
@@ -436,7 +494,8 @@ footer {
     color: var(--white);
 }
 
-footer h5, footer h6 {
+footer h5,
+footer h6 {
     color: var(--white);
 }
 
@@ -477,20 +536,20 @@ footer a:hover {
     .hero-section {
         text-align: center;
     }
-    
+
     .hero-image-container {
         height: 300px;
         margin-top: 2rem;
     }
-    
+
     .display-1 {
         font-size: 2.5rem;
     }
-    
+
     .display-4 {
         font-size: 2rem;
     }
-    
+
     .stats {
         margin-top: 2rem;
     }
@@ -501,6 +560,7 @@ footer a:hover {
     0% {
         background-position: -1000px 0;
     }
+
     100% {
         background-position: 1000px 0;
     }
@@ -564,11 +624,11 @@ html {
     .container {
         max-width: 1140px;
     }
-    
+
     .contact-form {
         padding: 2rem;
     }
-    
+
     .contact-card {
         padding: 1.5rem;
     }
@@ -590,7 +650,7 @@ body {
     .contact-form {
         margin-bottom: 2rem;
     }
-    
+
     .contact-card {
         margin-bottom: 1.5rem;
     }
@@ -602,7 +662,7 @@ body {
         padding: 0.75rem 1.5rem;
         font-size: 1rem;
     }
-    
+
     .d-flex.gap-3 {
         gap: 1rem !important;
     }
