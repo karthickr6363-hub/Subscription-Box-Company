@@ -36,6 +36,13 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .pricing-card .btn {
+            margin-top: auto;
         }
 
         .pricing-card.featured {
@@ -284,7 +291,7 @@
                 <p class="lead">Start with 50% OFF your first 3 months</p>
             </div>
 
-            <div class="row g-4 align-items-center">
+            <div class="row g-4">
                 <div class="col-lg-4">
                     <div class="pricing-card">
                         <h3 class="text-center mb-3">Starter</h3>
@@ -303,6 +310,13 @@
                         </div>
                         <div class="benefit-item">
                             <i class="fas fa-check"></i> Basic Customization
+                        </div>
+
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> Basic Delivery
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check"></i> Basic Support
                         </div>
                         <button class="btn btn-outline-primary w-100 mt-4">Choose Starter</button>
                     </div>
@@ -541,7 +555,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <h5 class="brand-text mb-3">PAKKA!</h5>
+                    <a href="index.html" class="footer-brand mb-3">
+                        <img src="favicon.svg" alt="Pakka Logo" height="30" class="me-2">
+                        <h5 class="brand-text mb-0">PAKKA!</h5>
+                    </a>
                     <p>Premium subscription boxes curated for your lifestyle. Unbox happiness every month.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>

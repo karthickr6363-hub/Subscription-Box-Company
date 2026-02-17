@@ -32,6 +32,8 @@
             transition: all 0.3s ease;
             height: 100%;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-card:hover {
@@ -104,6 +106,13 @@
 
         .product-content {
             padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .product-content .btn {
+            margin-top: auto;
         }
 
         .product-category {
@@ -375,6 +384,11 @@
                                     Dashboard</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item me-2">
+                        <button id="darkModeToggle" class="btn btn-link nav-link">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
             </div>
@@ -407,8 +421,16 @@
     <section class="shop-section">
         <div class="container">
             <div class="row">
-                <!-- Filter Sidebar -->
-                <div class="col-lg-3">
+                <!-- Mobile Filter Toggle -->
+                <div class="col-12 d-lg-none mb-3">
+                    <button class="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center gap-2"
+                        type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas">
+                        <i class="fas fa-filter"></i> Filters
+                    </button>
+                </div>
+
+                <!-- Filter Sidebar (Desktop) -->
+                <div class="col-lg-3 d-none d-lg-block">
                     <div class="filter-sidebar">
                         <h4 class="mb-4">Filters</h4>
 
@@ -494,6 +516,90 @@
                         </div>
 
                         <button class="btn btn-primary w-100">Apply Filters</button>
+                    </div>
+                </div>
+
+                <!-- Filter Offcanvas (Mobile) -->
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="filterOffcanvas"
+                    aria-labelledby="filterOffcanvasLabel">
+                    <div class="offcanvas-header bg-gradient text-white">
+                        <h5 class="offcanvas-title" id="filterOffcanvasLabel">Filters</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <!-- Categories -->
+                        <div class="filter-section">
+                            <h5 class="filter-title">Categories</h5>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="m-cat-beauty" checked>
+                                <label class="form-check-label" for="m-cat-beauty">Beauty (24)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="m-cat-tech">
+                                <label class="form-check-label" for="m-cat-tech">Tech (18)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="m-cat-fitness">
+                                <label class="form-check-label" for="m-cat-fitness">Fitness (15)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="m-cat-food">
+                                <label class="form-check-label" for="m-cat-food">Food (22)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="m-cat-lifestyle">
+                                <label class="form-check-label" for="m-cat-lifestyle">Lifestyle (19)</label>
+                            </div>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div class="filter-section">
+                            <h5 class="filter-title">Price Range</h5>
+                            <div class="price-range">
+                                <input type="range" class="form-range price-slider" min="0" max="200" value="100"
+                                    id="m-priceRange">
+                                <div class="d-flex justify-content-between">
+                                    <span>$0</span>
+                                    <span id="m-priceValue">$100</span>
+                                    <span>$200</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Box Type -->
+                        <div class="filter-section">
+                            <h5 class="filter-title">Box Type</h5>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="m-type-past">
+                                <label class="form-check-label" for="m-type-past">Past Boxes</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="m-type-individual">
+                                <label class="form-check-label" for="m-type-individual">Individual Products</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="m-type-limited">
+                                <label class="form-check-label" for="m-type-limited">Limited Edition</label>
+                            </div>
+                        </div>
+
+                        <!-- Rating -->
+                        <div class="filter-section">
+                            <h5 class="filter-title">Customer Rating</h5>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="m-rating-5">
+                                <label class="form-check-label" for="m-rating-5">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary w-100" data-bs-dismiss="offcanvas">Apply Filters</button>
                     </div>
                 </div>
 
@@ -815,7 +921,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <h5 class="brand-text mb-3">PAKKA!</h5>
+                    <a href="index.html" class="footer-brand mb-3">
+                        <img src="favicon.svg" alt="Pakka Logo" height="30" class="me-2">
+                        <h5 class="brand-text mb-0">PAKKA!</h5>
+                    </a>
                     <p>Premium subscription boxes curated for your lifestyle. Unbox happiness every month.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>

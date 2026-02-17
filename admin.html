@@ -26,6 +26,26 @@
             top: 0;
             z-index: 1000;
             transition: all 0.3s ease;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+
+        /* Custom Scrollbar for Sidebar */
+        .admin-sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .admin-sidebar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .admin-sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+        }
+
+        .admin-sidebar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.4);
         }
 
         .admin-sidebar.collapsed {
@@ -43,6 +63,9 @@
             font-size: 1.5rem;
             font-weight: 900;
             text-decoration: none;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
         }
 
         .admin-sidebar-menu {
@@ -230,6 +253,9 @@
             padding: 2rem;
             box-shadow: var(--shadow-sm);
             margin-bottom: 2rem;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
         }
 
         .admin-quick-actions {
@@ -354,7 +380,191 @@
 
             <!-- Overview Section -->
             <div id="admin-overview-section">
-                <!-- Content here -->
+                <!-- Stats Grid -->
+                <div class="row g-4 mb-4">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="admin-stat-card">
+                            <div class="admin-stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="admin-stat-number">52,847</div>
+                            <div class="text-muted">Total Users</div>
+                            <div class="text-success small mt-2">
+                                <i class="fas fa-arrow-up"></i> 12% this month
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="admin-stat-card">
+                            <div class="admin-stat-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="admin-stat-number">18,293</div>
+                            <div class="text-muted">Active Subscriptions</div>
+                            <div class="text-success small mt-2">
+                                <i class="fas fa-arrow-up"></i> 8% this month
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="admin-stat-card">
+                            <div class="admin-stat-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="admin-stat-number">$894K</div>
+                            <div class="text-muted">Monthly Revenue</div>
+                            <div class="text-success small mt-2">
+                                <i class="fas fa-arrow-up"></i> 15% this month
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="admin-stat-card">
+                            <div class="admin-stat-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="admin-stat-number">3,847</div>
+                            <div class="text-muted">Orders Today</div>
+                            <div class="text-warning small mt-2">
+                                <i class="fas fa-minus"></i> 2% from yesterday
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="admin-quick-actions">
+                    <h4 class="mb-4">Quick Actions</h4>
+                    <div class="row g-4">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="admin-action-card">
+                                <div class="admin-action-icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <h6>Add New User</h6>
+                                <p class="text-muted small">Create new user account</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="admin-action-card">
+                                <div class="admin-action-icon">
+                                    <i class="fas fa-plus-circle"></i>
+                                </div>
+                                <h6>Add Product</h6>
+                                <p class="text-muted small">Add new product to catalog</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="admin-action-card">
+                                <div class="admin-action-icon">
+                                    <i class="fas fa-bullhorn"></i>
+                                </div>
+                                <h6>Send Notification</h6>
+                                <p class="text-muted small">Broadcast message to users</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="admin-action-card">
+                                <div class="admin-action-icon">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <h6>Generate Report</h6>
+                                <p class="text-muted small">Create analytics report</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders Table -->
+                <div class="admin-table">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="mb-0">Recent Orders</h4>
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-download me-2"></i> Export
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Product</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#ORD-2847</td>
+                                    <td>Sarah Johnson</td>
+                                    <td>Premium Beauty Box</td>
+                                    <td>$49.00</td>
+                                    <td><span class="admin-badge admin-badge-success">Completed</span></td>
+                                    <td>Jan 27, 2024</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-2846</td>
+                                    <td>Mike Chen</td>
+                                    <td>Tech Gadgets Box</td>
+                                    <td>$59.00</td>
+                                    <td><span class="admin-badge admin-badge-warning">Processing</span></td>
+                                    <td>Jan 27, 2024</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-2845</td>
+                                    <td>Emma Park</td>
+                                    <td>Fitness Fuel Box</td>
+                                    <td>$39.00</td>
+                                    <td><span class="admin-badge admin-badge-info">Shipped</span></td>
+                                    <td>Jan 26, 2024</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-2844</td>
+                                    <td>James Davis</td>
+                                    <td>Gourmet Food Box</td>
+                                    <td>$45.00</td>
+                                    <td><span class="admin-badge admin-badge-danger">Pending</span></td>
+                                    <td>Jan 26, 2024</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary">View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="admin-chart-container">
+                            <h4 class="mb-4">Revenue Overview</h4>
+                            <div style="flex: 1; position: relative;">
+                                <canvas id="revenueChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="admin-chart-container">
+                            <h4 class="mb-4">Subscription Types</h4>
+                            <div style="flex: 1; position: relative;">
+                                <canvas id="subscriptionChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Users Section -->
@@ -431,188 +641,9 @@
                     <p class="text-muted">Configure platform global parameters and security.</p>
                 </div>
             </div>
-            <!-- Stats Grid -->
-            <div class="row g-4 mb-4">
-                <div class="col-lg-3 col-md-6">
-                    <div class="admin-stat-card">
-                        <div class="admin-stat-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="admin-stat-number">52,847</div>
-                        <div class="text-muted">Total Users</div>
-                        <div class="text-success small mt-2">
-                            <i class="fas fa-arrow-up"></i> 12% this month
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="admin-stat-card">
-                        <div class="admin-stat-icon">
-                            <i class="fas fa-box"></i>
-                        </div>
-                        <div class="admin-stat-number">18,293</div>
-                        <div class="text-muted">Active Subscriptions</div>
-                        <div class="text-success small mt-2">
-                            <i class="fas fa-arrow-up"></i> 8% this month
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="admin-stat-card">
-                        <div class="admin-stat-icon">
-                            <i class="fas fa-dollar-sign"></i>
-                        </div>
-                        <div class="admin-stat-number">$894K</div>
-                        <div class="text-muted">Monthly Revenue</div>
-                        <div class="text-success small mt-2">
-                            <i class="fas fa-arrow-up"></i> 15% this month
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="admin-stat-card">
-                        <div class="admin-stat-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <div class="admin-stat-number">3,847</div>
-                        <div class="text-muted">Orders Today</div>
-                        <div class="text-warning small mt-2">
-                            <i class="fas fa-minus"></i> 2% from yesterday
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Actions -->
-            <div class="admin-quick-actions">
-                <h4 class="mb-4">Quick Actions</h4>
-                <div class="row g-4">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="admin-action-card">
-                            <div class="admin-action-icon">
-                                <i class="fas fa-user-plus"></i>
-                            </div>
-                            <h6>Add New User</h6>
-                            <p class="text-muted small">Create new user account</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="admin-action-card">
-                            <div class="admin-action-icon">
-                                <i class="fas fa-plus-circle"></i>
-                            </div>
-                            <h6>Add Product</h6>
-                            <p class="text-muted small">Add new product to catalog</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="admin-action-card">
-                            <div class="admin-action-icon">
-                                <i class="fas fa-bullhorn"></i>
-                            </div>
-                            <h6>Send Notification</h6>
-                            <p class="text-muted small">Broadcast message to users</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="admin-action-card">
-                            <div class="admin-action-icon">
-                                <i class="fas fa-chart-bar"></i>
-                            </div>
-                            <h6>Generate Report</h6>
-                            <p class="text-muted small">Create analytics report</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Recent Orders Table -->
-            <div class="admin-table">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h4 class="mb-0">Recent Orders</h4>
-                    <button class="btn btn-primary btn-sm">
-                        <i class="fas fa-download me-2"></i> Export
-                    </button>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Order ID</th>
-                                <th>Customer</th>
-                                <th>Product</th>
-                                <th>Amount</th>
-                                <th>Status</th>
-                                <th>Date</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>#ORD-2847</td>
-                                <td>Sarah Johnson</td>
-                                <td>Premium Beauty Box</td>
-                                <td>$49.00</td>
-                                <td><span class="admin-badge admin-badge-success">Completed</span></td>
-                                <td>Jan 27, 2024</td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary">View</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#ORD-2846</td>
-                                <td>Mike Chen</td>
-                                <td>Tech Gadgets Box</td>
-                                <td>$59.00</td>
-                                <td><span class="admin-badge admin-badge-warning">Processing</span></td>
-                                <td>Jan 27, 2024</td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary">View</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#ORD-2845</td>
-                                <td>Emma Park</td>
-                                <td>Fitness Fuel Box</td>
-                                <td>$39.00</td>
-                                <td><span class="admin-badge admin-badge-info">Shipped</span></td>
-                                <td>Jan 26, 2024</td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary">View</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#ORD-2844</td>
-                                <td>James Davis</td>
-                                <td>Gourmet Food Box</td>
-                                <td>$45.00</td>
-                                <td><span class="admin-badge admin-badge-danger">Pending</span></td>
-                                <td>Jan 26, 2024</td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary">View</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Charts -->
-            <div class="row g-4">
-                <div class="col-lg-8">
-                    <div class="admin-chart-container">
-                        <h4 class="mb-4">Revenue Overview</h4>
-                        <canvas id="revenueChart" height="100"></canvas>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="admin-chart-container">
-                        <h4 class="mb-4">Subscription Types</h4>
-                        <canvas id="subscriptionChart" height="200"></canvas>
-                    </div>
-                </div>
-            </div>
         </div>
+    </div>
+    </div>
     </div>
     </div>
 

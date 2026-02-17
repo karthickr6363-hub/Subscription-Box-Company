@@ -37,30 +37,38 @@
         }
 
         .brand-logo {
-            text-align: center;
             margin-bottom: 1.5rem;
+        }
+
+        .brand-logo a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            gap: 1rem;
         }
 
         .brand-logo img {
             height: 40px;
-            margin-bottom: 0.5rem;
         }
 
         .brand-logo h1 {
             font-size: 2.5rem;
             font-weight: 900;
-            margin-bottom: 0.25rem;
+            margin: 0;
         }
 
         .brand-logo p {
+            text-align: center;
             color: var(--text-light);
             font-size: 1rem;
-            margin: 0;
+            margin-top: 0.5rem;
         }
 
         .form-control,
         .form-select {
-            border: 2px solid rgba(26, 26, 46, 0.1);
+            background-color: var(--light-bg);
+            border: 2px solid rgba(26, 26, 46, 0.2);
             border-radius: 12px;
             padding: 0.6rem 1rem;
             font-size: 0.95rem;
@@ -140,10 +148,14 @@
         }
 
         .back-link a {
-            color: var(--white);
+            color: #6c757d;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: var(--primary-color);
         }
 
         .back-link a:hover {
@@ -199,12 +211,20 @@
 </head>
 
 <body>
+    <button id="darkModeToggle"
+        class="btn btn-link nav-link position-fixed top-0 end-0 m-3 z-3 bg-white rounded-circle shadow-sm"
+        style="width: 45px; height: 45px;">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <div class="auth-container">
         <div class="auth-card">
             <!-- Brand Logo -->
             <div class="brand-logo">
-                <img src="favicon.svg" alt="Pakka Logo">
-                <h1 class="brand-text">PAKKA!</h1>
+                <a href="index.html">
+                    <img src="favicon.svg" alt="Pakka Logo">
+                    <h1 class="brand-text">PAKKA!</h1>
+                </a>
                 <p>Premium Subscription Boxes</p>
             </div>
 

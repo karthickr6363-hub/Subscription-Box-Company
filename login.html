@@ -37,28 +37,40 @@
         }
 
         .brand-logo {
-            text-align: center;
             margin-bottom: 2rem;
+        }
+
+        .brand-logo a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            gap: 1.2rem;
+        }
+
+        .brand-logo img {
+            height: 50px;
         }
 
         .brand-logo h1 {
             font-size: 3rem;
             font-weight: 900;
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
+            margin: 0;
         }
 
         .brand-logo p {
+            text-align: center;
             color: var(--text-light);
             font-size: 1.1rem;
-            margin: 0;
+            margin-top: 0.5rem;
         }
 
         .auth-tabs {
             display: flex;
             justify-content: center;
             margin-bottom: 2rem;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--light-bg);
             border-radius: 50px;
             padding: 0.25rem;
         }
@@ -68,7 +80,7 @@
             padding: 0.75rem 1.5rem;
             background: transparent;
             border: none;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-light);
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
@@ -82,7 +94,8 @@
 
         .form-control,
         .form-select {
-            border: 2px solid rgba(26, 26, 46, 0.1);
+            background-color: var(--light-bg);
+            border: 2px solid rgba(26, 26, 46, 0.2);
             border-radius: 15px;
             padding: 1rem;
             font-size: 1rem;
@@ -140,9 +153,9 @@
         .social-btn {
             flex: 1;
             padding: 0.75rem;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--white);
+            border: 2px solid rgba(26, 26, 46, 0.1);
+            background: transparent;
+            color: var(--primary-color);
             border-radius: 10px;
             text-decoration: none;
             display: flex;
@@ -152,7 +165,8 @@
         }
 
         .social-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(233, 69, 96, 0.05);
+            border-color: var(--primary-color);
             transform: translateY(-2px);
         }
 
@@ -160,6 +174,7 @@
             text-align: center;
             margin: 2rem 0;
             position: relative;
+            color: var(--text-light);
         }
 
         .divider::before {
@@ -199,10 +214,14 @@
         }
 
         .back-link a {
-            color: var(--white);
+            color: #6c757d;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: var(--primary-color);
         }
 
         .back-link a:hover {
@@ -240,11 +259,20 @@
 </head>
 
 <body>
+    <button id="darkModeToggle"
+        class="btn btn-link nav-link position-fixed top-0 end-0 m-3 z-3 bg-white rounded-circle shadow-sm"
+        style="width: 45px; height: 45px;">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <div class="auth-container">
         <div class="auth-card">
             <!-- Brand Logo -->
             <div class="brand-logo">
-                <h1>PAKKA!</h1>
+                <a href="index.html">
+                    <img src="favicon.svg" alt="Pakka Logo">
+                    <h1 class="brand-text">PAKKA!</h1>
+                </a>
                 <p>Premium Subscription Boxes</p>
             </div>
 
