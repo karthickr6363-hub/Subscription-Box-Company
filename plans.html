@@ -72,7 +72,7 @@
         .plan-name {
             font-size: 2rem;
             font-weight: 900;
-            color: var(--primary-color);
+            color: var(--text-dark);
             margin-bottom: 0.5rem;
         }
 
@@ -138,7 +138,7 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
-            color: var(--white);
+            color: #ffffff;
             font-size: 2rem;
         }
 
@@ -229,6 +229,71 @@
         .plan-card .btn,
         .gift-card .btn {
             margin-top: auto;
+        }
+
+        /* Dark Mode Overrides for Plans Page */
+        body.dark-mode .pricing-section,
+        body.dark-mode .py-5 {
+            background-color: var(--primary-color) !important;
+        }
+
+        body.dark-mode .plan-card,
+        body.dark-mode .category-card,
+        body.dark-mode .compare-table {
+            background: var(--secondary-color) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode h4,
+        body.dark-mode .lead,
+        body.dark-mode .plan-name,
+        body.dark-mode .plan-price,
+        body.dark-mode .compare-table strong,
+        body.dark-mode .compare-table th {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .plan-features li,
+        body.dark-mode .plan-period,
+        body.dark-mode .category-card p,
+        body.dark-mode .compare-table td {
+            color: rgba(255, 255, 255, 0.8) !important;
+            border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        body.dark-mode .table> :not(caption)>*>* {
+            background-color: transparent !important;
+            color: inherit !important;
+        }
+
+        body.dark-mode .text-success {
+            color: #00ff88 !important;
+        }
+
+        body.dark-mode footer {
+            background-color: var(--primary-color) !important;
+        }
+
+        body.dark-mode footer h6,
+        body.dark-mode footer p,
+        body.dark-mode footer li a {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        body.dark-mode .gift-card h4,
+        body.dark-mode .gift-card .display-4,
+        body.dark-mode .gift-card p,
+        body.dark-mode .gift-card li,
+        body.dark-mode .gift-section h2,
+        body.dark-mode .gift-section p {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .gift-card .list-unstyled i {
+            color: #ffffff !important;
         }
     </style>
 </head>

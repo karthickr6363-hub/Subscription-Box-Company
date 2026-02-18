@@ -214,6 +214,50 @@
                 margin-right: auto;
             }
         }
+
+        /* How It Works Dark Mode Fixes */
+        body.dark-mode .step-card,
+        body.dark-mode .feature-item,
+        body.dark-mode .timeline-content {
+            background: var(--secondary-color);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        body.dark-mode .step-icon i,
+        body.dark-mode .step-number,
+        body.dark-mode .feature-icon i {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .step-flow::before {
+            opacity: 0.3;
+        }
+
+        body.dark-mode .timeline-dot {
+            border-color: var(--secondary-color);
+        }
+
+        body.dark-mode .timeline-item::before {
+            background: var(--accent-color);
+            opacity: 0.5;
+        }
+
+        body.dark-mode h2,
+        body.dark-mode h4,
+        body.dark-mode h5,
+        body.dark-mode .lead {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .text-success {
+            color: #00ff88 !important;
+            /* Brighter green for dark mode */
+        }
+
+        body.dark-mode .accordion-body {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
     </style>
 </head>
 

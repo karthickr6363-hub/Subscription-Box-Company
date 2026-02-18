@@ -86,6 +86,42 @@
             background-clip: text;
         }
 
+        body.dark-mode .brand-text {
+            background: linear-gradient(135deg, var(--accent-color), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Sign Up Page Dark Mode Text Fixes */
+        body.dark-mode {
+            color: #ffffff;
+        }
+
+        body.dark-mode .auth-card a,
+        body.dark-mode .back-link a {
+            color: var(--accent-color) !important;
+        }
+
+        body.dark-mode .back-link a:hover {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .btn-outline-primary {
+            color: #ffffff;
+            border-color: var(--accent-color);
+        }
+
+        body.dark-mode .btn-outline-primary:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+        }
+
+        /* Ensure all form labels and checks are visible */
+        body.dark-mode .form-check-label a {
+            color: var(--accent-color) !important;
+        }
+
         .form-control:focus,
         .form-select:focus {
             border-color: var(--accent-color);
@@ -206,6 +242,66 @@
             .brand-logo h1 {
                 font-size: 2.5rem;
             }
+        }
+
+        /* Sign Up Page Dark Mode Fixes */
+        body.dark-mode {
+            color: #ffffff;
+        }
+
+        body.dark-mode .auth-card {
+            background: var(--secondary-color) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .brand-logo h1,
+        body.dark-mode .form-label,
+        body.dark-mode .brand-logo p {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .form-check-label {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        body.dark-mode .form-control {
+            background-color: var(--primary-color);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        body.dark-mode .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        body.dark-mode .btn-outline-primary {
+            color: #ffffff;
+            border-color: var(--accent-color);
+        }
+
+        body.dark-mode .btn-outline-primary:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+        }
+
+        body.dark-mode a {
+            color: var(--accent-color) !important;
+        }
+
+        body.dark-mode .back-link a {
+            color: var(--accent-color) !important;
+        }
+
+        /* Fix Toggle Button Visibility */
+        body.dark-mode #darkModeToggle {
+            color: var(--primary-color) !important;
+        }
+
+        body.dark-mode .brand-text {
+            background: linear-gradient(135deg, var(--accent-color), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
     </style>
 </head>

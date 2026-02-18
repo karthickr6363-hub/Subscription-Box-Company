@@ -149,7 +149,7 @@
         .admin-stat-number {
             font-size: 2rem;
             font-weight: 900;
-            color: var(--primary-color);
+            color: var(--text-dark);
             margin-bottom: 0.5rem;
         }
 
@@ -291,6 +291,60 @@
             color: var(--white);
             font-size: 1.5rem;
             margin: 0 auto 1rem;
+        }
+
+        /* Admin Dark Mode Overrides */
+        body.dark-mode .admin-dashboard {
+            background-color: var(--primary-color);
+        }
+
+        body.dark-mode .admin-top-bar,
+        body.dark-mode .admin-stat-card,
+        body.dark-mode .admin-table,
+        body.dark-mode .admin-chart-container,
+        body.dark-mode .admin-quick-actions,
+        body.dark-mode .admin-action-card {
+            background-color: var(--secondary-color) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .admin-sidebar {
+            background-color: #0a0a16 !important;
+            /* Even darker for sidebar */
+        }
+
+        body.dark-mode .admin-stat-number,
+        body.dark-mode h4,
+        body.dark-mode h6,
+        body.dark-mode .admin-sidebar-brand,
+        body.dark-mode .admin-sidebar-item i,
+        body.dark-mode .admin-stat-icon i,
+        body.dark-mode .admin-action-icon i,
+        body.dark-mode .admin-top-bar i {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .text-muted {
+            color: rgba(255, 255, 255, 0.6) !important;
+        }
+
+        body.dark-mode .table {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .table tr {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .table-hover tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+        }
+
+        body.dark-mode .admin-stat-icon,
+        body.dark-mode .admin-action-icon {
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3);
         }
     </style>
 </head>

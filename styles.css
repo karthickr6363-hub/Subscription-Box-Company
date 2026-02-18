@@ -26,6 +26,8 @@ body.dark-mode {
     --text-light: #adb5bd;
     --primary-color: #0f0f1b;
     --secondary-color: #1a1a2e;
+    --text-gradient-start: #ffffff;
+    --text-gradient-end: #e94560;
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
@@ -123,6 +125,13 @@ h6 {
 
 .text-gradient {
     background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.dark-mode .text-gradient {
+    background: linear-gradient(135deg, var(--accent-color), #ffffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -273,7 +282,7 @@ section:not(.hero-section) {
 
 .btn-outline-light {
     border: 2px solid rgba(255, 255, 255, 0.3);
-    color: var(--white);
+    color: #ffffff;
     font-weight: 600;
     padding: 12px 30px;
     border-radius: 50px;
@@ -309,6 +318,36 @@ section:not(.hero-section) {
     50% {
         transform: translateY(-20px);
     }
+}
+
+/* Home 2 Hero Fixes */
+.hero-conversion {
+    color: #ffffff;
+}
+
+.hero-conversion h1,
+.hero-conversion h2,
+.hero-conversion p {
+    color: #ffffff;
+}
+
+.hero-conversion .text-gradient {
+    background: linear-gradient(135deg, var(--accent-color), #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Home 2 Card Fixes for Dark Mode */
+body.dark-mode .pricing-card,
+body.dark-mode .faq-item,
+body.dark-mode .testimonial-compact {
+    background: var(--secondary-color);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .benefit-item {
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 @keyframes pulse {
@@ -443,7 +482,7 @@ section:not(.hero-section) {
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
-    color: var(--white);
+    color: #ffffff;
     font-size: 2rem;
     transition: all 0.3s ease;
 }
@@ -501,7 +540,7 @@ section:not(.hero-section) {
 }
 
 .box-content h4 {
-    color: var(--primary-color);
+    color: var(--text-dark);
     margin-bottom: 0.5rem;
 }
 
@@ -521,30 +560,42 @@ section:not(.hero-section) {
     border: 1px solid rgba(26, 26, 46, 0.1);
     display: flex;
     flex-direction: column;
+    text-align: center;
+    /* Center everything */
 }
 
 .rating {
     color: #ffc107;
     margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    /* Center stars */
+    gap: 0.25rem;
 }
 
 .reviewer {
     display: flex;
+    flex-direction: column;
+    /* Stack image and text */
     align-items: center;
-    gap: 1rem;
+    /* Center horizontally */
+    gap: 0.5rem;
     margin-top: auto;
     padding-top: 1.5rem;
 }
 
 .reviewer img {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
+    margin-bottom: 0.5rem;
+    border: 3px solid var(--accent-color);
 }
 
 .reviewer h6 {
-    color: var(--primary-color);
+    color: var(--text-dark);
     margin: 0;
+    font-size: 1.1rem;
 }
 
 .reviewer small {
@@ -554,11 +605,11 @@ section:not(.hero-section) {
 /* CTA Section */
 .cta-section {
     background: var(--gradient);
-    color: var(--white);
+    color: #ffffff;
 }
 
 .cta-section h2 {
-    color: var(--white);
+    color: #ffffff;
 }
 
 .cta-section p {
@@ -568,12 +619,18 @@ section:not(.hero-section) {
 /* Footer */
 footer {
     background: var(--primary-color);
-    color: var(--white);
+    color: #ffffff;
+}
+
+footer p,
+footer li,
+footer div {
+    color: rgba(255, 255, 255, 0.8);
 }
 
 footer h5,
 footer h6 {
-    color: var(--white);
+    color: #ffffff;
 }
 
 footer a {
@@ -596,7 +653,7 @@ footer a:hover {
     width: 40px;
     height: 40px;
     background: rgba(255, 255, 255, 0.1);
-    color: var(--white);
+    color: #ffffff;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -791,4 +848,32 @@ body {
 
 .back-to-top:hover i {
     transform: translateY(-3px);
+}
+
+/* Dark Mode Footer Overrides */
+body.dark-mode footer {
+    background-color: #0f0f1b;
+    /* Ensure background stays dark */
+    color: #ffffff !important;
+}
+
+body.dark-mode footer p,
+body.dark-mode footer a,
+body.dark-mode footer li,
+body.dark-mode footer div,
+body.dark-mode footer h5,
+body.dark-mode footer h6,
+body.dark-mode footer .text-muted,
+body.dark-mode footer small {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+body.dark-mode footer h5,
+body.dark-mode footer h6,
+body.dark-mode footer .brand-text {
+    color: #ffffff !important;
+}
+
+body.dark-mode footer a:hover {
+    color: var(--accent-color) !important;
 }
