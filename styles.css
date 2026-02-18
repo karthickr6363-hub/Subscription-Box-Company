@@ -663,7 +663,7 @@ footer a:hover {
 
 .social-links a:hover {
     background: var(--accent-color);
-    color: var(--white);
+    color: #ffffff;
     transform: translateY(-3px);
 }
 

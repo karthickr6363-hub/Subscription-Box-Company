@@ -244,9 +244,21 @@
         }
 
         body.dark-mode h2,
+        body.dark-mode h3,
         body.dark-mode h4,
         body.dark-mode h5,
         body.dark-mode .lead {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .demo-video {
+            background: var(--secondary-color);
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .demo-video h3,
+        body.dark-mode .demo-video p {
             color: #ffffff !important;
         }
 
@@ -266,6 +278,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
+                <img src="favicon.svg" alt="Pakka Logo" height="30" class="me-2">
                 <span class="brand-text">PAKKA!</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
