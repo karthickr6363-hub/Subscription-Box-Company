@@ -98,6 +98,36 @@ body.dark-mode .accordion-button:not(.collapsed) {
     color: var(--accent-color);
 }
 
+/* Global Dark Mode Contrast Fixes */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode .lead,
+body.dark-mode p:not(.text-muted):not(footer p) {
+    color: var(--text-dark);
+}
+
+body.dark-mode .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+body.dark-mode .input-group .btn-light {
+    background-color: #f8f9fa;
+    color: #1a1a2e;
+}
+
+body.dark-mode .benefit-item,
+body.dark-mode .benefit-item i {
+    color: var(--text-dark);
+}
+
+body.dark-mode .benefit-item i {
+    color: var(--accent-color);
+}
+
 
 * {
     margin: 0;
@@ -336,6 +366,27 @@ section:not(.hero-section) {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+/* Home 2 Specific Dark Mode Visibility */
+body.dark-mode .hero-conversion p,
+body.dark-mode .hero-conversion .lead {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+body.dark-mode .newsletter-cta h2,
+body.dark-mode .newsletter-cta p {
+    color: #ffffff;
+}
+
+body.dark-mode .newsletter-cta .form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+body.dark-mode .newsletter-cta .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
 }
 
 /* Home 2 Card Fixes for Dark Mode */

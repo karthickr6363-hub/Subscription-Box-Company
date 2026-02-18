@@ -24,7 +24,8 @@
             position: fixed;
             left: 0;
             top: 0;
-            z-index: 1000;
+            z-index: 1050;
+            /* Increased to ensure it stays above content */
             transition: all 0.3s ease;
             overflow-y: auto;
             max-height: 100vh;
@@ -56,6 +57,18 @@
             padding: 1.5rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
+        }
+
+        .eco-label {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .admin-profile-img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .admin-sidebar-brand {
@@ -200,6 +213,29 @@
             border-radius: 10px;
             padding: 0.75rem;
             font-size: 1.25rem;
+        }
+
+        .admin-sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1045;
+            /* Just below the sidebar */
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .admin-sidebar-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        body.admin-sidebar-open .admin-mobile-menu-toggle {
+            display: none;
         }
 
         @media (max-width: 768px) {
@@ -347,11 +383,19 @@
         body.dark-mode .admin-action-icon {
             box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3);
         }
+
+        body.dark-mode .admin-mobile-menu-toggle {
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
     </style>
 </head>
 
 <body>
     <div class="admin-dashboard">
+        <!-- Sidebar Overlay -->
+        <div class="admin-sidebar-overlay" id="adminSidebarOverlay" onclick="toggleAdminSidebar()"></div>
+
         <!-- Mobile Menu Toggle -->
         <button class="admin-mobile-menu-toggle" onclick="toggleAdminSidebar()">
             <i class="fas fa-bars"></i>
@@ -360,10 +404,16 @@
         <!-- Admin Sidebar -->
         <nav class="admin-sidebar" id="adminSidebar">
             <div class="admin-sidebar-header">
-                <a href="index.html" class="admin-sidebar-brand">
-                    <img src="favicon.svg" alt="Pakka Logo" height="30" class="me-2">
-                    <span class="brand-text">PAKKA!</span>
-                </a>
+                <div class="d-flex justify-content-between align-items-center">
+                    <a href="index.html" class="admin-sidebar-brand">
+                        <img src="favicon.svg" alt="Pakka Logo" height="30" class="me-2">
+                        <span class="brand-text">PAKKA!</span>
+                    </a>
+                    <!-- Close button for mobile -->
+                    <button class="btn btn-link text-white d-lg-none p-0" onclick="toggleAdminSidebar()">
+                        <i class="fas fa-times fa-lg"></i>
+                    </button>
+                </div>
             </div>
 
             <div class="admin-sidebar-menu">
@@ -424,7 +474,7 @@
                     </div>
                     <div class="d-flex align-items-center">
                         <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
-                            alt="Admin" class="rounded-circle me-2">
+                            alt="Admin" class="rounded-circle me-2 admin-profile-img">
                         <div>
                             <div class="fw-bold">Admin User</div>
                             <small class="text-muted">Administrator</small>
@@ -709,13 +759,15 @@
         function toggleAdminSidebar() {
             const sidebar = document.getElementById('adminSidebar');
             const mainContent = document.getElementById('adminMainContent');
+            const overlay = document.getElementById('adminSidebarOverlay');
 
-            sidebar.classList.toggle('collapsed');
-            mainContent.classList.toggle('expanded');
-
-            // Mobile handling
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 768) { // Match current CSS breakpoint
                 sidebar.classList.toggle('open');
+                overlay.classList.toggle('active');
+                document.body.classList.toggle('admin-sidebar-open');
+            } else {
+                sidebar.classList.toggle('collapsed');
+                mainContent.classList.toggle('expanded');
             }
         }
 
